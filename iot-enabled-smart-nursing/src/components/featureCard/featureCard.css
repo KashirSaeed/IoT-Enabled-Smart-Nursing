@@ -1,0 +1,17 @@
+.iconTransform{
+    transform: scale(2) !important;
+    width: 50px;
+    height: 100px;
+}
+.bg_grey{
+    background-color: #232329;
+}
+.rounded_border{
+    border-radius: 20px;
+}
+.p_5{
+    padding: 25px;
+}
+.zero_margin{
+    margin: 0;
+}
