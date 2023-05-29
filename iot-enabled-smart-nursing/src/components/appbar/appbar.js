@@ -2,29 +2,25 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import SwipeableTemporaryDrawer from '../swipeableDrawer/SwipeableTemporaryDrawer';
 
 const pages = ['Product Overview', 'Payment Plans', 'Contact Us'];
 
 const MyAppbar = ()=> {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor:"#F5F5F5", color:"black"}}>
+    <AppBar elevation={24} position="static" sx={{backgroundColor:"#F5F5F5", color:"black", boxShadow:24}}>
       <Container maxWidth="xl" >
         
         <Toolbar>
@@ -48,7 +44,7 @@ const MyAppbar = ()=> {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
+            {/* <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -57,7 +53,8 @@ const MyAppbar = ()=> {
               color="inherit"
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
+            <SwipeableTemporaryDrawer/>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -100,7 +97,7 @@ const MyAppbar = ()=> {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            IoT ENR
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -119,3 +116,4 @@ const MyAppbar = ()=> {
   );
 }
 export default MyAppbar;
+

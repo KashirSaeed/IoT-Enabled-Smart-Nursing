@@ -1,0 +1,15 @@
+.zero-margin{
+    margin: 0 !important;
+}
+.text-align{
+    text-align: center;
+}
+.font-small{
+    font-size:3vh;
+}
+.font-medium{
+    font-size:4vh;
+}
+.font-large{
+    font-size:5vh; 
+}
