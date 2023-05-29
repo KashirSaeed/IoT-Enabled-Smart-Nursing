@@ -17,7 +17,7 @@ const CustomButton =(props)=>{
         type={props.customButtonType}
         
         className={`themeColor ${props.className}`} variant="contained">
-    {props.ButtonText}
+    {props.ButtonText} 
     </Button>
 );
 }

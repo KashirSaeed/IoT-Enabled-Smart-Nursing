@@ -23,21 +23,20 @@ const Usertype = () => {
     // const [passwordError, setPasswordError] = useState(false)
     const [userType,setUserType] = useState('')
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         
         
-        // const myEmail = event.target.myEmail.value;
-        // const myPassword = event.target.myPassword.value;
+        const myUsertype = event.target.myUsertype.value;
 
-        // axios.get(`http://localhost:8000/user/${myEmail}/${myPassword}/`)
-        // .then( (response) =>{
-        //     console.log(response);
-        //     // event.target.reset();
-        // } )
-        // .catch( (error)=>{
-        //     console.log(error)
-        // } )
+        await axios.patch(`http://localhost:8000/user/${myUsertype}/`)
+        .then( (response) =>{
+            console.log(response);
+            // event.target.reset();
+        } )
+        .catch( (error)=>{
+            console.log(error)
+        } )
 
         alert("hello")
         // setEmailError(false)
@@ -58,11 +57,11 @@ const Usertype = () => {
     return (
         <form className="formProperties" onSubmit={handleSubmit}>
             <Grid container spacing={2}>
-                {/* <Grid xs={12}>
+                <Grid xs={12}>
                     <div>
-                        <MainHeading text="Sign In" />
+                        <MainHeading text="User role" />
                     </div>
-                </Grid> */}
+                </Grid>
                 
                 <Grid xs={12}>
                     <div className="marginBottom "  >
@@ -73,7 +72,7 @@ const Usertype = () => {
                 <Grid xs={12}>
                     <div className="margibBottom buttonCentering" >
                         {/* <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" /> */}
-                        <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" />
+                        <CustomButton ButtonText='Confirm' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" />
 
                     </div>
                 </Grid>
