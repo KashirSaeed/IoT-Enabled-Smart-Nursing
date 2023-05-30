@@ -1,5 +1,25 @@
 
 // import {  MonitorHeartOutlined } from '@mui/icons-material';
+// import './App.css';
+// import CustomButton from './components/CustomButton/CustomButton';
+// import CustomTextField from './components/CustomTextField/CustomTextField';
+// import MiniDrawer from './components/Drawer/drawer';
+// import VitalCard from './components/VitalCard/VitalCard';
+// import MyAppbar from './components/appbar/appbar';
+// import CustomizedTimeline from './components/timeline/timeline';
+// // import GetData from './services/temp';
+// import { useEffect, useState } from "react";
+
+
+
+
+
+
+// import CustomButton from './components/CustomButton/CustomButton';
+// import CustomTextField from './components/CustomTextField/CustomTextField';
+// import VitalCard from './components/VitalCard/VitalCard';
+// import MyAppbar from './components/appbar/appbar';
+// import CustomizedTimeline from './components/timeline/timeline';
 import { MonitorHeart } from '@mui/icons-material';
 import './App.css';
 import CustomButton from './components/CustomButton/CustomButton';
@@ -11,6 +31,7 @@ import CustomizedTimeline from './components/timeline/timeline';
 import LandingPage from './pages/landingPage/landingPage';
 // import React from 'react';
 import WebSocketComponent from './components/WebsocketComponent/webSocketComponent';
+
 
 // ---------------------------------------
 import SignIn from './components/Forms/SignIn/signIn';
@@ -26,6 +47,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 //     <React.Fragment>
 //       <LandingPage></LandingPage>
 //       <WebSocketComponent/>
+
 
 
 
@@ -58,6 +80,22 @@ const App = () => {
 
 
 
+    // <div>
+    //   <MyAppbar></MyAppbar>
+    //   <div className='row center-justify'>
+    //     <h1>Setup</h1>
+    //   </div>
+    //   <MiniDrawer ObjectList = {objectList}/>
+    //   <div className='center-justify row padding-tb'> 
+    //     <CustomButton ButtonText='Submit'/>
+    //     <hr style={{marginLeft:"15px",marginRight:"15px"}}></hr>
+    //     <CustomTextField PlaceHolderText='Password' FieldLabel="Password" requirement={true} Type={"password"}/>
+    //     <hr style={{marginLeft:"15px",marginRight:"15px"}}></hr>
+    //     <CustomTextField PlaceHolderText='+92-3334587233' FieldLabel="Contact" requirement={false} Type={"tel"}/>
+    //   </div>
+    //   <CustomizedTimeline/>
+    //   <div className='row center-justify padding-tb'><VitalCard Icon={<MonitorHeart/>} Heading='Pulse' Value='97'/></div>
+    // </div>
 
     <div>
       <BrowserRouter>
@@ -65,10 +103,16 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/usertype" element={<Usertype />} />
-          <Route path="/" element={<LandingPage />} />
-        </Routes >
+          <Route path="/" element={<LandingPage/>} />
+          </Routes>
       </BrowserRouter>
     </div>
+
+
+    //       <Route path="/" element={<LandingPage />} />
+    //     </Routes >
+    //   </BrowserRouter>
+    // </div>
 
     // <div>
     //   <MyAppbar></MyAppbar>
