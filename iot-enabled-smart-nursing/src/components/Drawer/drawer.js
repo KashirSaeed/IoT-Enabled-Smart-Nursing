@@ -19,7 +19,6 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -196,28 +195,7 @@ const MiniDrawer = (props) => {
         </List>
       </Drawer>
 
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Location</TableCell>
-            <TableCell>Blood pressure</TableCell>
-            <TableCell>Object name</TableCell>
-            <TableCell>Time</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {props.ObjectList?.map((detection) => (
-            <TableRow key={detection._time}>
-              <TableCell>{detection.location}</TableCell>
-              <TableCell>{detection['Blood pressure']}</TableCell>
-              <TableCell>{detection['object name']}</TableCell>
-              <TableCell>{detection.time}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    
     </Box>
     
   );

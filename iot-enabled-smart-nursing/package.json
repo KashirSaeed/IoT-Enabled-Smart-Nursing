@@ -24,7 +24,11 @@
     "react-particles": "^2.9.3",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.11.2",
+    "react-particles": "^2.9.3",
+    "react-responsive-carousel": "^3.2.23",
     "react-scripts": "5.0.1",
+    "react-tsparticles": "^2.9.3",
+    "tsparticles": "^2.9.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

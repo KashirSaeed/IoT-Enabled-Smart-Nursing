@@ -1,7 +1,7 @@
 import React from "react";
 import './VitalCard.css'
 import PropTypes from 'prop-types';
-import { AdUnitsOutlined, MonitorHeart } from "@mui/icons-material";
+// import { AdUnitsOutlined, MonitorHeart } from "@mui/icons-material";
 
 const VitalCard = (props) => {
     return(
