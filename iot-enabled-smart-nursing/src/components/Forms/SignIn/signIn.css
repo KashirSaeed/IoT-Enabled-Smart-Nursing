@@ -1,5 +1,4 @@
 
-
 .formProperties{
     width: 20%;
     margin: auto;
@@ -23,3 +22,16 @@
     opacity: 50%;
     font-size:x-large;
 }
+
+#signInDiv{
+    display: inline-block;
+    background-color:white;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+  }
