@@ -73,23 +73,41 @@
 
 
 // import {  MonitorHeartOutlined } from '@mui/icons-material';
-import { MonitorHeart } from '@mui/icons-material';
-import './App.css';
-import CustomButton from './components/CustomButton/CustomButton';
-import CustomTextField from './components/CustomTextField/CustomTextField';
-import MiniDrawer from './components/Drawer/drawer';
-import VitalCard from './components/VitalCard/VitalCard';
-import MyAppbar from './components/appbar/appbar';
-import CustomizedTimeline from './components/timeline/timeline';
+// import './App.css';
+// import CustomButton from './components/CustomButton/CustomButton';
+// import CustomTextField from './components/CustomTextField/CustomTextField';
+// import MiniDrawer from './components/Drawer/drawer';
+// import VitalCard from './components/VitalCard/VitalCard';
+// import MyAppbar from './components/appbar/appbar';
+// import CustomizedTimeline from './components/timeline/timeline';
+// // import GetData from './services/temp';
+// import { useEffect, useState } from "react";
+
+
+
+
+
+
+// import CustomButton from './components/CustomButton/CustomButton';
+// import CustomTextField from './components/CustomTextField/CustomTextField';
+// import VitalCard from './components/VitalCard/VitalCard';
+// import MyAppbar from './components/appbar/appbar';
+// import CustomizedTimeline from './components/timeline/timeline';
 // import GetData from './services/temp';
-import { useEffect, useState } from "react";
+import LandingPage from './pages/landingPage/landingPage';
+// import React from 'react';
+import WebSocketComponent from './components/WebsocketComponent/webSocketComponent';
+
+
+
+
 
 // ---------------------------------------
 import SignIn from './components/Forms/SignIn/signIn';
 import SignUp from './components/Forms/SignUp/signUp';
 import Usertype from './components/Forms/Usertype/usertype';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
 // ---------------------------------------
 
@@ -98,12 +116,7 @@ import React, { Fragment } from 'react';
 
 
 
-// const Data=async()=>{await useEffect(() => {
-//   fetch('http://localhost:8000/fetch/')
-//    .then(response => response.json())
-//    .then(data =>console.log(data) )
-//    .catch(error => console.error(error));
-// }, []);}
+
 const App = () => {
 
   const [objectList, setObjectList] = useState(null)
@@ -129,31 +142,33 @@ const App = () => {
 
 
     // <div>
-    //   <BrowserRouter>
-    //     <Routes >
-    //       <Route path="/signin" element={<SignIn />} />
-    //       <Route path="/signup" element={<SignUp />} />
-    //       <Route path="/usertype" element={<Usertype />} />
-    //     </Routes >
-    //   </BrowserRouter>
+    //   <MyAppbar></MyAppbar>
+    //   <div className='row center-justify'>
+    //     <h1>Setup</h1>
+    //   </div>
+    //   <MiniDrawer ObjectList = {objectList}/>
+    //   <div className='center-justify row padding-tb'> 
+    //     <CustomButton ButtonText='Submit'/>
+    //     <hr style={{marginLeft:"15px",marginRight:"15px"}}></hr>
+    //     <CustomTextField PlaceHolderText='Password' FieldLabel="Password" requirement={true} Type={"password"}/>
+    //     <hr style={{marginLeft:"15px",marginRight:"15px"}}></hr>
+    //     <CustomTextField PlaceHolderText='+92-3334587233' FieldLabel="Contact" requirement={false} Type={"tel"}/>
+    //   </div>
+    //   <CustomizedTimeline/>
+    //   <div className='row center-justify padding-tb'><VitalCard Icon={<MonitorHeart/>} Heading='Pulse' Value='97'/></div>
     // </div>
-
     <div>
-      <MyAppbar></MyAppbar>
-      <div className='row center-justify'>
-        <h1>Setup</h1>
-      </div>
-      <MiniDrawer ObjectList = {objectList}/>
-      <div className='center-justify row padding-tb'> 
-        <CustomButton ButtonText='Submit'/>
-        <hr style={{marginLeft:"15px",marginRight:"15px"}}></hr>
-        <CustomTextField PlaceHolderText='Password' FieldLabel="Password" requirement={true} Type={"password"}/>
-        <hr style={{marginLeft:"15px",marginRight:"15px"}}></hr>
-        <CustomTextField PlaceHolderText='+92-3334587233' FieldLabel="Contact" requirement={false} Type={"tel"}/>
-      </div>
-      <CustomizedTimeline/>
-      <div className='row center-justify padding-tb'><VitalCard Icon={<MonitorHeart/>} Heading='Pulse' Value='97'/></div>
+      <BrowserRouter>
+        <Routes >
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/usertype" element={<Usertype />} />
+          <Route path="/" element={<LandingPage/>} />
+          </Routes>
+      </BrowserRouter>
     </div>
+
+
   );
 }
 

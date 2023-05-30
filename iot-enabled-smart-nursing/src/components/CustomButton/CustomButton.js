@@ -29,7 +29,9 @@ CustomButton.propTypes = {
     buttonHeight:PropTypes.string,
 
 
-    customButtonType: PropTypes.string.isRequired,
+    // customButtonType: PropTypes.string.isRequired,
+    customButtonType: PropTypes.string,
+
     customButtonClickEvent: PropTypes.func,
 };
 
