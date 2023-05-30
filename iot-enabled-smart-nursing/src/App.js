@@ -8,18 +8,18 @@ import CustomizedTimeline from './components/timeline/timeline';
 // import GetData from './services/temp';
 import LandingPage from './pages/landingPage/landingPage';
 import React from 'react';
-import WebSocketComponent from './components/WebsocketComponent/webSocketComponent';
+import TableData from './components/TableData/TableData';
 
 // --------------kashir code-------------------------
-import SignIn from './components/Forms/SignIn/signIn';
-import SignUp from './components/Forms/SignUp/signUp';
+// import SignIn from './components/Forms/SignIn/signIn';
+// import SignUp from './components/Forms/SignUp/signUp';
 // --------------kashir code-------------------------
 
 const App=()=> {
   return (
     <React.Fragment>
       <LandingPage></LandingPage>
-      <WebSocketComponent/>
+      <TableData/>
       <div className='row center-justify'>
         <h1>Setup</h1>
       </div>

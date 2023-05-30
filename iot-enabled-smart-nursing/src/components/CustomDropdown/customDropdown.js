@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import PropTypes from 'prop-types';
 import './customDropdown.css'
 
@@ -20,18 +18,18 @@ const useStyles = makeStyles((theme) => ({
 
 const CustomDropdown = (props) => {
     const classes = useStyles();
-    const [state, setState] = React.useState({
-        age: '',
-        name: 'hai',
-    });
+    // const [state, setState] = React.useState({
+    //     age: '',
+    //     name: 'hai',
+    // });
 
-    const handleChange = (event) => {
-        const name = event.target.name;
-        setState({
-            ...state,
-            [name]: event.target.value,
-        });
-    };
+    // const handleChange = (event) => {
+    //     const name = event.target.name;
+    //     setState({
+    //         ...state,
+    //         [name]: event.target.value,
+    //     });
+    // };
 
     return (
         <div  >
@@ -63,7 +61,7 @@ const CustomDropdown = (props) => {
     );
 }
 
-CustomDropdown.prototypes = {
+CustomDropdown.propTypes = {
     dropdownWidth: PropTypes.string,
     dropdownArray: PropTypes.array.isRequired,
     dropdownPlaceHolder: PropTypes.string,

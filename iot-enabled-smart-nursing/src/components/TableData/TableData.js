@@ -1,43 +1,16 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
-const WebSocketComponent = () => {
-  const [data, setData] = useState(null);
-  const socketRef = useRef(null);
-
-  useEffect(() => {
-    // Create a WebSocket connection
-    socketRef.current = new WebSocket('ws://localhost:7175');
-
-    // Handle WebSocket connection open
-    socketRef.current.onopen = () => {
-      console.log('WebSocket connection opened');
-    };
-
-    // Handle WebSocket messages
-    socketRef.current.onmessage = (event) => {
-      const newData = JSON.parse(event.data);
-      setData(newData);
-    };
-
-    // Handle WebSocket connection close
-    socketRef.current.onclose = () => {
-      console.log('WebSocket connection closed');
-    };
-
-    // Clean up the WebSocket connection when the component unmounts
-    return () => {
-      socketRef.current.close();
-    };
-  }, []);
+const TableData = () => {
+  
   const [objectList,setObjectList] = useState(null)
   useEffect( () =>  {
     setInterval(()=>{fetch('https://test-deploy-abdulahad696.vercel.app/fetch')
     .then(response => response.json())
     .then(data =>setObjectList(JSON.parse(data)) )
-    .catch(error => console.error(error));},5000) 
+    .catch(error => console.error(error));},10000) 
   }, []);
   // Data();
   if(!objectList){
@@ -67,14 +40,9 @@ const WebSocketComponent = () => {
         </TableBody>
       </Table>
     </TableContainer>
-        {/* <MiniDrawer ObjectList = {objectList}/> */}
-    {data ? (
-        <p>{JSON.stringify(data)}</p> // Display the received data
-      ) : (
-        <p>No data received</p>
-      )}</React.Fragment>
+    </React.Fragment>
     
   );
 };
 
-export default WebSocketComponent;
+export default TableData;
