@@ -16,8 +16,8 @@ const CustomButton =(props)=>{
 
         type={props.customButtonType}
         
-        className={`themeColor ${props.className}`} variant="contained">
-    {props.ButtonText}
+        className={`themeColor ${props.className}`  } onClick={props.customButtonClickEvent} variant="contained">
+    {props.ButtonText} 
     </Button>
 );
 }
@@ -30,6 +30,7 @@ CustomButton.propTypes = {
 
 
     customButtonType: PropTypes.string.isRequired,
+    customButtonClickEvent: PropTypes.func,
 };
 
 

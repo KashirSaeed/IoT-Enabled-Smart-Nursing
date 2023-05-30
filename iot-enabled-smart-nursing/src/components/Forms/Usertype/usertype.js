@@ -4,40 +4,39 @@
 
 
 
-// import React, { useState } from "react";
-// import { TextField, FormControl, Button } from "@mui/material";
-// import { Link } from "react-router-dom"
-// import './usertype.css';
-// import MainHeading from '../../MainHeading/mainHaeding';
-// // import CustomTextField from "../../CustomTextField/CustomTextField";
-// import CustomButton from "../../CustomButton/CustomButton";
-// import Grid from '@mui/material/Grid';
-// import axios from 'axios';
-// import CustomDropdown from "../../CustomDropdown/customDropdown";
+import React, { useState } from "react";
+import { TextField, FormControl, Button } from "@mui/material";
+import { Link } from "react-router-dom"
+import './usertype.css';
+import MainHeading from '../../MainHeading/mainHaeding';
+// import CustomTextField from "../../CustomTextField/CustomTextField";
+import CustomButton from "../../CustomButton/CustomButton";
+import Grid from '@mui/material/Grid';
+import axios from 'axios';
+import CustomDropdown from "../../CustomDropdown/customDropdown";
 
 
-// const Usertype = () => {
-//     // const [email, setEmail] = useState("")
-//     // const [password, setPassword] = useState("")
-//     // const [emailError, setEmailError] = useState(false)
-//     // const [passwordError, setPasswordError] = useState(false)
-//     const [userType,setUserType] = useState('')
+const Usertype = () => {
+    // const [email, setEmail] = useState("")
+    // const [password, setPassword] = useState("")
+    // const [emailError, setEmailError] = useState(false)
+    // const [passwordError, setPasswordError] = useState(false)
+    const [userType,setUserType] = useState('')
 
-//     const handleSubmit = (event) => {
-//         event.preventDefault()
+    const handleSubmit = async (event) => {
+        event.preventDefault()
         
         
-//         // const myEmail = event.target.myEmail.value;
-//         // const myPassword = event.target.myPassword.value;
+        const myUsertype = event.target.myUsertype.value;
 
-//         // axios.get(`http://localhost:8000/user/${myEmail}/${myPassword}/`)
-//         // .then( (response) =>{
-//         //     console.log(response);
-//         //     // event.target.reset();
-//         // } )
-//         // .catch( (error)=>{
-//         //     console.log(error)
-//         // } )
+        await axios.patch(`http://localhost:8000/user/${myUsertype}/`)
+        .then( (response) =>{
+            console.log(response);
+            // event.target.reset();
+        } )
+        .catch( (error)=>{
+            console.log(error)
+        } )
 
 //         alert("hello")
 //         // setEmailError(false)
@@ -55,14 +54,14 @@
 //         // }
 //     }
 
-//     return (
-//         <form className="formProperties" onSubmit={handleSubmit}>
-//             <Grid container spacing={2}>
-//                 {/* <Grid xs={12}>
-//                     <div>
-//                         <MainHeading text="Sign In" />
-//                     </div>
-//                 </Grid> */}
+    return (
+        <form className="formProperties" onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+                <Grid xs={12}>
+                    <div>
+                        <MainHeading text="User role" />
+                    </div>
+                </Grid>
                 
 //                 <Grid xs={12}>
 //                     <div className="marginBottom "  >
@@ -70,10 +69,10 @@
 //                     </div>
 //                 </Grid>
                 
-//                 <Grid xs={12}>
-//                     <div className="margibBottom buttonCentering" >
-//                         {/* <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" /> */}
-//                         <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" />
+                <Grid xs={12}>
+                    <div className="margibBottom buttonCentering" >
+                        {/* <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" /> */}
+                        <CustomButton ButtonText='Confirm' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" />
 
 //                     </div>
 //                 </Grid>
@@ -102,7 +101,8 @@
 //             </Grid>
 //         </form>
         
-//     );
-// }
+    );
+}
+}
 
-// export default Usertype;
+export default Usertype;
