@@ -88,8 +88,12 @@ import { useEffect, useState } from "react";
 import SignIn from './components/Forms/SignIn/signIn';
 import SignUp from './components/Forms/SignUp/signUp';
 import Usertype from './components/Forms/Usertype/usertype';
-import { BrowserRouter, Route, Routes  } from 'react-router-dom';
-import React, {Fragment} from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { Fragment } from 'react';
+
+
+
+
 // --------------kashir code-------------------------
 
 
@@ -104,6 +108,15 @@ import React, {Fragment} from 'react';
 //    .catch(error => console.error(error));
 // }, []);}
 const App = () => {
+
+
+
+ 
+
+
+
+
+
   const [objectList, setObjectList] = useState(null)
   useEffect(() => {
     setInterval(() => {
@@ -122,15 +135,19 @@ const App = () => {
   // console.log(typeof(objectList));
   return (
 
+   
+
+
+
     <div>
       <BrowserRouter>
         <Routes >
-          <Route  path="/signin" element={<SignIn />} />
-            
-          <Route   path="/signup" element={<SignUp />} />
-            
-          <Route   path="/usertype" element={<Usertype />} />
-            
+          <Route path="/signin" element={<SignIn />} />
+
+          <Route path="/signup" element={<SignUp />} />
+
+          <Route path="/usertype" element={<Usertype />} />
+
         </Routes >
 
       </BrowserRouter>

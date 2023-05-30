@@ -1,7 +1,7 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect   } from "react";
 import { TextField, FormControl, Button } from "@mui/material";
-import { Link , useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import './signIn.css';
 import MainHeading from '../../MainHeading/mainHaeding';
 import CustomTextField from "../../CustomTextField/CustomTextField";
@@ -9,8 +9,10 @@ import CustomButton from "../../CustomButton/CustomButton";
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import readingData from '../../../services/signInService';
+import jwt_decode from 'jwt-decode';
 
 const SignIn = () => {
+
     // ------hook used for navigation----------
     const navigate = useNavigate();
     // ---------useState for email and password-------
@@ -23,15 +25,57 @@ const SignIn = () => {
         // ------current values of email and password--------
         const myEmail = event.target.myEmail.value;
         const myPassword = event.target.myPassword.value;
+        const isAuthenticatedByGoogle = "false";
         // -----calling readingData function from sign in service------
-        await readingData(myEmail,myPassword)
+        await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
         // alert("Login uccessfully")
+        window.location.reload();
+
+    }
+
+    async function handleCallbackResponse(response) {
+
+        console.log("Encoded JWT ID token:  " + response.credential);
+        var userObject = jwt_decode(response.credential);
+        console.log(userObject.name);
+
+        const myEmail = userObject.email;
+        const myPassword = "no password required";
+        const isAuthenticatedByGoogle = "true";
+
+
+        // -----calling readingData function from sign in service------
+        await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
+        // ---------navigating to usertype component------
+        // navigate('/signin')
+        window.location.reload();
     }
 
 
+    useEffect(() => {
+        // if (typeof window !== 'undefined') {
+            /* global google */
+            google.accounts.id.initialize({
+                client_id: "850685752934-8te6qjj7c70pshhd9kg2pmvg85pmc338.apps.googleusercontent.com",
+                callback: handleCallbackResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById('signInDiv'),
+                { theme: "outline", size: "large" }
+            );
+        // }
+    }, []);
+
+
+    // const handleSignInClick = () => {
+    //     /* global google */
+    //     google.accounts.id.prompt();
+    //   };
+
 
     return (
-        <form className="formProperties" onSubmit={handleSubmit}>
+        <form  className="formProperties" onSubmit={handleSubmit}>
             <Grid container spacing={2}>
                 {/* ---------title-------- */}
                 <Grid xs={12}>
@@ -42,7 +86,7 @@ const SignIn = () => {
                 {/* ---------email field-------- */}
                 <Grid xs={12}>
                     <div className="margibBottom" >
-                        <CustomTextField  PlaceHolderText='enter email' FieldLabel="Email" requirement={true} Type={"email"} textFieldWidth="fullWidth" customTextFieldValue={email} setCustomTextFieldValue={setEmail} customTextFieldName="myEmail" />
+                        <CustomTextField PlaceHolderText='enter email' FieldLabel="Email" requirement={true} Type={"email"} textFieldWidth="fullWidth" customTextFieldValue={email} setCustomTextFieldValue={setEmail} customTextFieldName="myEmail" />
                     </div>
                 </Grid>
                 {/* ---------password field-------- */}
@@ -55,9 +99,22 @@ const SignIn = () => {
                 <Grid xs={12}>
                     <div className="margibBottom buttonCentering" >
                         <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" />
-
                     </div>
                 </Grid>
+                {/* -----------Sign up anchatag------------- */}
+                <Grid xs={12}>
+                    <div className="marginBottom buttonCentering" >
+                        <p style={{ margin: "0 10px", fontSize: "10px" }}>You don't have an account.? <a style={{ color: "red", textDecoration: "none" }} href="/signup">Create Account</a></p>
+                    </div>
+                </Grid>
+                {/* ----------sign in with google----------- */}
+                {/* <Grid xs={12}>
+
+                    <div className="App" >
+                        <div id="signInDiv" ></div>
+                    </div>
+                </Grid> */}
+
                 {/* ---------or label-------- */}
                 <Grid xs={12}>
                     <div className="margibBottom buttonCentering">
@@ -67,7 +124,8 @@ const SignIn = () => {
                 {/* ---------horizontal line-------- */}
                 <Grid xs={12} >
                     <div style={{ display: "flex", alignItems: "center" }}>
-                        <div style={{ flex: 1, backgroundColor:"gray", height: "3px"  }} />
+                        <div style={{ flex: 1, backgroundColor: "gray", height: "3px" }} />
+                        <p style={{ margin: "0 10px", fontSize: "10px" }}>Sign in with....</p>
                         <div style={{ flex: 1, backgroundColor: "gray", height: "3px" }} />
                     </div>
                 </Grid>
@@ -75,13 +133,16 @@ const SignIn = () => {
                 <br />
                 {/* ---------signup button-------- */}
                 <Grid xs={12}>
-                    <div className="margibBottom buttonCentering" >
-                        <CustomButton  ButtonText='Sign Up' buttonWidth="150px" buttonHeight="50px" />
+                    {/* <div className="margibBottom buttonCentering" >
+                        <CustomButton customButtonClickEvent={handleSignInClick}   ButtonText='Google' buttonWidth="150px" buttonHeight="50px" />
+                    </div> */}
+                    <div className="App" >
+                        <div id="signInDiv" ></div>
                     </div>
                 </Grid>
             </Grid>
         </form>
-        
+
     );
 }
 
