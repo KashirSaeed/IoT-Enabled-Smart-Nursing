@@ -25,11 +25,10 @@ const SignIn = () => {
         await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
         // alert("Login uccessfully")
         window.location.reload();
-
     }
 
+    // ----------------google authentication-----------------
     async function handleCallbackResponse(response) {
-
         console.log("Encoded JWT ID token:  " + response.credential);
         var userObject = jwt_decode(response.credential);
         console.log(userObject.name);
