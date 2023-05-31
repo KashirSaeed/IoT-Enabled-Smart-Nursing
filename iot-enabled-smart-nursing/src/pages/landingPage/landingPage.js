@@ -108,7 +108,7 @@ import StatsSection from '../../components/statsbar/StatsSection';
 import { Grid } from '@mui/material';
 import FeatureCard from '../../components/featureCard/featureCard';
 import { Bed } from '@mui/icons-material';
-import WebSocketComponent from '../../components/WebsocketComponent/webSocketComponent';
+import TableData from '../../components/TableData/TableData';
 
 
 
@@ -157,7 +157,7 @@ const LandingPage = () => {
                 </Grid>
             </Grid>
 
-            <WebSocketComponent/>
+            <TableData/>
 
             <div className='row center-justify'>
                 <h1>Setup</h1>

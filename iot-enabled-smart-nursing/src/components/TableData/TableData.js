@@ -7,12 +7,11 @@ const TableData = () => {
   
   const [objectList,setObjectList] = useState(null)
   useEffect( () =>  {
-    setInterval(()=>{fetch('https://test-deploy-abdulahad696.vercel.app/fetch')
+    setInterval(()=>{fetch('http://192.168.1.4:8000/fetch/')
     .then(response => response.json())
     .then(data =>setObjectList(JSON.parse(data)) )
     .catch(error => console.error(error));},10000) 
   }, []);
-  // Data();
   if(!objectList){
     return <h1>Retreiving...</h1>
   }
@@ -41,7 +40,6 @@ const TableData = () => {
       </Table>
     </TableContainer>
     </React.Fragment>
-    
   );
 };
 

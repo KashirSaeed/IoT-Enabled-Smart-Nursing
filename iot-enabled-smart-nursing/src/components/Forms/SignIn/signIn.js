@@ -1,20 +1,15 @@
 
 import React, { useState, useEffect   } from "react";
-import { TextField, FormControl, Button } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom"
 import './signIn.css';
 import MainHeading from '../../MainHeading/mainHaeding';
 import CustomTextField from "../../CustomTextField/CustomTextField";
 import CustomButton from "../../CustomButton/CustomButton";
 import Grid from '@mui/material/Grid';
-import axios from 'axios';
 import readingData from '../../../services/signInService';
 import jwt_decode from 'jwt-decode';
 
 const SignIn = () => {
 
-    // ------hook used for navigation----------
-    const navigate = useNavigate();
     // ---------useState for email and password-------
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -67,13 +62,6 @@ const SignIn = () => {
         // }
     }, []);
 
-
-    // const handleSignInClick = () => {
-    //     /* global google */
-    //     google.accounts.id.prompt();
-    //   };
-
-
     return (
         <form  className="formProperties" onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -107,13 +95,6 @@ const SignIn = () => {
                         <p style={{ margin: "0 10px", fontSize: "10px" }}>You don't have an account.? <a style={{ color: "red", textDecoration: "none" }} href="/signup">Create Account</a></p>
                     </div>
                 </Grid>
-                {/* ----------sign in with google----------- */}
-                {/* <Grid xs={12}>
-
-                    <div className="App" >
-                        <div id="signInDiv" ></div>
-                    </div>
-                </Grid> */}
 
                 {/* ---------or label-------- */}
                 <Grid xs={12}>
@@ -133,9 +114,6 @@ const SignIn = () => {
                 <br />
                 {/* ---------signup button-------- */}
                 <Grid xs={12}>
-                    {/* <div className="margibBottom buttonCentering" >
-                        <CustomButton customButtonClickEvent={handleSignInClick}   ButtonText='Google' buttonWidth="150px" buttonHeight="50px" />
-                    </div> */}
                     <div className="App" >
                         <div id="signInDiv" ></div>
                     </div>
@@ -146,4 +124,4 @@ const SignIn = () => {
     );
 }
 
-// export default SignIn;
+export default SignIn;

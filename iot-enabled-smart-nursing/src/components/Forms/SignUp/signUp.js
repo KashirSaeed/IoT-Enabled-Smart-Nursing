@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { TextField, FormControl, Button } from "@mui/material";
-import { Link, Navigate } from "react-router-dom"
 import './signUp.css';
 import MainHeading from '../../MainHeading/mainHaeding';
 import CustomTextField from "../../CustomTextField/CustomTextField";
 import CustomButton from "../../CustomButton/CustomButton";
 import Grid from '@mui/material/Grid';
-import InputLabel from '@mui/material/InputLabel';
-import NativeSelect from '@mui/material/NativeSelect';
-import CustomDropdown from "../../CustomDropdown/customDropdown";
-import Usertype from "../Usertype/usertype";
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import postingData from '../../../services/signUpService';
 import jwt_decode from 'jwt-decode';
 
 const SignUp = () => {
 
-    // ------hook used for navigation----------
-    const navigate = useNavigate();
     // -----useState hook for username, password and email---------
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -75,11 +66,6 @@ const SignUp = () => {
         // }
     }, []);
 
-    // const handleSignInClick = () => {
-    //     /* global google */
-    //     google.accounts.id.prompt();
-    //   };
-
     return (
 
         <form className="formProperties" onSubmit={handleSubmit}>
@@ -108,11 +94,6 @@ const SignUp = () => {
                         <CustomTextField PlaceHolderText='enter password' FieldLabel="Password" requirement={true} Type={"password"} textFieldWidth="fullWidth" customTextFieldValue={password} setCustomTextFieldValue={setPassword} customTextFieldName="myPassword" />
                     </div>
                 </Grid>
-                {/* <Grid xs={12}>
-                    <div className="marginBottom "  >
-                        <CustomDropdown requirement={true} dropdownPlaceHolder="Select Usertype" dropdownWidth="fullWidth" dropdownArray={["doctor",'nurse','patient']} customDropdownValue={userType} setCustomDropdownValue={setUserType} customDropdownName="myUsertype" />
-                    </div>
-                </Grid> */}
                 {/* -----------signup up button------------- */}
                 <Grid xs={12}>
                     <div className="marginBottom buttonCentering" >
@@ -144,9 +125,6 @@ const SignUp = () => {
                 <br />
                 {/* -----------Google button------------- */}
                 <Grid xs={12}>
-                    {/* <div className="marginBottom buttonCentering" >
-                        <CustomButton customButtonClickEvent={handleSignInClick} ButtonText='Google' buttonWidth="150px" buttonHeight="50px" />
-                    </div> */}
 
                     <div className="App" >
                         <div id="signInDiv" ></div>

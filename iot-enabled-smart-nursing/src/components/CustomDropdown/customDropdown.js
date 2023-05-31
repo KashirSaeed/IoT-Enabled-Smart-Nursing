@@ -18,19 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 const CustomDropdown = (props) => {
     const classes = useStyles();
-    // const [state, setState] = React.useState({
-    //     age: '',
-    //     name: 'hai',
-    // });
-
-    // const handleChange = (event) => {
-    //     const name = event.target.name;
-    //     setState({
-    //         ...state,
-    //         [name]: event.target.value,
-    //     });
-    // };
-
     return (
         <div  >
             <FormControl variant="outlined" className={classes.formControl} id="dropdownProperties" fullWidth={props.dropdownWidth} >
@@ -43,11 +30,8 @@ const CustomDropdown = (props) => {
 
                     required={props.requirement}
                     native
-                    // value={state.age}
-                    // onChange={handleChange}
                     label={props.dropdownPlaceHolder}
                     inputProps={{
-                        // name: 'age',
                         id: 'outlined-age-native-simple',
                     }}>
                     <option aria-label="None" value="" />

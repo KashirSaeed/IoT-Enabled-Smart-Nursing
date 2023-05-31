@@ -4,7 +4,7 @@ import axios from 'axios';
     await axios.post('http://localhost:8000/userData/', data)
         .then((response) => {
             console.log(response);
-            if (response.data['response'] == "Already Exist User") {
+            if (response.data['response'] === "Already Exist User") {
                 alert(response.data['response'])
             }
             else {
