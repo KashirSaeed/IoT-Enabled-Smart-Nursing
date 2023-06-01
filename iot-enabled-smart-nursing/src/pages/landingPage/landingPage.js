@@ -1,7 +1,9 @@
-
 import './landingPage.css'
 import React from 'react';
-import img1 from "../../assets/1.png";
+import features from "../../assets/features.jpg";
+import heatlhcare from '../../assets/healthcare.jpg';
+import mobile from '../../assets/mobile.jpg';
+import smartSystem from '../../assets/smartsystem.jpg';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ParticleBg from '../../components/particle';
@@ -16,21 +18,39 @@ import VitalCard from '../../components/VitalCard/VitalCard';
 import MyAppbar from '../../components/appbar/appbar';
 import CustomizedTimeline from '../../components/timeline/timeline';
 import { MonitorHeart } from '@mui/icons-material';
+import Nurse from '../../assets/lotties/nurse.json'
+import Lottie from 'react-lottie';
+import telemed from '../../assets/telemed.jpg'
+import arch from '../../assets/arch diagram.png'
+// import ReactDOM from 'react-dom';
+
 
 const LandingPage = () => {
+    const nurseOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: Nurse,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice"
+        }
+      };
     return (
         <div>
             <ParticleBg />
             <MyAppbar />
             <Carousel showStatus={false} showThumbs={false} interval={3000} autoPlay={true} infiniteLoop={true}>
                 <div>
-                    <img style={{ maxHeight: 768, objectFit: 'contain' }} src={img1} alt='image1'></img>
+                    <img loading='eager' style={{ maxHeight: 768, objectFit: 'contain' }} src={telemed} alt='image1'></img>
+                </div>
+                
+                <div>
+                    <img loading='eager' style={{ maxHeight: 768, objectFit: 'contain' }} src={heatlhcare} alt='image2' />
                 </div>
                 <div>
-                    <img style={{ maxHeight: 768, objectFit: 'contain' }} src={img1} alt='image2' />
+                    <img loading='eager' style={{ maxHeight: 768, objectFit: 'contain' }} src={mobile} alt='image2' />
                 </div>
                 <div>
-                    <img style={{ maxHeight: 768, objectFit: 'contain' }} src={img1} alt='image2' />
+                    <img loading='eager' style={{ maxHeight: 768, objectFit: 'contain' }} src={smartSystem} alt='image2' />
                 </div>
             </Carousel>
             <StatsSection />
@@ -51,7 +71,22 @@ const LandingPage = () => {
                     <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Nurse Rounding'} /></Grid>
                 </Grid>
             </Grid>
-            <TableData />
+            <Grid spacing={2} container direction='row' alignItems={'center'} justifyContent={'center'}>
+                <Grid justifyContent={'center'} item  lg={6} md={12}>
+                    <img style={{ maxHeight: 768, objectFit: 'contain' }} src={features} alt='image2' />
+                </Grid>
+                <Grid  item lg={6} md={12}>
+                    <Lottie options={nurseOptions} height={400} width={400}/>
+                
+                </Grid>
+            </Grid>
+            <Grid xs={12} container direction='row' alignItems={'center'} justifyContent={'center'}>
+                
+                <img style={{ maxHeight: 768, objectFit:'contain', height:'100%'}} src={arch} alt='image2' />
+
+            </Grid>
+            <TableData/>
+
             <div className='row center-justify'>
                 <h1>Setup</h1>
             </div>

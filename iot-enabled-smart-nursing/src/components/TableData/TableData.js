@@ -7,9 +7,10 @@ const TableData = () => {
   
   const [objectList,setObjectList] = useState(null)
   useEffect( () =>  {
-    setInterval(()=>{fetch('http://192.168.1.4:8000/fetch/')
+    setInterval(()=>{
+      fetch('https://fyp-backend-abdulahad696.vercel.app/fetch/')
     .then(response => response.json())
-    .then(data =>setObjectList(JSON.parse(data)) )
+    .then(data =>{console.log(data);setObjectList(data)} )
     .catch(error => console.error(error));},10000) 
   }, []);
   if(!objectList){

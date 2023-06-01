@@ -6,8 +6,12 @@ import CustomButton from "../../CustomButton/CustomButton";
 import Grid from '@mui/material/Grid';
 import postingData from '../../../services/signUpService';
 import jwt_decode from 'jwt-decode';
+import HomeIcon from '@mui/icons-material/Home';
+import { useNavigate } from "react-router-dom";
+import { AppBar } from "@mui/material";
 
 const SignUp = () => {
+    const navigate = useNavigate();
 
     // -----useState hook for username, password and email---------
     const [username, setUsername] = useState("")
@@ -28,7 +32,10 @@ const SignUp = () => {
         await postingData(data)
         // ---------navigating to usertype component------
         // navigate('/signin')
-        window.location.reload();
+        // window.location.reload();
+        setEmail("");
+        setPassword("");
+        setUsername("");
     };
     // ----------------google authentication-----------------
     async function handleCallbackResponse(response) {
@@ -45,7 +52,8 @@ const SignUp = () => {
         await postingData(data)
         // ---------navigating to usertype component------
         // navigate('/signin')
-        window.location.reload();
+        // window.location.reload();
+
     }
 
     function initializeGoogleSignIn() {
@@ -67,14 +75,25 @@ const SignUp = () => {
         initializeGoogleSignIn();
     }, []);
 
-    return (
+    const handlelandNav = () =>{
+        navigate('/');
+    }
+    const handleSignUpNav = () =>{
+        navigate('/signin');
+    }
 
+    return (
+        <React.Fragment>
+            <AppBar>
+                <HomeIcon onClick={handlelandNav}/>
+            </AppBar>
+            
         <form className="formProperties" onSubmit={handleSubmit}>
             <Grid container spacing={2}>
                 {/* -----------title------------- */}
                 <Grid xs={12}>
                     <div>
-                        <MainHeading text="Creat Account" />
+                        <MainHeading text="Create Account" />
                     </div>
                 </Grid>
                 {/* -----------username ------------- */}
@@ -104,13 +123,8 @@ const SignUp = () => {
                 {/* -----------Login anchatag------------- */}
                 <Grid xs={12}>
                     <div className="marginBottom buttonCentering" >
-                        <p style={{ margin: "0 10px", fontSize: "10px" }}>Already have an account? <a style={{ color: "green", textDecoration: "none" }} href="/signin">Login in</a></p>
-                    </div>
-                </Grid>
-                {/* -----------or label------------- */}
-                <Grid xs={12}>
-                    <div className="marginBottom buttonCentering">
-                        <label className="orLabelProperties">or</label>
+                        <span style={{ margin: "0 10px", fontSize: "10px" }}>Already have an account?</span>
+                        <button style={{ color: "green", textDecoration: "none", margin:0, backgroundColor:'transparent', border:'none', }} onClick={handleSignUpNav}>Login</button>
                     </div>
                 </Grid>
                 {/* -----------Continue label------------- */}
@@ -118,7 +132,7 @@ const SignUp = () => {
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <div style={{ flex: 1, backgroundColor: "black", height: "3px" }} />
 
-                        <p style={{ margin: "0 10px", fontSize: "10px" }}>Sign up with....</p>
+                         <p style={{ margin: "10px", fontSize: "20px", color:'gray' }}>or</p>
 
                         <div style={{ flex: 1, backgroundColor: "black", height: "3px" }} />
                     </div>
@@ -134,7 +148,8 @@ const SignUp = () => {
                 </Grid>
             </Grid>
         </form>
-
+        
+        </React.Fragment>
     );
 }
 
