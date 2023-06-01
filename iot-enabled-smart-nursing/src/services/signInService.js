@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 async function readingData(myEmail,myPassword,isAuthenticatedByGoogle){
-    await axios.get(`http://localhost:8000/user/${myEmail}/${myPassword}/${isAuthenticatedByGoogle}/`)
-    .then( (response) =>{
+    await axios.get(`http://fyp-backend-abdulahad696.vercel.app/user/${myEmail}/${myPassword}/${isAuthenticatedByGoogle}/`).then( (response) =>{
         console.log(response.data['response']);
         if( response.data['response'] === "true"){
             alert("login in successfully")

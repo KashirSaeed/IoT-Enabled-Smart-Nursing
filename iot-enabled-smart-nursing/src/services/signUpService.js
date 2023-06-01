@@ -1,10 +1,10 @@
 import axios from 'axios';
 
  const postingData = async (data)=>  {
-    await axios.post('http://localhost:8000/userData/', data)
+    await axios.post('https://fyp-backend-abdulahad696.vercel.app/userData/', data)
         .then((response) => {
             console.log(response);
-            if (response.data['response'] === "Already Exist User") {
+            if (response.data['response'] === "User Already Exists") {
                 alert(response.data['response'])
             }
             else {

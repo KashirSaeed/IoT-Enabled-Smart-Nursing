@@ -9,15 +9,24 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import SwipeableTemporaryDrawer from '../swipeableDrawer/SwipeableTemporaryDrawer';
+import CustomButton from '../CustomButton/CustomButton';
+import { useNavigate } from 'react-router-dom';
 
 const pages = ['Product Overview', 'Payment Plans', 'Contact Us'];
 
 const MyAppbar = ()=> {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  const handlesignUpNav=()=>{
+    navigate('/signup')
+  }
+  const handleloginNav=()=>{
+    navigate('/signin')
+  }
 
   return (
     <AppBar elevation={24} position="static" sx={{backgroundColor:"#F5F5F5", color:"black", boxShadow:24}}>
@@ -44,16 +53,6 @@ const MyAppbar = ()=> {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            {/* <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton> */}
             <SwipeableTemporaryDrawer/>
             <Menu
               id="menu-appbar"
@@ -110,6 +109,8 @@ const MyAppbar = ()=> {
               </Button>
             ))}
           </Box>
+          <CustomButton className='margin_LR_5' ButtonText='Sign up' customButtonClickEvent={handlesignUpNav}/>
+          <CustomButton className='margin_LR_5' ButtonText='Login' customButtonClickEvent={handleloginNav}/>
         </Toolbar>
       </Container>
     </AppBar>

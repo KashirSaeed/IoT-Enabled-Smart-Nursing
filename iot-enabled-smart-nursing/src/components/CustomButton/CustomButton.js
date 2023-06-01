@@ -5,15 +5,12 @@ import { Button } from '@mui/material';
 const CustomButton =(props)=>{
     return(
     <Button sx={{
-        
-        
         textTransform:"Capitalize", 
         width:props.buttonWidth,
         height:props.buttonHeight,
         paddingY:"0", 
         paddingX:"30px", 
         fontSize:"18px"}} 
-
         type={props.customButtonType}
         
         className={`themeColor ${props.className}`  } onClick={props.customButtonClickEvent} variant="contained">

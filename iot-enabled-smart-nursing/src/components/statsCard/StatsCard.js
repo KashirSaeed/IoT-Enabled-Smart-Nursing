@@ -5,12 +5,12 @@ import React from "react";
 
 const StatsCard = props => {
     return(
-        <Grid paddingY={5} className="bg-grey" container lg={3} md={6} xs={12}
+        <Grid paddingY={2} className="bg-grey" container lg={3} md={6} xs={12}
         direction="column"
         justifyContent="center"
         alignItems="center">
-            <h1 className="margin-zero text-center">{props.Statistic}</h1>
-            <h2 className="margin-zero text-center">{props.brief}</h2>
+            <h1 className="margin_15 font-large text-center">{props.Statistic}</h1>
+            <h2 className="margin_15 text-center">{props.brief}</h2>
         </Grid>
     );
 
