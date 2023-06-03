@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect   } from "react";
+import React, { useState, useEffect } from "react";
 import './signIn.css';
 import MainHeading from '../../MainHeading/mainHaeding';
 import CustomTextField from "../../CustomTextField/CustomTextField";
@@ -7,6 +7,7 @@ import CustomButton from "../../CustomButton/CustomButton";
 import Grid from '@mui/material/Grid';
 import readingData from '../../../services/signInService';
 import jwt_decode from 'jwt-decode';
+
 
 const SignIn = () => {
 
@@ -37,7 +38,6 @@ const SignIn = () => {
         const myPassword = "no password required";
         const isAuthenticatedByGoogle = "true";
 
-
         // -----calling readingData function from sign in service------
         await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
         // ---------navigating to usertype component------
@@ -46,23 +46,27 @@ const SignIn = () => {
     }
 
 
-    useEffect(() => {
-        // if (typeof window !== 'undefined') {
+    function initializeGoogleSignIn() {
+        if (typeof google !== 'undefined' && google.accounts) {
             /* global google */
             google.accounts.id.initialize({
                 client_id: "850685752934-8te6qjj7c70pshhd9kg2pmvg85pmc338.apps.googleusercontent.com",
-                callback: handleCallbackResponse
+                callback: handleCallbackResponse,
             });
 
-            google.accounts.id.renderButton(
-                document.getElementById('signInDiv'),
-                { theme: "outline", size: "large" }
-            );
-        // }
+            google.accounts.id.renderButton(document.getElementById('signInDiv'), {
+                theme: "outline",
+                size: "large",
+            });
+        }
+    }
+
+    useEffect(() => {
+        initializeGoogleSignIn();
     }, []);
 
     return (
-        <form  className="formProperties" onSubmit={handleSubmit}>
+        <form className="formProperties" onSubmit={handleSubmit}>
             <Grid container spacing={2}>
                 {/* ---------title-------- */}
                 <Grid xs={12}>

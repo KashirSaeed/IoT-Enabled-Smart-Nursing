@@ -48,19 +48,23 @@ const SignUp = () => {
         window.location.reload();
     }
 
-    useEffect(() => {
-        // if (typeof window !== 'undefined') {
+    function initializeGoogleSignIn() {
+        if (typeof google !== 'undefined' && google.accounts) {
             /* global google */
             google.accounts.id.initialize({
                 client_id: "850685752934-8te6qjj7c70pshhd9kg2pmvg85pmc338.apps.googleusercontent.com",
-                callback: handleCallbackResponse
+                callback: handleCallbackResponse,
             });
 
-            google.accounts.id.renderButton(
-                document.getElementById('signInDiv'),
-                { theme: "outline", size: "large" }
-            );
-        // }
+            google.accounts.id.renderButton(document.getElementById('signInDiv'), {
+                theme: "outline",
+                size: "large",
+            });
+        }
+    }
+
+    useEffect(() => {
+        initializeGoogleSignIn();
     }, []);
 
     return (
