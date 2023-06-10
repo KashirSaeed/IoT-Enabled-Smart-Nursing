@@ -7,7 +7,7 @@ const FeatureCard = props =>{
     return(
         <Grid  alignItems={"center"} justifyContent={"center"} container direction={'row'} className="bg_grey rounded_border p_5 zero_margin">
             <Grid alignItems={"center"} item><i className="iconTransform">{props.icon}</i></Grid> 
-            <Grid justifyContent={"center"} alignItems={"center"} item direction={"column"}>
+            <Grid justifyContent={"center"} alignItems={"center"} item >
                 <Grid><h4 style={{color:"aquamarine"}} className="text-align">{props.feature}</h4></Grid>
                 <Grid alignItems={"center"} item><h6 className="text-align">{props.brief}</h6></Grid>
             </Grid>
