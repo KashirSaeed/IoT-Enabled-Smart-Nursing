@@ -11,9 +11,7 @@ import StatsSection from '../../components/statsbar/StatsSection';
 import { Grid } from '@mui/material';
 import FeatureCard from '../../components/featureCard/featureCard';
 import { Bed } from '@mui/icons-material';
-import TableData from '../../components/TableData/TableData';
 import CustomButton from '../../components/CustomButton/CustomButton';
-import CustomTextField from '../../components/CustomTextField/CustomTextField';
 import VitalCard from '../../components/VitalCard/VitalCard';
 import MyAppbar from '../../components/appbar/appbar';
 import CustomizedTimeline from '../../components/timeline/timeline';
@@ -22,10 +20,49 @@ import Nurse from '../../assets/lotties/nurse.json'
 import Lottie from 'react-lottie';
 import telemed from '../../assets/telemed.jpg'
 import arch from '../../assets/arch diagram.png'
-// import ReactDOM from 'react-dom';
+import EnhancedTable from '../../components/TableData/EnhancedTable';
+import {useState,useEffect} from 'react';
+import { Graph } from '../../components/TableData/LineChart';
+import { Box } from '@mui/material';
 
+function createData(location, bloodpressure, bpm, obj, time, index) {
+    return {
+      location,
+      bloodpressure,
+      bpm,
+      obj,
+      time,
+      index
+    };
+  }
 
 const LandingPage = () => {
+
+    const [objectList, setObjectList] = useState(null);
+    useEffect( () => {
+        let interval = setInterval(async ()  => {
+          console.log("FETCHING DATA")
+        //   await fetch('https://fyp-backend-abdulahad696.vercel.app/fetch/')
+          await fetch('http://192.168.1.11:8000/fetch')
+            .then(response => response.json())
+            .then(data => {
+              let temp = []
+              let index = 0
+              data.forEach(element => {
+                temp.push(createData(element['location'], element['Blood pressure'], 54, element['object name'], element['time'], index))
+                index++
+              });
+              setObjectList(temp)
+              // console.log(data)
+            })
+            .catch(error => console.error(error));
+        }, 10000);
+        return()=>clearInterval(interval);
+      }, [])
+    // const [fields,setFields] = useState('')
+    // useMemo(async ()=>await fetch('http://192.168.1.11:8000/fetchfields').then(response=> response.json()).then(data=>setFields(data))
+    // ,[]); 
+    // console.log(fields)
     const nurseOptions = {
         loop: true,
         autoplay: true,
@@ -34,8 +71,49 @@ const LandingPage = () => {
           preserveAspectRatio: "xMidYMid slice"
         }
       };
+      const [records,setRecords] = useState(100);
+      const handleRecords = (event) =>{
+        const inputVal = parseInt(event.target.value);
+        if(inputVal>=0 && inputVal<=100){
+            
+          setRecords(inputVal);
+        }
+      }
+
+      const headCells = [
+        {
+          id: 'location',
+          numeric: false,
+          disablePadding: false,
+          label: 'Location',
+        },
+        {
+          id: 'bloodpressure',
+          numeric: false,
+          disablePadding: false,
+          label: 'Blood Pressure',
+        },
+        {
+          id: 'bpm',
+          numeric: false,
+          disablePadding: false,
+          label: 'Heart rate',
+        },
+        {
+          id: 'obj',
+          numeric: false,
+          disablePadding: false,
+          label: 'Objects',
+        },
+        {
+          id: 'time',
+          numeric: false,
+          disablePadding: false,
+          label: 'Time',
+        },
+      ];
     return (
-        <div>
+        <React.Fragment>
             <ParticleBg />
             <MyAppbar />
             <Carousel showStatus={false} showThumbs={false} interval={3000} autoPlay={true} infiniteLoop={true}>
@@ -80,26 +158,35 @@ const LandingPage = () => {
                 
                 </Grid>
             </Grid>
-            <Grid xs={12} container direction='row' alignItems={'center'} justifyContent={'center'}>
+            <Grid container direction='row' alignItems={'center'} justifyContent={'center'}>
                 
                 <img style={{ maxHeight: 768, objectFit:'contain', height:'100%'}} src={arch} alt='image2' />
 
             </Grid>
-            <TableData/>
-
+            {objectList ?<React.Fragment>
+                <EnhancedTable headCells={headCells} objectList={objectList}/>
+            <Grid container justifyContent={'center'}>
+                <Grid width={'75vw'}>
+                    <Graph records={records} recordsHandler={handleRecords} labelsArray={[{label:'Blood Pressure',id:'bloodpressure'},{label:'Heart Rate',id:'bpm'}]} dataPlots={objectList.slice(0,records)}/>
+                </Grid>
+            </Grid>
+            </React.Fragment>
+            : <Box></Box> }  
+                
+            
             <div className='row center-justify'>
                 <h1>Setup</h1>
             </div>
             <div className='center-justify row padding-tb'>
                 <CustomButton ButtonText='Submit' />
                 <hr style={{ marginLeft: "15px", marginRight: "15px" }}></hr>
-                <CustomTextField PlaceHolderText='Password' FieldLabel="Password" requirement={true} Type={"password"} />
+                {/* <CustomTextField PlaceHolderText='Password' FieldLabel="Password" requirement={true} Type={"password"} /> */}
                 <hr style={{ marginLeft: "15px", marginRight: "15px" }}></hr>
-                <CustomTextField PlaceHolderText='+92-3334587233' FieldLabel="Contact" requirement={false} Type={"tel"} />
+                {/* <CustomTextField PlaceHolderText='+92-3334587233' FieldLabel="Contact" requirement={false} Type={"tel"} /> */}
             </div>
             <CustomizedTimeline />
             <div className='row center-justify padding-tb'><VitalCard Icon={<MonitorHeart />} Heading='Pulse' Value='97' /></div>
-        </div>
+        </React.Fragment> 
     );
 }
 
