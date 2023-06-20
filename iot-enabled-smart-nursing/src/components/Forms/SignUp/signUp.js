@@ -39,6 +39,7 @@ const SignUp = () => {
     };
     // ----------------google authentication-----------------
     async function handleCallbackResponse(response) {
+       
         console.log("Encoded JWT ID token:  " + response.credential);
         var userObject = jwt_decode(response.credential);
         console.log(userObject.name);
@@ -49,6 +50,7 @@ const SignUp = () => {
         const isAuthenticatedByGoogle = "true";
 
         const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
+        
         await postingData(data)
         // ---------navigating to usertype component------
         // navigate('/signin')
@@ -81,6 +83,9 @@ const SignUp = () => {
     const handleSignUpNav = () =>{
         navigate('/signin');
     }
+
+
+    // return (
 
     return (
         <React.Fragment>
@@ -141,9 +146,11 @@ const SignUp = () => {
                 {/* -----------Google button------------- */}
                 <Grid xs={12}>
 
-                    <div className="App" >
+                    <div className="App"  >
                         <div id="signInDiv" ></div>
                     </div>
+                  
+
 
                 </Grid>
             </Grid>
