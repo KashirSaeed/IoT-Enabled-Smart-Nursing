@@ -20,6 +20,7 @@
 // export default postingData
 
 
+
 import axios from 'axios';
 const postingData = async (data)=>  {
     await axios.post('http://127.0.0.1:8000/userData/', data)
