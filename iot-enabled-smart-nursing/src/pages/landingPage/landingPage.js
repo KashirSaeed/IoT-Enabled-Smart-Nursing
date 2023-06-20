@@ -24,7 +24,6 @@ import EnhancedTable from '../../components/TableData/EnhancedTable';
 import {useState,useEffect} from 'react';
 import { Graph } from '../../components/TableData/LineChart';
 import { Box } from '@mui/material';
-
 function createData(location, bloodpressure, bpm, obj, time, index) {
     return {
       location,
@@ -42,14 +41,14 @@ const LandingPage = () => {
     useEffect( () => {
         let interval = setInterval(async ()  => {
           console.log("FETCHING DATA")
-        //   await fetch('https://fyp-backend-abdulahad696.vercel.app/fetch/')
-          await fetch('http://192.168.1.11:8000/fetch')
+          let email = 'ali123@gmail.com'
+          await fetch(`http://127.0.0.1:8000/fetchUserData/${email}`)
             .then(response => response.json())
             .then(data => {
               let temp = []
               let index = 0
               data.forEach(element => {
-                temp.push(createData(element['location'], element['Blood pressure'], 54, element['object name'], element['time'], index))
+                temp.push(createData(element['location'], element['Blood pressure'], element['Heart Rate'], element['object name'], element['time'], index))
                 index++
               });
               setObjectList(temp)
