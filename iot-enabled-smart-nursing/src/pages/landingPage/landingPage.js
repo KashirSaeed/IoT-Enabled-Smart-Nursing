@@ -1,5 +1,5 @@
 import './landingPage.css'
-import React from 'react';
+import { React } from 'react';
 import features from "../../assets/features.jpg";
 import heatlhcare from '../../assets/healthcare.jpg';
 import mobile from '../../assets/mobile.jpg';
@@ -21,28 +21,50 @@ import { MonitorHeart } from '@mui/icons-material';
 import Nurse from '../../assets/lotties/nurse.json'
 import Lottie from 'react-lottie';
 import telemed from '../../assets/telemed.jpg'
-import arch from '../../assets/arch diagram.png'
-// import ReactDOM from 'react-dom';
+import arch from '../../assets/arch diagram.png';
+
+import ImageSlider from '../../components/ImageSlider/imageSlider';
 
 
 const LandingPage = () => {
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+      
+
+
+
+
+
+
+
     const nurseOptions = {
         loop: true,
         autoplay: true,
         animationData: Nurse,
         rendererSettings: {
-          preserveAspectRatio: "xMidYMid slice"
+            preserveAspectRatio: "xMidYMid slice"
         }
-      };
+    };
     return (
         <div>
             <ParticleBg />
             <MyAppbar />
             <Carousel showStatus={false} showThumbs={false} interval={3000} autoPlay={true} infiniteLoop={true}>
                 <div>
-                    <img loading='eager' style={{ maxHeight: 768, objectFit: 'contain' }} src={telemed} alt='image1'></img>
+                    <img loading='eager' style={{ maxHeight: 768, objectFit: 'contain'  }} src={telemed} alt='image1'></img>
                 </div>
-                
+
                 <div>
                     <img loading='eager' style={{ maxHeight: 768, objectFit: 'contain' }} src={heatlhcare} alt='image2' />
                 </div>
@@ -72,21 +94,22 @@ const LandingPage = () => {
                 </Grid>
             </Grid>
             <Grid spacing={2} container direction='row' alignItems={'center'} justifyContent={'center'}>
-                <Grid justifyContent={'center'} item  lg={6} md={12}>
+                <Grid justifyContent={'center'} item lg={6} md={12}>
                     <img style={{ maxHeight: 768, objectFit: 'contain' }} src={features} alt='image2' />
                 </Grid>
-                <Grid  item lg={6} md={12}>
-                    <Lottie options={nurseOptions} height={400} width={400}/>
-                
+                <Grid item lg={6} md={12}>
+                    <Lottie options={nurseOptions} height={400} width={400} />
+
                 </Grid>
             </Grid>
             <Grid xs={12} container direction='row' alignItems={'center'} justifyContent={'center'}>
-                
-                <img style={{ maxHeight: 768, objectFit:'contain', height:'100%'}} src={arch} alt='image2' />
+
+                <img style={{ maxHeight: 768, objectFit: 'contain', height: '100%' }} src={arch} alt='image2' />
 
             </Grid>
-            <TableData/>
-
+            <TableData />
+            <ImageSlider/>
+            
             <div className='row center-justify'>
                 <h1>Setup</h1>
             </div>
@@ -99,6 +122,21 @@ const LandingPage = () => {
             </div>
             <CustomizedTimeline />
             <div className='row center-justify padding-tb'><VitalCard Icon={<MonitorHeart />} Heading='Pulse' Value='97' /></div>
+
+
+
+            
+
+            
+            
+
+
+
+            
+
+
+
+
         </div>
     );
 }

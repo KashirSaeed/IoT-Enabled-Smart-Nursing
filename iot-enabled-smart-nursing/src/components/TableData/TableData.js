@@ -14,9 +14,11 @@ const TableData = () => {
     .catch(error => console.error(error));},10000) 
   }, []);
   if(!objectList){
+    
     return <h1>Retreiving...</h1>
   }
   return (
+    
     <React.Fragment>
         <TableContainer component={Paper}>
       <Table>

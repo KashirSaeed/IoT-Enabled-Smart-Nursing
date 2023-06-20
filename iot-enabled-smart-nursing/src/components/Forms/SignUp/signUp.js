@@ -10,6 +10,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
 import { AppBar } from "@mui/material";
 
+
+
 const SignUp = () => {
     const navigate = useNavigate();
 
@@ -39,7 +41,7 @@ const SignUp = () => {
     };
     // ----------------google authentication-----------------
     async function handleCallbackResponse(response) {
-       
+
         console.log("Encoded JWT ID token:  " + response.credential);
         var userObject = jwt_decode(response.credential);
         console.log(userObject.name);
@@ -50,7 +52,7 @@ const SignUp = () => {
         const isAuthenticatedByGoogle = "true";
 
         const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
-        
+
         await postingData(data)
         // ---------navigating to usertype component------
         // navigate('/signin')
@@ -77,10 +79,10 @@ const SignUp = () => {
         initializeGoogleSignIn();
     }, []);
 
-    const handlelandNav = () =>{
+    const handlelandNav = () => {
         navigate('/');
     }
-    const handleSignUpNav = () =>{
+    const handleSignUpNav = () => {
         navigate('/signin');
     }
 
@@ -92,7 +94,7 @@ const SignUp = () => {
             <AppBar>
                 <HomeIcon onClick={handlelandNav}/>
             </AppBar>
-            
+
         <form className="formProperties" onSubmit={handleSubmit}>
             <Grid container spacing={2}>
                 {/* -----------title------------- */}
@@ -149,15 +151,35 @@ const SignUp = () => {
                     <div className="App"  >
                         <div id="signInDiv" ></div>
                     </div>
-                  
+
 
 
                 </Grid>
             </Grid>
         </form>
-        
+
         </React.Fragment>
     );
+
+
+
+    
 }
 
 export default SignUp;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
