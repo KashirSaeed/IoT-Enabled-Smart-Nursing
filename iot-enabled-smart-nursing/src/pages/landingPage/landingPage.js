@@ -40,23 +40,23 @@ function createData(location, bloodpressure, bpm, obj, time, index) {
 const LandingPage = () => {
 
     const [objectList, setObjectList] = useState(null);
-    useEffect(() => {
-        let interval = setInterval(async () => {
-            console.log("FETCHING DATA")
-            //   await fetch('https://fyp-backend-abdulahad696.vercel.app/fetch/')
-            await fetch('http://192.168.1.11:8000/fetch')
-                .then(response => response.json())
-                .then(data => {
-                    let temp = []
-                    let index = 0
-                    data.forEach(element => {
-                        temp.push(createData(element['location'], element['Blood pressure'], 54, element['object name'], element['time'], index))
-                        index++
-                    });
-                    setObjectList(temp)
-                    // console.log(data)
-                })
-                .catch(error => console.error(error));
+    useEffect( () => {
+        let interval = setInterval(async ()  => {
+          console.log("FETCHING DATA")
+          let email = 'ali123@gmail.com'
+          await fetch(`http://127.0.0.1:8000/fetchUserData/${email}`)
+            .then(response => response.json())
+            .then(data => {
+              let temp = []
+              let index = 0
+              data.forEach(element => {
+                temp.push(createData(element['location'], element['Blood pressure'], element['Heart Rate'], element['object name'], element['time'], index))
+                index++
+              });
+              setObjectList(temp)
+              // console.log(data)
+            })
+            .catch(error => console.error(error));
         }, 10000);
         return () => clearInterval(interval);
     }, [])
