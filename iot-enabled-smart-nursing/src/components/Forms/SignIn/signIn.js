@@ -28,11 +28,15 @@ const SignIn = () => {
         const myPassword = event.target.myPassword.value;
         const isAuthenticatedByGoogle = "false";
         // -----calling readingData function from sign in service------
-        await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
+        var login = await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
         // alert("Login uccessfully")
         // window.location.reload();
-        setEmail("");
-        setPassword("");
+        if (login === true){
+            setEmail("");
+            setPassword("");
+            navigate('/userLanding')
+        }
+        
 
     }
 
