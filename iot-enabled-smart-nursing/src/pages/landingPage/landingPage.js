@@ -1,5 +1,5 @@
 import './landingPage.css'
-import { React } from 'react';
+import React from 'react';
 import features from "../../assets/features.jpg";
 import heatlhcare from '../../assets/healthcare.jpg';
 import mobile from '../../assets/mobile.jpg';
@@ -25,6 +25,8 @@ import { useState, useEffect } from 'react';
 import { Graph } from '../../components/TableData/LineChart';
 import { Box } from '@mui/material';
 import ImageSlider from '../../components/ImageSlider/imageSlider';
+
+import TableData from "../../components/TableData/TableData";
 
 function createData(location, bloodpressure, bpm, obj, time, index) {
     return {
