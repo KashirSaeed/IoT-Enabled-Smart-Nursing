@@ -10,7 +10,7 @@ import ParticleBg from '../../components/particle';
 import StatsSection from '../../components/statsbar/StatsSection';
 import { Grid } from '@mui/material';
 import FeatureCard from '../../components/featureCard/featureCard';
-import { Bed } from '@mui/icons-material';
+import { Accessible, AirlineSeatFlat, Bathroom, Bed, Elderly, QuestionMark, SportsKabaddi, Warning, WheelchairPickup } from '@mui/icons-material';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import VitalCard from '../../components/VitalCard/VitalCard';
 import MyAppbar from '../../components/appbar/appbar';
@@ -55,35 +55,37 @@ return (
             </div>
         </Carousel>
         <StatsSection />
-        <Grid sx={{ backgroundColor: 'black', color: 'white', paddingY: 10, paddingX: 10 }} container direction='column' justifyContent='center' alignItems='center' className="features-section">
+        <Grid sx={{ backgroundColor: 'black', color: 'white', paddingY: 10, paddingX:2}} container direction='column' justifyContent='center' alignItems='center' className="features-section">
             <p className='font-small text-align'>To deliver impeccable care, having dedicated staffs alone is not sufficient.</p>
             <Grid container direction='row' item justifyContent='center' alignItems='center'>
                 <Grid item><p className='zero-margin text-align font-large'>We can help delivering <span style={{ color: 'aquamarine' }}>better care with AI.</span></p></Grid>
             </Grid>
-            <Grid sx={{ paddingTop: 5 }} container direction={'row'} justifyContent={'space-around'} spacing={3}>
-                <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Bed exit Protection'} /></Grid>
-                <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Bedsore'} /></Grid>
-                <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Lone Elderly Loitering'} /></Grid>
-                <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Senior Detection'} /></Grid>
-                <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Long Toilet Usage'} /></Grid>
-                <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Fall Detection'} /></Grid>
-                <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Chair Fall'} /></Grid>
-                <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Missing from Bed'} /></Grid>
-                <Grid justifyContent='center' item lg={4} md={6} xs={12}><FeatureCard icon={<Bed sx={{ fontSize: 50, paddingRight: '5px' }} />} feature={'Nurse Rounding'} /></Grid>
+            <Grid sx={{ paddingTop: 5}} className='padding10' container direction={'row'} justifyContent={'space-around'} spacing={3}>
+                <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<Bed className='iconsizemd' sx={{ fontSize: 75 }} />} feature={'Bed exit Protection'} /></Grid>
+                <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<AirlineSeatFlat className='iconsizemd' sx={{ fontSize: 75}} />} feature={'Bedsore'} /></Grid>
+                <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<Elderly className='iconsizemd' sx={{ fontSize: 75}} />} feature={'Elderly Loitering'} /></Grid>
+                <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<Warning className='iconsizemd' sx={{ fontSize: 75}} />} feature={'Senior Detection'} /></Grid>
+                <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<Bathroom className='iconsizemd' sx={{ fontSize: 75 }} />} feature={'Toilet Usage'} /></Grid>
+                <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<SportsKabaddi className='iconsizemd' sx={{ fontSize: 75}} />} feature={'Fall Prevention'} /></Grid>
+                <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<Accessible className='iconsizemd' sx={{ fontSize: 75 }} />} feature={'Chair Fall'} /></Grid>
+                <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<QuestionMark className='iconsizemd' sx={{ fontSize: 75 }} />} feature={'Missing from Bed'} /></Grid>
+                <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<WheelchairPickup className='iconsizemd' sx={{ fontSize: 75 }} />} feature={'Nurse Rounding'} /></Grid>
             </Grid>
         </Grid>
-        <Grid spacing={2} container direction='row' alignItems={'center'} justifyContent={'center'}>
-            <Grid justifyContent={'center'} item lg={6} md={12}>
-                <img style={{ maxHeight: 768, objectFit: 'contain' }} src={features} alt='image2' />
-            </Grid>
-            <Grid item lg={6} md={12}>
-                <Lottie options={nurseOptions} height={400} width={400} />
+        <div style={{marginRight:100,marginLeft:100}}>
+            <Grid spacing={2} container direction='row' alignItems={'center'} justifyContent={'center'}>
+                <Grid justifyContent={'center'} item lg={6} md={12}>
+                    <img style={{ maxHeight: 768, objectFit: 'contain',height:'8vh' }} src={features} alt='image2' />
+                </Grid>
+                <Grid item lg={6} md={12}>
+                    <Lottie options={nurseOptions} height={'8vh'} width={'8vh'} />
 
+                </Grid>
             </Grid>
-        </Grid>
+        </div>
         <Grid container direction='row' alignItems={'center'} justifyContent={'center'}>
 
-            <img style={{ maxHeight: 768, objectFit: 'contain', height: '100%' }} src={arch} alt='image2' />
+            <img style={{ maxHeight: 768, objectFit: 'contain', height: '8vh' }} src={arch} alt='image2' />
 
         </Grid>
        

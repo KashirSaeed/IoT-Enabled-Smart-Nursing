@@ -9,8 +9,8 @@ const StatsCard = props => {
         
         justifyContent="center"
         alignItems="center">
-            <h1 className="margin_15 font-large text-center">{props.Statistic}</h1>
-            <h2 className="margin_15 text-center">{props.brief}</h2>
+            <p className="margin_15 font-large text-center">{props.Statistic}</p>
+            <p className="margin_15 text-center">{props.brief}</p>
         </Grid>
     );
 
