@@ -11,7 +11,8 @@ import AdbIcon from '@mui/icons-material/Adb';
 import SwipeableTemporaryDrawer from '../swipeableDrawer/SwipeableTemporaryDrawer';
 import CustomButton from '../CustomButton/CustomButton';
 import { useNavigate } from 'react-router-dom';
-
+import { useEffect, useState } from 'react';
+// import { useMediaQuery } from '@mui/material';
 const pages = ['Product Overview', 'Payment Plans', 'Contact Us'];
 
 const MyAppbar = ()=> {
@@ -27,7 +28,29 @@ const MyAppbar = ()=> {
   const handleloginNav=()=>{
     navigate('/signin')
   }
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
+  useEffect(() => {
+    // Event listener to handle window resize
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // Attach the event listener
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  // const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('md'));
   return (
     <AppBar elevation={24} position="static" sx={{backgroundColor:"#F5F5F5", color:"black", boxShadow:24}}>
       <Container maxWidth="xl" >
@@ -109,8 +132,15 @@ const MyAppbar = ()=> {
               </Button>
             ))}
           </Box>
-          <CustomButton className='margin_LR_5' ButtonText='Sign up' customButtonClickEvent={handlesignUpNav}/>
-          <CustomButton className='margin_LR_5' ButtonText='Login' customButtonClickEvent={handleloginNav}/>
+          {windowSize.width>900?
+          (
+            <div>
+              <CustomButton className='margin_LR_5' ButtonText='Sign up' customButtonClickEvent={handlesignUpNav}/>
+            <CustomButton className='margin_LR_5' ButtonText='Login' customButtonClickEvent={handleloginNav}/>
+            </div>
+          ):<Box/>
+          }
+          
         </Toolbar>
       </Container>
     </AppBar>
