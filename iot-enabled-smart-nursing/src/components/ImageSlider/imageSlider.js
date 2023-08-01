@@ -9,7 +9,7 @@ var images = [];
 const ImageSlider = () => {
     const [imagesList, setImagesList] = useState(null)
     useEffect(() => {
-        setInterval(() => {
+        let interval = setInterval(() => {
             fetch('http://127.0.0.1:8000/image_id/')
                 .then(response => response.json())
                 .then(data => {
@@ -21,7 +21,8 @@ const ImageSlider = () => {
                     console.log(images[0])
                 })
                 .catch(error => console.error(error));
-        }, 10000)
+        }, 300000)
+        return () => clearInterval(interval);
     }, []);
 
     if (!images) {

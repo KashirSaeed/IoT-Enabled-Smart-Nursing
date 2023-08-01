@@ -1,5 +1,5 @@
 import './landingPage.css'
-import  React  from 'react';
+import React from 'react';
 import features from "../../assets/features.jpg";
 import heatlhcare from '../../assets/healthcare.jpg';
 import mobile from '../../assets/mobile.jpg';
@@ -21,10 +21,23 @@ import Lottie from 'react-lottie';
 import telemed from '../../assets/telemed.jpg';
 import arch from '../../assets/arch diagram.png';
 import ImageSlider from '../../components/ImageSlider/imageSlider';
+
+import TableData from "../../components/TableData/TableData";
 import CustomTextField from '../../components/CustomTextField/CustomTextField';
 
-const LandingPage = () => {
+function createData(location, bloodpressure, bpm, obj, time, index) {
+    return {
+        location,
+        bloodpressure,
+        bpm,
+        obj,
+        time,
+        index
+    };
+}
 
+const LandingPage = () => {
+    
     const nurseOptions = {
         loop: true,
         autoplay: true,
