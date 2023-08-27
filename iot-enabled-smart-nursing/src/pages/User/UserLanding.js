@@ -101,7 +101,7 @@ const UserLanding =() =>{
     }
     return (
     <div>
-        <MiniDrawer/>
+        {/* <MiniDrawer/> */}
       {myList ? <React.Fragment>
             <EnhancedTable headCells={headCells} objectList={myList.objectList} />
             <Grid container justifyContent={'center'}>

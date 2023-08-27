@@ -40,7 +40,7 @@ return (
         <Grid sx={{ backgroundColor: 'black', color: 'white', paddingY: 10, paddingX:2}} container direction='column' justifyContent='center' alignItems='center' className="features-section">
             <p className='font-small text-align'>To deliver impeccable care, having dedicated staffs alone is not sufficient.</p>
             <Grid container direction='row' item justifyContent='center' alignItems='center'>
-                <Grid item><p className='zero-margin text-align font-large'>We can help delivering <span style={{ color: 'aquamarine' }}>better care with AI.</span></p></Grid>
+                <Grid item><p className='zero-margin text-align font-large'>We can help delivering <span style={{ color: "#2490EB" }}>better care with AI.</span></p></Grid>
             </Grid>
             <Grid sx={{ paddingTop: 5}} className='padding10' container direction={'row'} justifyContent={'space-around'} spacing={3}>
                 <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<Bed className='iconsizemd' sx={{ fontSize: 75 }} />} feature={'Bed exit Protection'} /></Grid>
