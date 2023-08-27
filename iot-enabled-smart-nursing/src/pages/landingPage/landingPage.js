@@ -22,7 +22,7 @@ import telemed from '../../assets/telemed.jpg';
 import arch from '../../assets/arch diagram.png';
 import ImageSlider from '../../components/ImageSlider/imageSlider';
 
-// import TableData from "../../components/TableData/TableData";
+import TableData from "../../components/TableData/TableData";
 import CustomTextField from '../../components/CustomTextField/CustomTextField';
 
 function createData(location, bloodpressure, bpm, obj, time, index) {
