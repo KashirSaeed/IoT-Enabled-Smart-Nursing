@@ -34,7 +34,7 @@ const UserLanding =() =>{
     useEffect( () => {
         let interval = setInterval(async ()  => {
           console.log("FETCHING DATA")
-          await fetch(`http://127.0.0.1:8000/fetchUserData/${currentUser}`)
+          await fetch(`http://127.0.0.1:8000/fetchUserData/${currentUser}/`)
             .then(response => response.json())
             .then(data => {
               let temp = []

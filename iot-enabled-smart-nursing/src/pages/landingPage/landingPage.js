@@ -1,6 +1,5 @@
 import './landingPage.css'
 import React from 'react';
-import features from "../../assets/features.jpg";
 import heatlhcare from '../../assets/healthcare.jpg';
 import mobile from '../../assets/mobile.jpg';
 import smartSystem from '../../assets/smartsystem.jpg';
@@ -11,43 +10,13 @@ import StatsSection from '../../components/statsbar/StatsSection';
 import { Grid } from '@mui/material';
 import FeatureCard from '../../components/featureCard/featureCard';
 import { Accessible, AirlineSeatFlat, Bathroom, Bed, Elderly, QuestionMark, SportsKabaddi, Warning, WheelchairPickup } from '@mui/icons-material';
-import CustomButton from '../../components/CustomButton/CustomButton';
-import VitalCard from '../../components/VitalCard/VitalCard';
+
 import MyAppbar from '../../components/appbar/appbar';
-import CustomizedTimeline from '../../components/timeline/timeline';
-import { MonitorHeart } from '@mui/icons-material';
-import Nurse from '../../assets/lotties/nurse.json'
-import Lottie from 'react-lottie';
 import telemed from '../../assets/telemed.jpg';
-import arch from '../../assets/arch diagram.png';
-import ImageSlider from '../../components/ImageSlider/imageSlider';
 
-import TableData from "../../components/TableData/TableData";
-import CustomTextField from '../../components/CustomTextField/CustomTextField';
-
-function createData(location, bloodpressure, bpm, obj, time, index) {
-    return {
-        location,
-        bloodpressure,
-        bpm,
-        obj,
-        time,
-        index
-    };
-}
 
 const LandingPage = () => {
     
-    const nurseOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: Nurse,
-        rendererSettings: {
-            preserveAspectRatio: "xMidYMid slice"
-        }
-    };
-    
-// };
 return (
     <React.Fragment>
         <ParticleBg />
@@ -85,38 +54,7 @@ return (
                 <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<WheelchairPickup className='iconsizemd' sx={{ fontSize: 75 }} />} feature={'Nurse Rounding'} /></Grid>
             </Grid>
         </Grid>
-        <div style={{marginRight:100,marginLeft:100}}>
-            <Grid spacing={2} container direction='row' alignItems={'center'} justifyContent={'center'}>
-                <Grid justifyContent={'center'} item lg={6} md={12}>
-                    <img style={{ maxHeight: 768, objectFit: 'contain',height:'8vh' }} src={features} alt='image2' />
-                </Grid>
-                <Grid item lg={6} md={12}>
-                    <Lottie options={nurseOptions} height={'8vh'} width={'8vh'} />
-
-                </Grid>
-            </Grid>
-        </div>
-        <Grid container direction='row' alignItems={'center'} justifyContent={'center'}>
-
-            <img style={{ maxHeight: 768, objectFit: 'contain', height: '8vh' }} src={arch} alt='image2' />
-
-        </Grid>
-       
-
-        <ImageSlider />
-
-        <div className='row center-justify'>
-            <h1>Setup</h1>
-        </div>
-        <div className='center-justify row padding-tb'>
-            <CustomButton ButtonText='Submit' />
-            <hr style={{ marginLeft: "15px", marginRight: "15px" }}></hr>
-            <CustomTextField PlaceHolderText='Password' FieldLabel="Password" requirement={true} Type={"password"} />
-            <hr style={{ marginLeft: "15px", marginRight: "15px" }}></hr>
-            <CustomTextField PlaceHolderText='+92-3334587233' FieldLabel="Contact" requirement={false} Type={"tel"} />
-        </div>
-        <CustomizedTimeline />
-        <div className='row center-justify padding-tb'><VitalCard Icon={<MonitorHeart />} Heading='Pulse' Value='97' /></div>
+        
     </React.Fragment>  
     );
 }
