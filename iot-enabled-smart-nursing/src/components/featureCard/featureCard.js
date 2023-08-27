@@ -10,7 +10,7 @@ const FeatureCard = props =>{
                 <i className="iconTransform">{props.icon}</i>
             </Grid> 
             <Grid justifyContent={"center"} alignItems={"center"}item lg={9} md={9} xs={8} >
-                <Grid><p style={{color:"aquamarine"}} className=" text-align font-small">{props.feature}</p></Grid>
+                <Grid><p style={{color:"#2490EB"}} className=" text-align font-small">{props.feature}</p></Grid>
                 <Grid alignItems={"center"} item><h6 className="text-align">{props.brief}</h6></Grid>
             </Grid>
         </Grid>
