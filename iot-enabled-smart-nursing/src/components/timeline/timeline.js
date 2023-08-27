@@ -7,87 +7,46 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
-import LaptopMacIcon from '@mui/icons-material/LaptopMac';
-import HotelIcon from '@mui/icons-material/Hotel';
 import Typography from '@mui/material/Typography';
+import {PropTypes} from 'prop-types'
  
-const CustomizedTimeline=()=> {
+const CustomizedTimeline=(props)=> {
   return (
-    <Timeline position="alternate">
-      <TimelineItem>
-        <TimelineOppositeContent
-          sx={{ m: 'auto 0' }}
-          align="right"
-          variant="body2"
-          color="text.secondary"
-        >
-          9:30 - 9:47 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineConnector />
-          <TimelineDot>
-            <FastfoodIcon />
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
-          <Typography variant="h6" component="span">
-            Eat
-          </Typography>
-          <Typography>Because you need strength</Typography>
-        </TimelineContent>
-      </TimelineItem>
+    <React.Fragment>
+      <Timeline position="alternate">
+    {props.activityList.map((activity,index)=>(
       
-      
-      <TimelineItem>
-        <TimelineOppositeContent
-          sx={{ m: 'auto 0' }}
-          variant="body2"
-          color="text.secondary"
-        >
-          10:00 - 10:05 am
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineConnector />
-          <TimelineDot color="primary">
-            <LaptopMacIcon />
-          </TimelineDot>
-          <TimelineConnector />
-        </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
-          <Typography variant="h6" component="span">
-            Code
-          </Typography>
-          <Typography>Because it&apos;s awesome!</Typography>
-        </TimelineContent>
-      </TimelineItem>
-      
-      
-      <TimelineItem>
+      <TimelineItem key={index}>
       <TimelineOppositeContent
-          sx={{ m: 'auto 0' }}
-          variant="body2"
-          color="text.secondary"
-        >
-          11:00 - 11:15 pm
-        </TimelineOppositeContent>
-        <TimelineSeparator>
-          <TimelineConnector />
-          <TimelineDot color="primary" variant="outlined">
-            <HotelIcon />
-          </TimelineDot>
-          <TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
-        </TimelineSeparator>
-        <TimelineContent sx={{ py: '12px', px: 2 }}>
-          <Typography variant="h6" component="span">
-            Sleep
-          </Typography>
-          <Typography>Because you need rest</Typography>
-        </TimelineContent>
-      </TimelineItem>
-      
+        sx={{ m: 'auto 0' }}
+        align="right"
+        variant="body2"
+        color="text.secondary"
+      >
+        {activity.startTime} - {activity.endTime}
+      </TimelineOppositeContent>
+      <TimelineSeparator>
+        <TimelineConnector />
+        <TimelineDot color="primary">
+          <FastfoodIcon />
+        </TimelineDot>
+        <TimelineConnector />
+      </TimelineSeparator>
+      <TimelineContent sx={{ py: '12px', px: 2 }}>
+        <Typography variant="h6" component="span">
+          {activity.activity}
+        </Typography>
+      </TimelineContent>
+    </TimelineItem>
+    ))}
     </Timeline>
+    
+    </React.Fragment>
   );
+}
+
+CustomizedTimeline.propTypes ={
+  activityList: PropTypes.array.isRequired
 }
 
 export default CustomizedTimeline;
