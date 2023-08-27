@@ -6,14 +6,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { DocumentScanner, Login, Payment, PrecisionManufacturing } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
 
 export default function SwipeableTemporaryDrawer() {
-  let navigate = useNavigate()
   const [state, setState] = React.useState({
     bottom: false,
   });
@@ -30,13 +28,6 @@ export default function SwipeableTemporaryDrawer() {
     setState({ ...state, bottom: open });
   };
 
-  const handlesignUpNav=()=>{
-    navigate('/signup')
-  }
-  const handleloginNav=()=>{
-    navigate('/signin')
-  }
-
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'bottom' ? 'auto' : 250 }}
@@ -45,58 +36,20 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer( false)}
     >
       <List>
-        {/* {['Product Overview', 'Payment Plans', 'Contact Us','Sign Up', 'Login'].map((text, index) => ( */}
-          <ListItem key={"Product Overview"} disablePadding>
+        {['Product Overview', 'Payment Plans', 'Contact Us'].map((text, index) => (
+          <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <PrecisionManufacturing/>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={"Product Overview"} />
+              <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
-          <ListItem key={"Payment Plans"} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <Payment/>
-              </ListItemIcon>
-              <ListItemText primary={"Payment Plans"} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"Contact Us"} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <MailIcon/>
-              </ListItemIcon>
-              <ListItemText primary={"Contact Us"} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"Sign Up"} disablePadding>
-            <ListItemButton onClick={handlesignUpNav}>
-              <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <DocumentScanner/>
-              </ListItemIcon>
-              <ListItemText primary={"Sign Up"} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem key={"Login"} disablePadding>
-            <ListItemButton onClick={handleloginNav}>
-              <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <Login/>
-              </ListItemIcon>
-              <ListItemText primary={"Login"} />
-            </ListItemButton>
-          </ListItem>
-          
-        {/* // ))} */}
+        ))}
       </List>
     </Box>
   );
-    
+
   return (
     <div>
         <React.Fragment key='bottom'>

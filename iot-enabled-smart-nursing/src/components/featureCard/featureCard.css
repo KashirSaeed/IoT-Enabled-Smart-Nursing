@@ -11,11 +11,7 @@
 }
 .p_5{
     padding: 25px;
-    /* max-width: 600px; */
 }
 .zero_margin{
-    margin: 0 !important;
-}
-.font-large{
-    font-size:5vh !important; 
+    margin: 0;
 }

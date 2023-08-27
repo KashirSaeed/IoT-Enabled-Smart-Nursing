@@ -7,11 +7,3 @@
 .margin_15{
     margin:15px;
 }
-.font-large{
-    font-size:5vh; 
-}
-@media(max-width:768px){
-    .font-large{
-        font-size: 10vh !important;
-    }
-}
