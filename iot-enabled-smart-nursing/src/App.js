@@ -7,6 +7,7 @@ import Usertype from './components/Forms/Usertype/usertype';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import UserLanding from './pages/User/UserLanding';
+import AboutUs from './pages/aboutUsPage/aboutUs';
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/usertype" element={<Usertype />} />
           <Route path="/userLanding" element={<UserLanding/>}/>
+          <Route path="/aboutUs" element={<AboutUs/>}/>
           <Route path="/" element={<LandingPage/>} />
           </Routes>
       </BrowserRouter>
