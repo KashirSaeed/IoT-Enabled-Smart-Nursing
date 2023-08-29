@@ -21,7 +21,7 @@ const ImageSlider = () => {
                     console.log(images[0])
                 })
                 .catch(error => console.error(error));
-        }, 300000)
+        }, 10000)
         return () => clearInterval(interval);
     }, []);
 
