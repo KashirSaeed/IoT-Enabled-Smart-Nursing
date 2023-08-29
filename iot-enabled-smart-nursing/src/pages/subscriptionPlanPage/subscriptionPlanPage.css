@@ -1,0 +1,82 @@
+/* .backgroundcolor{
+    height: 100%;
+    background-color: #efefef;
+} */
+
+body{
+    background-color: #efefef;
+}
+
+.heading{
+    font-size: 45px;
+    font-family: 'Lucida Sans Regular';
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+ }
+
+
+
+ .card{
+    /* box-shadow:5px 5px 5px 5px lightgrey; */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;;
+    width: 300px;
+ }
+ .card-title{
+    color: #7ba97f;
+    font-size: 35px;
+    text-align: center;
+ }
+ .card-price{
+    text-align: center;
+    font-weight: 300px;
+    font-size: 35px;
+    margin-bottom: 0px;
+    margin-top: 30px;
+ }
+.price-duration{
+    
+    font-weight: 300px ;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 0px;
+}
+.headlines{
+    justify-content: left;
+}
+li{
+    font-size: 25px;
+    margin: 0px;
+    padding: 0px;
+ }
+ li span{
+    font-size: medium;
+ }
+
+
+.center{
+    text-align: center;
+}
+.button {
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 24px;
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    background-color: #4c6341;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px #999;
+    font-weight: lighter;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+
+.button:active {
+    /* background-color: #3e8e41; */
+    box-shadow: 0 0px #666;
+    transform: translateY(4px);
+}
