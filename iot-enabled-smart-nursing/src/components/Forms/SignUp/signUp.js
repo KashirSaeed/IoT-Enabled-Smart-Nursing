@@ -124,7 +124,7 @@ const SignUp = () => {
                 {/* -----------signup up button------------- */}
                 <Grid xs={12}>
                     <div className="marginBottom buttonCentering" >
-                        <CustomButton ButtonText='Sign Up' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" />
+                        <CustomButton ButtonText='Sign Up' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" buttonBackgroundColor="#9ACAA1" />
                     </div>
                 </Grid>
                 {/* -----------Login anchatag------------- */}

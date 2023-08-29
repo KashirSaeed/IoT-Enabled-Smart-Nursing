@@ -1,0 +1,104 @@
+
+
+
+ /* contactUs.css */
+.teamContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+.coverPic {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0.5) saturate(1.2)  blur(1px); 
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px;
+}
+
+.formContainer {
+    position: absolute;
+    top: 50%; 
+    right: 15%;
+    transform: translateY(-50%); 
+    width: 300px; 
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.contactForm h2 {
+    margin-bottom: 10px;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.formGroup label {
+    font-weight: bold;
+}
+
+.formGroup input,
+.formGroup textarea {
+    width: 100%;
+    padding: 10px; /* Adjust padding for form elements */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Increased border radius for a softer look */
+}
+
+.formGroup textarea {
+    resize: vertical;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .teamContainer {
+        flex-direction: column; /* Stack image and form on top of each other */
+        align-items: flex-start; /* Align items to the left */
+        gap: 10px; /* Reduce the gap between items */
+    }
+
+    .teamPic {
+        width: 100%; /* Make the image width 100% */
+        filter: none; /* Reset filters for better visibility */
+    }
+
+    .contentContainer {
+        padding: 20px; /* Add padding to the content container */
+    }
+
+    .formContainer {
+        position: static; /* Remove absolute positioning */
+        top: auto;
+        right: auto;
+        transform: none;
+        width: 100%; /* Make the form container full width */
+        border-radius: 0; /* Remove border radius */
+        box-shadow: none; /* Remove box shadow */
+        color: black; /* Change text color for better visibility */
+    }
+}
+
+
+.officeProperties{
+    width: 100%;
+}

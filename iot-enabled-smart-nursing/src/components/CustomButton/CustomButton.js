@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 const CustomButton =(props)=>{
     return(
     <Button sx={{
+        backgroundColor:props.buttonBackgroundColor,
         textTransform:"Capitalize", 
         width:props.buttonWidth,
         height:props.buttonHeight,
@@ -13,7 +14,7 @@ const CustomButton =(props)=>{
         fontSize:"18px"}} 
         type={props.customButtonType}
         
-        className={`themeColor ${props.className}`  } onClick={props.customButtonClickEvent} variant="contained">
+        className={` ${props.className}`  } onClick={props.customButtonClickEvent} variant="contained">
     {props.ButtonText} 
     </Button>
 );
@@ -24,6 +25,7 @@ CustomButton.propTypes = {
     className: PropTypes.string,
     buttonWidth: PropTypes.string,
     buttonHeight:PropTypes.string,
+    buttonBackgroundColor: PropTypes.string,
 
 
     // customButtonType: PropTypes.string.isRequired,

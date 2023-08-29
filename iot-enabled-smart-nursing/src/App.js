@@ -9,6 +9,7 @@ import React from 'react';
 import UserLanding from './pages/User/UserLanding';
 import AboutUs from './pages/aboutUsPage/aboutUs';
 import Footer from './components/Footer/footer';
+import ContactUs from './pages/contactUs/contactUs';
 
 
 
@@ -23,6 +24,8 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/usertype" element={<Usertype />} />
           <Route path="/userLanding" element={<UserLanding/>}/>
+          <Route path="/aboutUs" element={<AboutUs/>}/>
+          <Route path="/contactUs" element={<ContactUs/>}/>
           <Route path="/" element={<LandingPage/>} />
           </Routes>
       </BrowserRouter>

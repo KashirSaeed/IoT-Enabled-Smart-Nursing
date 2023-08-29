@@ -6,13 +6,13 @@ import teamPicture from '../../assets/team.png'
 import Footer from '../../components/Footer/footer';
 
 
-
 const AboutUs = () => {
     return (
         <div>
+            <MyAppbar />
             <div className="mainContainer" >
                 <div>
-                    <MyAppbar />
+                    
                     <MainHeading text="About Us" />
                     <div className='teamPicProperties'>
                         <img src={teamPicture} alt="teamPicture" className='teamPic' />;
