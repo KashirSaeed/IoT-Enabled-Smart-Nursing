@@ -29,7 +29,18 @@ const SignUp = () => {
         const myPassword = event.target.myPassword.value;
         const isAuthenticatedByGoogle = "false";
         // ---------making object----------
-        const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
+        // const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
+        const data =      {
+            "username": myUsername,
+            "email": myEmail,
+            "password": myPassword,
+            "Fname":"temp",
+            "Lname":"temp",
+            "usertype": 1 ,
+            "contact":null,
+            "Gender_id":null,
+            "ProfilePicture":null
+        }
         // --------calling function from signup service---------
         await postingData(data)
         // ---------navigating to usertype component------
@@ -51,7 +62,19 @@ const SignUp = () => {
         const myPassword = "";
         const isAuthenticatedByGoogle = "true";
 
-        const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
+        // const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
+        const data =      {
+            "username": myUsername,
+            "email": myEmail,
+            "password": myPassword,
+            "Fname":"temp",
+            "Lname":"temp",
+            "usertype": 1 ,
+            "contact":null,
+            "Gender_id":null,
+            "ProfilePicture":null
+        }
+
 
         await postingData(data)
         // ---------navigating to usertype component------
