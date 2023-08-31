@@ -1,25 +1,18 @@
+
+
 import axios from 'axios';
-import localStorageInstance from './localStorage';
-async function readingData(myEmail,myPassword,isAuthenticatedByGoogle){
-    var ls = localStorageInstance
-    var loggedin = false
-    await axios.get(`http://127.0.0.1:8000/user/${myEmail}/${myPassword}/${isAuthenticatedByGoogle}/`).then( (response) =>{
-        // console.log(response.data['response']);
-        if( response.data['response'] === "true"){
-            alert("login in successfully")
-            ls.setCredentials(myEmail)
-            loggedin =  true;
+const readingData = async (data)=>  {
+    await axios.post('http://127.0.0.1:8000/signin/', data).then((response) => {
+
+        if(response.status === 201){
+            alert("User Login Successfully");
         }
-        else if(response.data['response'] === "false"){
-            alert("login in failed");
-            loggedin =  false;
-        }
-        // event.target.reset();
     } )
     .catch( (error)=>{
+        alert(error.response.data.message)
         console.log(error)
     } )
-    return loggedin;
 }
 
-export default readingData
+
+export default readingData;

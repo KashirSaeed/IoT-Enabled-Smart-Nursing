@@ -9,13 +9,10 @@ import readingData from '../../../services/signInService';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
 import { AppBar } from "@mui/material";
-
 import HomeIcon from '@mui/icons-material/Home';
-
 
 const SignIn = () => {
     const navigate = useNavigate();
-
     // ---------useState for email and password-------
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -27,8 +24,14 @@ const SignIn = () => {
         const myEmail = event.target.myEmail.value;
         const myPassword = event.target.myPassword.value;
         const isAuthenticatedByGoogle = "false";
+
+        const data = {
+            "email": myEmail,
+            "password": myPassword,
+        }
         // -----calling readingData function from sign in service------
-        var login = await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
+        // var login = await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
+        var login = await readingData(data)
         // alert("Login uccessfully")
         // window.location.reload();
         if (login === true){
@@ -36,7 +39,6 @@ const SignIn = () => {
             setPassword("");
             navigate('/userLanding')
         }
-        
 
     }
 
@@ -50,8 +52,16 @@ const SignIn = () => {
         const myPassword = "no password required";
         const isAuthenticatedByGoogle = "true";
 
+        const data =      {
+            "email": myEmail,
+            "password": myPassword,
+
+        }
+
         // -----calling readingData function from sign in service------
-        await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
+        // await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
+        await readingData(data)
+
         // ---------navigating to usertype component------
         // navigate('/signin')
         // window.location.reload();
@@ -111,7 +121,7 @@ const SignIn = () => {
                 {/* ---------login button-------- */}
                 <Grid xs={12}>
                     <div className="margibBottom buttonCentering" >
-                        <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" />
+                        <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" buttonBackgroundColor="#9ACAA1" />
                     </div>
                 </Grid>
                 {/* -----------Sign up anchatag------------- */}

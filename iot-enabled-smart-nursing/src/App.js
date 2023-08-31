@@ -8,6 +8,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import UserLanding from './pages/User/UserLanding';
 import SubscriptionPlanPage from './pages/subscriptionPlanPage/subscriptionPlanPage';
+import AboutUs from './pages/aboutUsPage/aboutUs';
+import Footer from './components/Footer/footer';
+import ContactUs from './pages/contactUs/contactUs';
+
+
 
 const App = () => {
 
@@ -22,6 +27,9 @@ const App = () => {
           <Route path="/userLanding" element={<UserLanding/>}/>
           <Route path="/" element={<LandingPage/>} /> */}
           <Route path='/' exact element={<SubscriptionPlanPage/>}/>
+          <Route path="/aboutUs" element={<AboutUs/>}/>
+          <Route path="/contactUs" element={<ContactUs/>}/>
+          <Route path="/" element={<LandingPage/>} />
           </Routes>
       </BrowserRouter>
     </div>
