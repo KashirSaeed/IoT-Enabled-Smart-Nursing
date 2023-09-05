@@ -21,15 +21,14 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Routes >
-          {/* <Route path="/signin" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/usertype" element={<Usertype />} />
           <Route path="/userLanding" element={<UserLanding/>}/>
-          <Route path="/" element={<LandingPage/>} /> */}
-          <Route path='/' exact element={<SubscriptionPlanPage/>}/>
-          <Route path="/aboutUs" element={<AboutUs/>}/>
-          <Route path="/contactUs" element={<ContactUs/>}/>
           <Route path="/" element={<LandingPage/>} />
+          <Route path='/subscriptionplan' exact element={<SubscriptionPlanPage/>}/>
+          <Route path="/aboutUs" element={<AboutUs/>}/>
+          {/* <Route path="/contactUs" element={<ContactUs/>}/> */}
           </Routes>
       </BrowserRouter>
     </div>
