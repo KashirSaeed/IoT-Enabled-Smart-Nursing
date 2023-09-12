@@ -23,11 +23,12 @@ const SignIn = () => {
         // ------current values of email and password--------
         const myEmail = event.target.myEmail.value;
         const myPassword = event.target.myPassword.value;
-        const isAuthenticatedByGoogle = "false";
+        const isAuthenticatedByGoogle = false;
 
         const data = {
             "email": myEmail,
             "password": myPassword,
+            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
         }
         // -----calling readingData function from sign in service------
         // var login = await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
@@ -50,11 +51,12 @@ const SignIn = () => {
 
         const myEmail = userObject.email;
         const myPassword = "no password required";
-        const isAuthenticatedByGoogle = "true";
+        const isAuthenticatedByGoogle = true;
 
         const data =      {
             "email": myEmail,
             "password": myPassword,
+            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
 
         }
 
@@ -66,7 +68,6 @@ const SignIn = () => {
         // navigate('/signin')
         // window.location.reload();
     }
-
 
     function initializeGoogleSignIn() {
         if (typeof google !== 'undefined' && google.accounts) {

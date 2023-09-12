@@ -10,8 +10,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from "react-router-dom";
 import { AppBar } from "@mui/material";
 
-
-
 const SignUp = () => {
     const navigate = useNavigate();
 
@@ -27,7 +25,7 @@ const SignUp = () => {
         const myUsername = event.target.myUsername.value;
         const myEmail = event.target.myEmail.value;
         const myPassword = event.target.myPassword.value;
-        const isAuthenticatedByGoogle = "false";
+        const isAuthenticatedByGoogle = false;
         // ---------making object----------
         // const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
         const data =      {
@@ -39,7 +37,8 @@ const SignUp = () => {
             "usertype": 1 ,
             "contact":null,
             "Gender_id":null,
-            "ProfilePicture":null
+            "ProfilePicture":null,
+            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
         }
         // --------calling function from signup service---------
         await postingData(data)
@@ -59,8 +58,8 @@ const SignUp = () => {
 
         const myUsername = userObject.name;
         const myEmail = userObject.email;
-        const myPassword = "";
-        const isAuthenticatedByGoogle = "true";
+        const myPassword = "No Password Required";
+        const isAuthenticatedByGoogle = true;
 
         // const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
         const data =      {
@@ -72,7 +71,8 @@ const SignUp = () => {
             "usertype": 1 ,
             "contact":null,
             "Gender_id":null,
-            "ProfilePicture":null
+            "ProfilePicture":null,
+            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
         }
 
 
@@ -80,7 +80,6 @@ const SignUp = () => {
         // ---------navigating to usertype component------
         // navigate('/signin')
         // window.location.reload();
-
     }
 
     function initializeGoogleSignIn() {
@@ -108,9 +107,6 @@ const SignUp = () => {
     const handleSignUpNav = () => {
         navigate('/signin');
     }
-
-
-    // return (
 
     return (
         <React.Fragment>
@@ -174,9 +170,6 @@ const SignUp = () => {
                     <div className="App"  >
                         <div id="signInDiv" ></div>
                     </div>
-
-
-
                 </Grid>
             </Grid>
         </form>
@@ -184,9 +177,6 @@ const SignUp = () => {
         </React.Fragment>
     );
 
-
-
-    
 }
 
 export default SignUp;
