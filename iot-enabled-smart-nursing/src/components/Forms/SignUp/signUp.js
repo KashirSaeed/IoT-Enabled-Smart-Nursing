@@ -68,7 +68,7 @@ const SignUp = () => {
             "password": myPassword,
             "Fname":"temp",
             "Lname":"temp",
-            "usertype": 1 ,
+            "usertype": "Admin" ,
             "contact":null,
             "Gender_id":null,
             "ProfilePicture":null,

@@ -10,6 +10,7 @@ import UserLanding from './pages/User/UserLanding';
 import AboutUs from './pages/aboutUsPage/aboutUs';
 import Footer from './components/Footer/footer';
 import ContactUs from './pages/contactUs/contactUs';
+import AdminDashboard from './pages/Admin/Dashboard/dashBoard';
 
 
 
@@ -27,6 +28,8 @@ const App = () => {
           <Route path="/aboutUs" element={<AboutUs/>}/>
           <Route path="/contactUs" element={<ContactUs/>}/>
           <Route path="/" element={<LandingPage/>} />
+          <Route path="/admin" element={<AdminDashboard/>} />
+
           </Routes>
       </BrowserRouter>
     </div>

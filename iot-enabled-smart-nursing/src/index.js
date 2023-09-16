@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-
 import { GoogleOAuthProvider } from '@react-oauth/google';
-
+import { ProSidebarProvider } from "react-pro-sidebar";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <ProSidebarProvider>
     <GoogleOAuthProvider clientId="850685752934-8te6qjj7c70pshhd9kg2pmvg85pmc338.apps.googleusercontent.com">
       <App />
     </GoogleOAuthProvider>
+    </ProSidebarProvider>
   </React.StrictMode>
 
 );
