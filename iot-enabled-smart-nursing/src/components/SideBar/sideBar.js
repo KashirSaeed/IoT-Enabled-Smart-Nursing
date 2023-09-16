@@ -44,7 +44,7 @@ function SideBar({ menuItems, user }) {
     });
 
     return (
-        <div id="app" style={{ height: "100vh", display: "flex" }}>
+        <div id="app" style={{ height: "100vh", display: "flex"  }}>
             <Sidebar
                 width="250px"
                 collapsed={isSidebarCollapsed}
@@ -142,3 +142,10 @@ function SideBar({ menuItems, user }) {
 }
 
 export default SideBar;
+
+
+
+
+
+
+
