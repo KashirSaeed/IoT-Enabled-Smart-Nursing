@@ -14,9 +14,11 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link
 // import { useMediaQuery } from '@mui/material';
-const pages = ['Product Overview', 'About Us', 'Contact Us'];
+// const pages = ['Product Overview','Payment Plans', 'About Us', 'Contact Us'];
 
-const MyAppbar = () => {
+
+const MyAppbar = ({pages}) => {
+  
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -24,7 +26,7 @@ const MyAppbar = () => {
     setAnchorElNav(null);
   };
   const handlesignUpNav = () => {
-    navigate('/signup')
+    navigate('/subscriptionplan')
   }
   const handleloginNav = () => {
     navigate('/signin')
@@ -102,9 +104,8 @@ const MyAppbar = () => {
                 </MenuItem>
               ))} */}
 
-              {pages.map((page) => (
+              {/* {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  {/* Use Link component for About Us */}
                   {page === 'About Us' ? (
                     <Link to="/aboutUs" style={{ textDecoration: 'none', color: 'inherit' }}>
                       <Typography textAlign="center">{page}</Typography>
@@ -113,7 +114,7 @@ const MyAppbar = () => {
                     <Typography textAlign="center">{page}</Typography>
                   )}
                 </MenuItem>
-              ))}
+              ))} */}
 
 
             </Menu>
@@ -148,32 +149,25 @@ const MyAppbar = () => {
               </Button>
             ))} */}
 
-            {pages.map((page) => (
+
+
+              {pages.map((page) => (
               <Button
-                key={page}
+                key={page.key}
                 onClick={() => {
-                  if (page === 'About Us') {
-                    navigate('/aboutUs'); // Navigate to the "About Us" page
-                  } 
-                  else if(page === 'Contact Us'){
-                    navigate('/contactUs');
-                  }
-                  else {
-                    handleCloseNavMenu();
-                  }
+                  navigate(page.value)
                 }}
                 sx={{ my: 2, color: 'black', display: 'block', textTransform: 'capitalize' }}
               >
-                {page.toLowerCase()}
+                {page.key.toLowerCase()}
               </Button>
             ))}
-
 
           </Box>
           {windowSize.width > 900 ?
             (
               <div>
-                <CustomButton className='margin_LR_5' ButtonText='Sign up' customButtonClickEvent={handlesignUpNav} buttonBackgroundColor="#9ACAA1" />
+                <CustomButton className='margin_LR_5' ButtonText='Get Started' customButtonClickEvent={handlesignUpNav} buttonBackgroundColor="#9ACAA1" />
                 <CustomButton className='margin_LR_5' ButtonText='Login' customButtonClickEvent={handleloginNav} buttonBackgroundColor="#9ACAA1" />
               </div>
             ) : <Box />

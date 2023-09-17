@@ -10,9 +10,11 @@ import jwt_decode from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
 import { AppBar } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
+import { bool } from "prop-types";
 
-const SignIn = () => {
+const SignIn = ({LoadRoutes}) => {
     const navigate = useNavigate();
+    var login=true
     // ---------useState for email and password-------
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -31,13 +33,17 @@ const SignIn = () => {
         }
         // -----calling readingData function from sign in service------
         // var login = await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
-        var login = await readingData(data)
-        // alert("Login uccessfully")
+        login = await readingData(data)
+        // alert(await readingData(data))
         // window.location.reload();
-        if (login === true){
+        if (login){
             setEmail("");
             setPassword("");
-            navigate('/userLanding')
+            LoadRoutes("admin")
+            navigate('/usertype')
+        }
+        else{
+            alert("Invalid Credentials")
         }
 
     }
@@ -90,14 +96,15 @@ const SignIn = () => {
         navigate('/');
     }
     const handleSignUpNav = () =>{
-        navigate('/signup');
+        navigate('/subscriptionplan');
     }
 
     return (
         <React.Fragment>
-        <AppBar>
-                <HomeIcon onClick={handlelandNav}/>
-            </AppBar>
+        {/* <AppBar>
+            <HomeIcon onClick={handlelandNav}/>
+        </AppBar> */}
+        
         <form  className="formProperties" onSubmit={handleSubmit}>
             <Grid container spacing={2}>
                 {/* ---------title-------- */}

@@ -9,7 +9,6 @@ import Footer from '../../components/Footer/footer';
 const AboutUs = () => {
     return (
         <div>
-            <MyAppbar />
             <div className="mainContainer" >
                 <div>
                     

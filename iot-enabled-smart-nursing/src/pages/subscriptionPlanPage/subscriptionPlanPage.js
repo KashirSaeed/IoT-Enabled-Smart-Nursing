@@ -3,9 +3,20 @@ import './subscriptionPlanPage.css'
 import React from 'react'
 import { Grid } from '@mui/material'
 import { Typography } from '@mui/material';
+import Footer from '../../components/Footer/footer';
+import { useNavigate } from 'react-router-dom';
 
 
-export default function subscriptionPlanPage() {
+
+
+
+export default function SubscriptionPlanPage() {
+
+  const navigate = useNavigate();
+  
+  function GoWith(plan_type){
+    navigate(`/signup/${plan_type}`)
+  }
     
   return (
     <div>
@@ -31,7 +42,7 @@ export default function subscriptionPlanPage() {
                   </Typography>
 
                   <div className='center'>
-                    <button class="button">Get Started</button>
+                    <button class="button" onClick={()=>GoWith("Admin")}>Go With.</button>
                   </div>
 
               </div>
@@ -54,7 +65,7 @@ export default function subscriptionPlanPage() {
                   </Typography>
 
                   <div className='center'>
-                    <button class="button">Get Started</button>
+                    <button class="button" onClick={()=>GoWith("Admin")}>Go With.</button>
                   </div>
 
               </div>
@@ -79,13 +90,14 @@ export default function subscriptionPlanPage() {
                   </Typography>
 
                   <div className='center'>
-                    <button class="button">Get Started</button>
+                    <button class="button" onClick={()=>GoWith("Admin")}>Go With.</button>
                   </div>
 
               </div>
             </Grid>
         </Grid>
         </div>   
+        <Footer />
     </div>
   )
 }

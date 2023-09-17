@@ -7,13 +7,15 @@ import Grid from '@mui/material/Grid';
 import postingData from '../../../services/signUpService';
 import jwt_decode from 'jwt-decode';
 import HomeIcon from '@mui/icons-material/Home';
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import { AppBar } from "@mui/material";
 import validateAccess from "../../../services/validateAccess";
 
 
 
 const SignUp = () => {
+
+    const {plan_type}=useParams()
     const navigate = useNavigate();
 
     // -----useState hook for username, password and email---------
@@ -37,10 +39,10 @@ const SignUp = () => {
             "password": myPassword,
             "Fname":"temp",
             "Lname":"temp",
-            "usertype": 1 ,
+            "usertype": plan_type ,
             "contact":null,
             "Gender_id":null,
-            "ProfilePicture":null
+            // "ProfilePicture":null
         }
         // --------calling function from signup service---------
         await postingData(data)
@@ -70,7 +72,7 @@ const SignUp = () => {
             "password": myPassword,
             "Fname":"temp",
             "Lname":"temp",
-            "usertype": 1 ,
+            "usertype": plan_type ,
             "contact":null,
             "Gender_id":null,
             "ProfilePicture":null
@@ -115,9 +117,9 @@ const SignUp = () => {
 
     return (
         <React.Fragment>
-            <AppBar>
+            {/* <AppBar>
                 <HomeIcon onClick={handlelandNav}/>
-            </AppBar>
+            </AppBar> */}
 
         <form className="formProperties" onSubmit={handleSubmit}>
             <Grid container spacing={2}>

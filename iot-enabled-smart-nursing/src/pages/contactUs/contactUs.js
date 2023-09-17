@@ -24,7 +24,6 @@ const ContactUs = () => {
     return (
         <div>
             {/* --------Appbar----------- */}
-            <MyAppbar />
             {/* ------------image--------------- */}
             <div className='teamPicProperties'>
                 <img src={IOT_HealthVare} alt="teamPicture" className='coverPic' />
