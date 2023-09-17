@@ -1,16 +1,16 @@
-
 import profile from '../../assets/profile.jpeg';
 import React, { useState } from "react";
 import {
     Sidebar,
     Menu,
     MenuItem,
-    SubMenu as BaseSubMenu, // Rename SubMenu to avoid conflicts
+    SubMenu as BaseSubMenu, 
 } from "react-pro-sidebar";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Avatar from "@mui/material/Avatar";
 import './sideBar.css';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 function SubMenu({ label, icon, items }) {
     return (
@@ -108,15 +108,15 @@ function SideBar({ menuItems, user }) {
                 <Menu iconShape="square">
                     {isSidebarCollapsed ? (
                         <MenuItem
-                            // icon={<MenuOutlinedIcon />}
+                            icon={<MenuOutlinedIcon />}
                             onClick={toggleSidebar}
                             style={{ textAlign: "center" }}
                         >
-                            {/* <h2>{user.name}</h2> */}
+                            <h2>{user.name}</h2>
                         </MenuItem>
                     ) : (
                         <MenuItem
-                            // icon={<ChevronLeftIcon />}
+                            icon={<ChevronLeftIcon />}
                             onClick={toggleSidebar}
                             style={{ textAlign: "center" }}
                         >
@@ -126,9 +126,14 @@ function SideBar({ menuItems, user }) {
                     
                     {menuItems.map((menuItem, index) => {
                         if (menuItem.items.length === 0) {
-                            return (
-                                <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
-                            );
+                            if (menuItem.label === "Dashboard"){
+                                return (
+                                    <Link to="/dashboard" key={index} style={{textDecoration:'none', color:'black'}} >
+                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    </Link>
+                                );
+                            }
+                            
                         } else {
                             return <SubMenu key={index} label={menuItem.label} icon={menuItem.icon} items={menuItem.items} />
 
