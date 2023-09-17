@@ -16,63 +16,164 @@ import PaymentIcon from "@mui/icons-material/Payment";
 import AddIcon from "@mui/icons-material/Add";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import PersonIcon from "@mui/icons-material/Person";
+import Grid from '@mui/material/Grid';
+import React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import CardComponent from '../../../components/Card/card';
+import LineColumnAreaChart from '../../../components/Graph/lineColumnAreaChart';
+import LineGraph from '../../../components/LineGraph/lineGraph';
 
-function AdminDashboard(){
-    const user = {
-        name: "Alastair Cook",
-        profilePic: profile,
-        hospitalName: "Smart Nursing (SNP)",
-    };
-    const menuItems = [
-        { label: "Dashboard", icon: <HomeOutlinedIcon />, items:[] },
-        {
-            label: "Doctors", icon: <DoctorIcon />,
-            items: [
-              { label: "All Doctors",icon: <ViewListIcon /> },
-              { label: "Add Doctor",icon: <AddIcon /> },
-              { label: "Doctor Profile",icon: <PersonIcon /> },
-            ],
-        },
-        {
-            label: "Patients", icon: <PatientIcon />,
-            items: [
-              { label: "All Patients",icon: <ViewListIcon /> },
-              { label: "Add Patient",icon: <AddIcon /> },
-              { label: "Patient Profile",icon: <PersonIcon /> },
-            ],
-        },
-        {
-            label: "Nurses", icon: <MedicalServicesIcon />,
-            items: [
-              { label: "All Nurses",icon: <ViewListIcon /> },
-              { label: "Add Nurse",icon: <AddIcon /> },
-              { label: "Nurse Profile",icon: <PersonIcon /> },
-            ],
-        },
-        {
-            label: "Payments", icon: <PaymentIcon />,
-            items: [
-              { label: "Payments",icon: <PeopleOutlinedIcon /> },
-              { label: "Add Payment",icon: <PeopleOutlinedIcon /> },
-              { label: "Payment Invoice",icon: <PeopleOutlinedIcon /> },
-            ],
-        },
-        {
-            label: "Appointments", icon: <AppointmentIcon />,
-            items: [
-              { label: "Book Schedule",icon: <PeopleOutlinedIcon /> },
-              { label: "Doctor Appointment",icon: <PeopleOutlinedIcon /> },
-            ],
-        },
-        { label: "Contacts", icon: <ContactsOutlinedIcon /> , items:[]},
-        { label: "Profile", icon: <ReceiptOutlinedIcon /> , items:[]},
-        { label: "FAQ", icon: <HelpOutlineOutlinedIcon /> , items:[]},
-        { label: "Calendar", icon: <CalendarTodayOutlinedIcon /> , items:[]},
+function AdminDashboard() {
+  const cardItems = [
+    {
+      name: "Patients",
+      quantity: "1500",
+      message: "+20% Increased",
+      themeColor: "pink",
+      icon: <PersonIcon fontSize="large" style={{ fontSize: '4rem', color: 'pink' }} />
+    },
+    {
+      name: "Doctors",
+      quantity: "532",
+      message: "+0.2% Increased",
+      themeColor: "green",
+      icon: <DoctorIcon fontSize="large" style={{ fontSize: '4rem', color: 'green' }} />
+    },
+    {
+      name: "Nurses",
+      quantity: "751",
+      message: "+15.2% Increased",
+      themeColor: "orange",
+      icon: <MedicalServicesIcon fontSize="large" style={{ fontSize: '4rem', color: 'orange' }} />
+    },
+    {
+      name: "Appointments",
+      quantity: "67",
+      message: "+15.2% Decreased",
+      themeColor: "blue",
+      icon: <AppointmentIcon fontSize="large" style={{ fontSize: '4rem', color: 'blue' }} />
+    },
+    {
+      name: "Payments",
+      quantity: "46",
+      message: "+42.2% Increased",
+      themeColor: "brown",
+      icon: <PaymentIcon fontSize="large" style={{ fontSize: '4rem', color: 'brown' }} />
+    }
+  ];
+  const user = {
+    name: "Alastair Cook", 
+    profilePic: profile,
+    hospitalName: "Smart Nursing (SNP)",
+  };
+  const menuItems = [
+    { label: "Dashboard", icon: <HomeOutlinedIcon />, items: [] },
+    {
+      label: "Doctors", icon: <DoctorIcon />,
+      items: [
+        { label: "All Doctors", icon: <ViewListIcon /> },
+        { label: "Add Doctor", icon: <AddIcon /> },
+        { label: "Doctor Profile", icon: <PersonIcon /> },
+      ],
+    },
+    {
+      label: "Patients", icon: <PatientIcon />,
+      items: [
+        { label: "All Patients", icon: <ViewListIcon /> },
+        { label: "Add Patient", icon: <AddIcon /> },
+        { label: "Patient Profile", icon: <PersonIcon /> },
+      ],
+    },
+    {
+      label: "Nurses", icon: <MedicalServicesIcon />,
+      items: [
+        { label: "All Nurses", icon: <ViewListIcon /> },
+        { label: "Add Nurse", icon: <AddIcon /> },
+        { label: "Nurse Profile", icon: <PersonIcon /> },
+      ],
+    },
+    {
+      label: "Payments", icon: <PaymentIcon />,
+      items: [
+        { label: "Payments", icon: <PeopleOutlinedIcon /> },
+        { label: "Add Payment", icon: <PeopleOutlinedIcon /> },
+        { label: "Payment Invoice", icon: <PeopleOutlinedIcon /> },
+      ],
+    },
+    {
+      label: "Appointments", icon: <AppointmentIcon />,
+      items: [
+        { label: "Book Schedule", icon: <PeopleOutlinedIcon /> },
+        { label: "Doctor Appointment", icon: <PeopleOutlinedIcon /> },
+      ],
+    },
+    { label: "Contacts", icon: <ContactsOutlinedIcon />, items: [] },
+    { label: "Profile", icon: <ReceiptOutlinedIcon />, items: [] },
+    { label: "FAQ", icon: <HelpOutlineOutlinedIcon />, items: [] },
+    { label: "Calendar", icon: <CalendarTodayOutlinedIcon />, items: [] },
 
-      ];
-    return(
+  ];
+  return (
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div >
         <SideBar menuItems={menuItems} user={user} />
-    );
+      </div>
+      <div style={{ margin: "10px", flex: 1 }}>
+        <Grid container spacing={2} justifyContent="space-between">
+          <Grid item xs={12}  >
+
+            <p style={{ margin: '5px' }} > <strong>Dashboard</strong> <br /> Welcome to Iot Enabled Smart Nursing</p>
+          </Grid>
+          <Grid item xs={12} md={6} >
+            <CardComponent cardItem={cardItems[0]} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <CardComponent cardItem={cardItems[1]} />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <CardComponent cardItem={cardItems[2]} />
+          </Grid>
+          <Grid item xs={12} md={4} >
+            <CardComponent cardItem={cardItems[3]} />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <CardComponent cardItem={cardItems[4]} />
+          </Grid>
+          
+          <Grid item xs={12} md={6} >
+            < LineColumnAreaChart />
+
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <LineGraph />
+          </Grid>
+        </Grid>
+      </div>
+    </div>
+  );
 }
 
 export default AdminDashboard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
