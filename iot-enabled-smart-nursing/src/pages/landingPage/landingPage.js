@@ -11,16 +11,17 @@ import { Grid } from '@mui/material';
 import FeatureCard from '../../components/featureCard/featureCard';
 import { Accessible, AirlineSeatFlat, Bathroom, Bed, Elderly, QuestionMark, SportsKabaddi, Warning, WheelchairPickup } from '@mui/icons-material';
 
-import MyAppbar from '../../components/appbar/appbar';
 import telemed from '../../assets/telemed.jpg';
+import Footer from '../../components/Footer/footer';
+
 
 
 const LandingPage = () => {
+
     
 return (
     <React.Fragment>
         <ParticleBg />
-        <MyAppbar />
         <Carousel showStatus={false} showThumbs={false} interval={3000} autoPlay={true} infiniteLoop={true}>
             <div>
                 <img loading='eager' style={{ maxHeight: 768, objectFit: 'contain' }} src={telemed} alt='image1'></img>
@@ -54,7 +55,7 @@ return (
                 <Grid item lg={4} sm={6} xs={12}><FeatureCard icon={<WheelchairPickup className='iconsizemd' sx={{ fontSize: 75 }} />} feature={'Nurse Rounding'} /></Grid>
             </Grid>
         </Grid>
-        
+        <Footer />
     </React.Fragment>  
     );
 }
