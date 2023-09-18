@@ -41,7 +41,7 @@ const SignIn = ({LoadRoutes}) => {
             setEmail("");
             setPassword("");
             LoadRoutes("admin")
-            navigate('/usertype')
+            navigate('/dashboard')
         }
         else{
             alert("Invalid Credentials")
