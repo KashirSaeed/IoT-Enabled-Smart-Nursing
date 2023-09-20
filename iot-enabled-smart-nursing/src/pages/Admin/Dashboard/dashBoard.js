@@ -1,34 +1,71 @@
+import React, { useState, useEffect } from 'react';
 import profile from '../../../assets/profile.jpeg';
-// import SideBar from "../../../components/SideBar/sideBar";
-// import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-// import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-// import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-// import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-// import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-// import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-// import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-// import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import DoctorIcon from "@mui/icons-material/LocalHospital";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
-// import PatientIcon from "@mui/icons-material/Person";
 import AppointmentIcon from "@mui/icons-material/EventNote";
 import PaymentIcon from "@mui/icons-material/Payment";
-// import AddIcon from "@mui/icons-material/Add";
-// import ViewListIcon from "@mui/icons-material/ViewList";
 import PersonIcon from "@mui/icons-material/Person";
-// import WorkIcon from "@mui/icons-material/Work";
 import Grid from '@mui/material/Grid';
-import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-// import Typography from '@mui/material/Typography';
 import CardComponent from '../../../components/Card/card';
 import LineColumnAreaChart from '../../../components/Graph/lineColumnAreaChart';
-import LineGraph from '../../../components/LineGraph/lineGraph';
+import BarGraph from '../../../components/BarGraph/barGraph';
 import SideBar from '../../../components/SideBar/sideBar';
 
-
 function AdminDashboard() {
+
+  
+  const initialActivities = [
+    { name: "Running", start_time: "04:04:15 pm", end_time: "04:08:40 pm", date: "Saturday, August 05 2006" },
+    { name: "Reading", start_time: "04:04:25 pm", end_time: "04:08:40 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:04:23 pm", end_time: "04:08:40 pm", date: "Saturday, August 05 2006" },
+    { name: "Walking", start_time: "04:04:25 pm", end_time: "04:08:40 pm", date: "Saturday, August 05 2006" },
+    { name: "Talking", start_time: "04:04:25 pm", end_time: "04:08:40 pm", date: "Saturday, August 05 2006" },
+    { name: "Watching", start_time: "04:04:45 pm", end_time: "04:08:40 pm", date: "Saturday, August 05 2006" },
+    { name: "Sleeping", start_time: "04:04:32 pm", end_time: "04:08:40 pm", date: "Saturday, August 05 2006" },
+    { name: "Watching", start_time: "04:04:10 pm", end_time: "04:08:55 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:03:45 pm", end_time: "04:08:30 pm", date: "Saturday, August 05 2006" },
+    { name: "Talking", start_time: "04:05:15 pm", end_time: "04:09:10 pm", date: "Saturday, August 05 2006" },
+    { name: "Sleeping", start_time: "04:06:30 pm", end_time: "04:09:45 pm", date: "Saturday, August 05 2006" },
+    { name: "Talking", start_time: "04:07:20 pm", end_time: "04:10:20 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:05:55 pm", end_time: "04:09:30 pm", date: "Saturday, August 05 2006" },
+    { name: "Running", start_time: "04:04:40 pm", end_time: "04:08:50 pm", date: "Saturday, August 05 2006" },
+    { name: "Watching", start_time: "04:06:15 pm", end_time: "04:09:20 pm", date: "Saturday, August 05 2006" },
+    { name: "Walking", start_time: "04:05:30 pm", end_time: "04:09:00 pm", date: "Saturday, August 05 2006" },
+    { name: "Watching", start_time: "04:06:10 pm", end_time: "04:09:30 pm", date: "Saturday, August 05 2006" },
+    { name: "Walking", start_time: "04:07:05 pm", end_time: "04:10:15 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:04:50 pm", end_time: "04:08:45 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:05:40 pm", end_time: "04:09:10 pm", date: "Saturday, August 05 2006" },
+    { name: "Running", start_time: "04:06:25 pm", end_time: "04:09:40 pm", date: "Saturday, August 05 2006" },
+    { name: "Walking", start_time: "04:04:35 pm", end_time: "04:08:20 pm", date: "Saturday, August 05 2006" },
+    { name: "Running", start_time: "04:05:50 pm", end_time: "04:09:25 pm", date: "Saturday, August 05 2006" },
+    { name: "Watching", start_time: "04:06:55 pm", end_time: "04:10:00 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:07:30 pm", end_time: "04:10:30 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:04:10 pm", end_time: "04:08:55 pm", date: "Saturday, August 05 2006" },
+    { name: "Reading", start_time: "04:03:45 pm", end_time: "04:08:30 pm", date: "Saturday, August 05 2006" },
+    { name: "Sleeping", start_time: "04:05:15 pm", end_time: "04:09:10 pm", date: "Saturday, August 05 2006" },
+    { name: "Walking", start_time: "04:07:05 pm", end_time: "04:10:15 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:04:50 pm", end_time: "04:08:45 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:05:40 pm", end_time: "04:09:10 pm", date: "Saturday, August 05 2006" },
+    { name: "Running", start_time: "04:06:25 pm", end_time: "04:09:40 pm", date: "Saturday, August 05 2006" },
+    { name: "Sleeping", start_time: "04:06:30 pm", end_time: "04:09:45 pm", date: "Saturday, August 05 2006" },
+    { name: "Talking", start_time: "04:07:20 pm", end_time: "04:10:20 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:05:55 pm", end_time: "04:09:30 pm", date: "Saturday, August 05 2006" },
+    { name: "Running", start_time: "04:04:40 pm", end_time: "04:08:50 pm", date: "Saturday, August 05 2006" },
+    { name: "Watching", start_time: "04:06:15 pm", end_time: "04:09:20 pm", date: "Saturday, August 05 2006" },
+    { name: "Walking", start_time: "04:05:30 pm", end_time: "04:09:00 pm", date: "Saturday, August 05 2006" },
+    { name: "Watching", start_time: "04:06:10 pm", end_time: "04:09:30 pm", date: "Saturday, August 05 2006" },
+    { name: "Walking", start_time: "04:07:05 pm", end_time: "04:10:15 pm", date: "Saturday, August 05 2006" },
+    { name: "Watching", start_time: "04:04:10 pm", end_time: "04:08:55 pm", date: "Saturday, August 05 2006" },
+    { name: "Eating", start_time: "04:03:45 pm", end_time: "04:08:30 pm", date: "Saturday, August 05 2006" },
+    { name: "Talking", start_time: "04:05:15 pm", end_time: "04:09:10 pm", date: "Saturday, August 05 2006" },
+    { name: "Sleeping", start_time: "04:06:30 pm", end_time: "04:09:45 pm", date: "Saturday, August 05 2006" },
+    { name: "Talking", start_time: "04:07:20 pm", end_time: "04:10:20 pm", date: "Saturday, August 05 2006" },
+  ]
+
+
+
   const cardItems = [
     {
       name: "Patients",
@@ -66,61 +103,33 @@ function AdminDashboard() {
       icon: <PaymentIcon fontSize="large" style={{ fontSize: '4rem', color: 'brown' }} />
     }
   ];
-  // const user = {
-  //   name: "Alastair Cook", 
-  //   profilePic: profile,
-  //   hospitalName: "Smart Nursing (SNP)",
-  // };
-  // const menuItems = [
-  //   { label: "Dashboard", icon: <HomeOutlinedIcon />, items: [] },
-  //   { label: "Timeline Activities", icon: <WorkIcon />, items: [] },
 
-  //   {
-  //     label: "Doctors", icon: <DoctorIcon />,
-  //     items: [
-  //       { label: "All Doctors", icon: <ViewListIcon /> },
-  //       { label: "Add Doctor", icon: <AddIcon /> },
-  //       { label: "Doctor Profile", icon: <PersonIcon /> },
-  //     ],
-  //   },
+  const [activityNames, setActivityNames] = useState([]);
+  const [activityFrequency, setActivityFrequency] = useState([]);
+  
+  useEffect(() => {
+    const uniqueNames = [...new Set(initialActivities.map(activity => activity.name))];
+    const frequencies = uniqueNames.map(name =>
+      initialActivities.filter(activity => activity.name === name).length
+    );
+      var frequencyPercentage = []
+    for(let frequency of frequencies){
+      // alert(frequency)
 
-  //   {
-  //     label: "Patients", icon: <PatientIcon />,
-  //     items: [
-  //       { label: "All Patients", icon: <ViewListIcon /> },
-  //       { label: "Add Patient", icon: <AddIcon /> },
-  //       { label: "Patient Profile", icon: <PersonIcon /> },
-  //     ],
-  //   },
-  //   {
-  //     label: "Nurses", icon: <MedicalServicesIcon />,
-  //     items: [
-  //       { label: "All Nurses", icon: <ViewListIcon /> },
-  //       { label: "Add Nurse", icon: <AddIcon /> },
-  //       { label: "Nurse Profile", icon: <PersonIcon /> },
-  //     ],
-  //   },
-  //   {
-  //     label: "Payments", icon: <PaymentIcon />,
-  //     items: [
-  //       { label: "Payments", icon: <PeopleOutlinedIcon /> },
-  //       { label: "Add Payment", icon: <PeopleOutlinedIcon /> },
-  //       { label: "Payment Invoice", icon: <PeopleOutlinedIcon /> },
-  //     ],
-  //   },
-  //   {
-  //     label: "Appointments", icon: <AppointmentIcon />,
-  //     items: [
-  //       { label: "Book Schedule", icon: <PeopleOutlinedIcon /> },
-  //       { label: "Doctor Appointment", icon: <PeopleOutlinedIcon /> },
-  //     ],
-  //   },
-  //   { label: "Contacts", icon: <ContactsOutlinedIcon />, items: [] },
-  //   { label: "Profile", icon: <ReceiptOutlinedIcon />, items: [] },
-  //   { label: "FAQ", icon: <HelpOutlineOutlinedIcon />, items: [] },
-  //   { label: "Calendar", icon: <CalendarTodayOutlinedIcon />, items: [] },
+      frequencyPercentage.push(Math.round((frequency / initialActivities.length)*100))
+    }
+    
+    setActivityNames(uniqueNames);
+    setActivityFrequency(frequencyPercentage);
+  }, []);
 
-  // ];
+  console.log((activityFrequency));
+  console.log(([400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]));
+  console.log((activityNames));
+  console.log((['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
+  'United States', 'China', 'India'
+]));
+  
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <div >
@@ -153,7 +162,7 @@ function AdminDashboard() {
 
           </Grid>
           <Grid item xs={12} md={6}>
-            <LineGraph />
+            <BarGraph activityNames={activityNames} activityFrequency={activityFrequency}  />
           </Grid>
         </Grid>
       </div>

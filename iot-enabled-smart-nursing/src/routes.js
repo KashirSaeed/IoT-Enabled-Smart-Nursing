@@ -17,7 +17,7 @@ const routeConfig=[
     {path:"/subscriptionplan",component:SubscriptionPlanPage,role:"general"},
     {path:"/aboutUs",component:AboutUs,role:"general"},
     {path:"/contactUs",component:ContactUs,role:"Admin"},
-    {path:"/dashboard",component:AdminDashboard,role:"Admin"}
+    {path:"/dashboard",component:AdminDashboard,role:"general"}
 
 ];
 

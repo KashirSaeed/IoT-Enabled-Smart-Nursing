@@ -122,7 +122,7 @@ function SideBar() {
     });
 
     return (
-        <div id="app" style={{ height: "100vh", display: "flex" , backgroundColor:"black" , color:"white" }}>
+        <div id="app" style={{ height: "100vh", display: "flex"  }}>
             <Sidebar
                 width="250px"
                 collapsed={isSidebarCollapsed}
@@ -206,7 +206,7 @@ function SideBar() {
                         if (menuItem.items.length === 0) {
                             if (menuItem.label === "Dashboard") {
                                 return (
-                                    <Link to="/dashboard" key={index} style={{textDecoration:'none', color:'white'}} >
+                                    <Link to="/dashboard" key={index} style={{textDecoration:'none', color:'black'}} >
                                         <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     </Link>
                                     
@@ -214,7 +214,7 @@ function SideBar() {
                             }
                             else if(menuItem.label === "Timeline Activities"){
                                 return (
-                                    <Link to="/usertype" key={index} style={{textDecoration:'none', color:'white'}} >
+                                    <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
                                         <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     </Link>
                                     

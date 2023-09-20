@@ -181,8 +181,8 @@ import DirectionsWalkOutlinedIcon from '@mui/icons-material/DirectionsWalkOutlin
 import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined';
 import AirlineSeatFlatOutlinedIcon from '@mui/icons-material/AirlineSeatFlatOutlined';
-import SideBar from "../../SideBar/sideBar";
-
+// import SideBar from "../../SideBar/sideBar";
+import SideBar from '../../SideBar/sideBar';
 
 
 const Usertype = () => {

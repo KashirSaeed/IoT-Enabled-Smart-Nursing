@@ -37,6 +37,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-flickity-component": "^4.0.6",
+    "react-loading": "^2.0.3",
     "react-lottie": "^1.2.3",
     "react-native-snap-carousel": "^3.9.1",
     "react-particles": "^2.9.3",
