@@ -15,3 +15,6 @@ const postingData = async (data)=>  {
 }
 
 export default postingData
+
+
+

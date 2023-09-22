@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom';
 import ReactApexChart from 'react-apexcharts';
-import Loading from "../LoadingComponent/loading";
 
 function BarGraph({ activityNames, activityFrequency }) {
-  console.log("activityNames")
-  console.log(activityNames)
-
   const [chartData, setChartData] = useState(null);
   useEffect(() => {
-    if (activityFrequency && activityFrequency.length > 0){
+    if (activityFrequency && activityFrequency.length > 0) {
       setChartData({
         series: [{
           data: activityFrequency,
@@ -81,24 +77,18 @@ function BarGraph({ activityNames, activityFrequency }) {
             }
           }
         },
-    
+
       });
     }
-  }, [activityFrequency]); 
+  }, [activityFrequency]);
 
-  if (!chartData) {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh' }} >
-        <div ><Loading/></div>
-      </div>
-    );
-  }
-
+  if (chartData) {
   return (
     <div id="chart">
       <ReactApexChart options={chartData.options} series={chartData.series} type="bar" height={380} />
     </div>
   );
+  }
 }
 
 const domContainer = document.querySelector('#root');

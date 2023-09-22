@@ -1,11 +1,8 @@
-// import SideBar from "../../../components/SideBar/sideBar";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-// import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-// import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import DoctorIcon from "@mui/icons-material/LocalHospital";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
@@ -16,7 +13,6 @@ import AddIcon from "@mui/icons-material/Add";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import PersonIcon from "@mui/icons-material/Person";
 import WorkIcon from "@mui/icons-material/Work";
-
 import profile from '../../assets/profile.jpeg';
 import React, { useState } from "react";
 import {
@@ -26,7 +22,6 @@ import {
     SubMenu as BaseSubMenu,
 } from "react-pro-sidebar";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-// import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Avatar from "@mui/material/Avatar";
 import './sideBar.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
@@ -47,7 +42,6 @@ function SubMenu({ label, icon, items }) {
 }
 
 function SideBar() {
-
     const user = {
         name: "Alastair Cook", 
         profilePic: profile,
@@ -97,14 +91,12 @@ function SideBar() {
             { label: "Doctor Appointment", icon: <PeopleOutlinedIcon /> },
           ],
         },
-        // { label: "Contacts", icon: <ContactsOutlinedIcon />, items: [] },
         { label: "Profile", icon: <ReceiptOutlinedIcon />, items: [] },
         { label: "FAQ", icon: <HelpOutlineOutlinedIcon />, items: [] },
         { label: "Calendar", icon: <CalendarTodayOutlinedIcon />, items: [] },
-    
+
       ];
     
-
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
         window.innerWidth <= 768
     );
@@ -122,7 +114,7 @@ function SideBar() {
     });
 
     return (
-        <div id="app" style={{ height: "100vh", display: "flex"  }}>
+        <div id="app" style={{ height: "100%", display: "flex"  }}>
             <Sidebar
                 width="250px"
                 collapsed={isSidebarCollapsed}
@@ -285,12 +277,6 @@ function SideBar() {
                                     
                                 );
                             }
-
-                                // return (
-                                //         <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
-                                    
-                                // );
-                            
 
                         } else {
                             return <SubMenu key={index} label={menuItem.label} icon={menuItem.icon} items={menuItem.items} />
