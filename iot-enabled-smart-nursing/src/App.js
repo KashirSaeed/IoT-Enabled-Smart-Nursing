@@ -28,11 +28,17 @@ const App = () => {
     setFilteredRoutes(routeConfig.filter((route) => route.role == "general" || route.role == user_type));
 
   };
+
+
+  const currentPath = window.location.pathname;
+  const segments = currentPath.split('/');
+  const endpoint = segments[segments.length - 1];
+
   return (
     <div>
 
       <BrowserRouter>
-        <MyAppbar pages={pages} />
+        {endpoint === 'dashboard' ? null : <MyAppbar pages={pages} />}
         <Routes>
           {filteredRoutes.map((route) => {
 

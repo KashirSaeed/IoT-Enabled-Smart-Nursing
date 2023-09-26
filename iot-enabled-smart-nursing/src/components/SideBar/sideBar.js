@@ -43,60 +43,60 @@ function SubMenu({ label, icon, items }) {
 
 function SideBar() {
     const user = {
-        name: "Alastair Cook", 
+        name: "Alastair Cook",
         profilePic: profile,
         hospitalName: "Smart Nursing (SNP)",
-      };
-      const menuItems = [
+    };
+    const menuItems = [
         { label: "Dashboard", icon: <HomeOutlinedIcon />, items: [] },
         { label: "Timeline Activities", icon: <WorkIcon />, items: [] },
-    
+
         {
-          label: "Doctors", icon: <DoctorIcon />,
-          items: [
-            { label: "All Doctors", icon: <ViewListIcon /> },
-            { label: "Add Doctor", icon: <AddIcon /> },
-            { label: "Doctor Profile", icon: <PersonIcon /> },
-          ],
+            label: "Doctors", icon: <DoctorIcon />,
+            items: [
+                { label: "All Doctors", icon: <ViewListIcon /> },
+                { label: "Add Doctor", icon: <AddIcon /> },
+                { label: "Doctor Profile", icon: <PersonIcon /> },
+            ],
         },
-    
+
         {
-          label: "Patients", icon: <PatientIcon />,
-          items: [
-            { label: "All Patients", icon: <ViewListIcon /> },
-            { label: "Add Patient", icon: <AddIcon /> },
-            { label: "Patient Profile", icon: <PersonIcon /> },
-          ],
-        },
-        {
-          label: "Nurses", icon: <MedicalServicesIcon />,
-          items: [
-            { label: "All Nurses", icon: <ViewListIcon /> },
-            { label: "Add Nurse", icon: <AddIcon /> },
-            { label: "Nurse Profile", icon: <PersonIcon /> },
-          ],
+            label: "Patients", icon: <PatientIcon />,
+            items: [
+                { label: "All Patients", icon: <ViewListIcon /> },
+                { label: "Add Patient", icon: <AddIcon /> },
+                { label: "Patient Profile", icon: <PersonIcon /> },
+            ],
         },
         {
-          label: "Payments", icon: <PaymentIcon />,
-          items: [
-            { label: "Payments", icon: <PeopleOutlinedIcon /> },
-            { label: "Add Payment", icon: <PeopleOutlinedIcon /> },
-            { label: "Payment Invoice", icon: <PeopleOutlinedIcon /> },
-          ],
+            label: "Nurses", icon: <MedicalServicesIcon />,
+            items: [
+                { label: "All Nurses", icon: <ViewListIcon /> },
+                { label: "Add Nurse", icon: <AddIcon /> },
+                { label: "Nurse Profile", icon: <PersonIcon /> },
+            ],
         },
         {
-          label: "Appointments", icon: <AppointmentIcon />,
-          items: [
-            { label: "Book Schedule", icon: <PeopleOutlinedIcon /> },
-            { label: "Doctor Appointment", icon: <PeopleOutlinedIcon /> },
-          ],
+            label: "Payments", icon: <PaymentIcon />,
+            items: [
+                { label: "Payments", icon: <PeopleOutlinedIcon /> },
+                { label: "Add Payment", icon: <PeopleOutlinedIcon /> },
+                { label: "Payment Invoice", icon: <PeopleOutlinedIcon /> },
+            ],
+        },
+        {
+            label: "Appointments", icon: <AppointmentIcon />,
+            items: [
+                { label: "Book Schedule", icon: <PeopleOutlinedIcon /> },
+                { label: "Doctor Appointment", icon: <PeopleOutlinedIcon /> },
+            ],
         },
         { label: "Profile", icon: <ReceiptOutlinedIcon />, items: [] },
         { label: "FAQ", icon: <HelpOutlineOutlinedIcon />, items: [] },
         { label: "Calendar", icon: <CalendarTodayOutlinedIcon />, items: [] },
 
-      ];
-    
+    ];
+
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
         window.innerWidth <= 768
     );
@@ -114,15 +114,16 @@ function SideBar() {
     });
 
     return (
-        <div id="app" style={{ height: "100%", display: "flex"  }}>
+        <div style={{ height: "100%", display: "flex" }}>
             <Sidebar
                 width="250px"
                 collapsed={isSidebarCollapsed}
                 onMouseEnter={() => setIsSidebarCollapsed(false)}
                 onMouseLeave={() => setIsSidebarCollapsed(true)}
+                style={{backgroundColor:'#00003B'}}
             >
-                <div className="sidebar-toggle" onClick={toggleSidebar}></div>
-                <div className="profile-section">
+                <div className="sidebar-toggle" onClick={toggleSidebar}  ></div>
+                <div className="profile-section"  >
                     {!isSidebarCollapsed ? (
                         <>
                             <div style={{ textAlign: "center", margin: "20px 0" }}>
@@ -198,83 +199,83 @@ function SideBar() {
                         if (menuItem.items.length === 0) {
                             if (menuItem.label === "Dashboard") {
                                 return (
-                                    <Link to="/dashboard" key={index} style={{textDecoration:'none', color:'black'}} >
+                                    <Link to="/dashboard" key={index} style={{ textDecoration: 'none', color: 'black' }} >
                                         <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     </Link>
-                                    
+
                                 );
                             }
-                            else if(menuItem.label === "Timeline Activities"){
+                            else if (menuItem.label === "Timeline Activities") {
                                 return (
-                                    <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
+                                    <Link to="/usertype" key={index} style={{ textDecoration: 'none', color: 'black' }} >
                                         <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     </Link>
-                                    
+
                                 );
                             }
-                            else if(menuItem.label === "Doctors"){
+                            else if (menuItem.label === "Doctors") {
                                 return (
                                     // <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
-                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     // </Link>
-                                    
+
                                 );
                             }
-                            else if(menuItem.label === "Patients"){
+                            else if (menuItem.label === "Patients") {
                                 return (
                                     // <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
-                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     // </Link>
-                                    
+
                                 );
                             }
-                            else if(menuItem.label === "Nurses"){
+                            else if (menuItem.label === "Nurses") {
                                 return (
                                     // <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
-                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     // </Link>
-                                    
+
                                 );
                             }
-                            else if(menuItem.label === "Payments"){
+                            else if (menuItem.label === "Payments") {
                                 return (
                                     // <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
-                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     // </Link>
-                                    
+
                                 );
                             }
-                            else if(menuItem.label === "Appointments"){
+                            else if (menuItem.label === "Appointments") {
                                 return (
                                     // <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
-                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     // </Link>
-                                    
+
                                 );
                             }
-                           
-                            else if(menuItem.label === "Profile"){
+
+                            else if (menuItem.label === "Profile") {
                                 return (
                                     // <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
-                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     // </Link>
-                                    
+
                                 );
                             }
-                            else if(menuItem.label === "FAQ"){
+                            else if (menuItem.label === "FAQ") {
                                 return (
                                     // <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
-                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     // </Link>
-                                    
+
                                 );
                             }
-                            else if(menuItem.label === "Calendar"){
+                            else if (menuItem.label === "Calendar") {
                                 return (
                                     // <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
-                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     // </Link>
-                                    
+
                                 );
                             }
 
@@ -285,6 +286,7 @@ function SideBar() {
                     })}
 
                 </Menu>
+
             </Sidebar >
         </div >
     );

@@ -9,13 +9,18 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardComponent from '../../../components/Card/card';
-import LineColumnAreaChart from '../../../components/Graph/lineColumnAreaChart';
+import ChartGraph from '../../../components/ChartGraph/ChartGraph';
 import BarGraph from '../../../components/BarGraph/barGraph';
 import SideBar from '../../../components/SideBar/sideBar';
 import Loading from '../../../components/LoadingComponent/loading';
 import activityData from '../../../services/activitiesService';
+import './dashBoard.css';
 
 function AdminDashboard() {
+  const [activityNames, setActivityNames] = useState([]);
+  const [activityFrequency, setActivityFrequency] = useState([]);
+  const [futureActivities, setFutureActivitiess] = useState([]);
+  const [futureActivitiesProbabilities, setFutureActivitiesProbabilities] = useState([]);
 
   const cardItems = [
     {
@@ -55,34 +60,83 @@ function AdminDashboard() {
     }
   ];
 
-  const [activityNames, setActivityNames] = useState([]);
-  const [activityFrequency, setActivityFrequency] = useState([]);
 
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
         const data = await activityData();
-        const uniqueNames = [...new Set(data.map(activity => activity['activityName']))];
-        const frequencies = uniqueNames.map(name =>
-          data.filter(activity => activity['activityName'] === name).length
-        );
-        var frequencyPercentage = []
-        for (let frequency of frequencies) {
-          frequencyPercentage.push(Math.round((frequency / data.length) * 100))
-        }
-        setActivityNames(uniqueNames);
-        setActivityFrequency(frequencyPercentage);
+        calculatingFrequency(data)
+        const selectedActivity = data[data.length - 1]['activityName'];
+        displayProbabilities(selectedActivity, data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
+
+    function calculatingFrequency(data) {
+      const uniqueNames = [...new Set(data.map(activity => activity['activityName']))];
+      const frequencies = uniqueNames.map(name =>
+        data.filter(activity => activity['activityName'] === name).length
+      );
+      var frequencyPercentage = []
+      for (let frequency of frequencies) {
+        frequencyPercentage.push(Math.round((frequency / data.length) * 100))
+      }
+      setActivityNames(uniqueNames);
+      setActivityFrequency(frequencyPercentage);
+    }
+
+    function calculateProbabilities(selectedActivity, data) {
+      const probabilities = {};
+      for (let i = 0; i < data.length - 1; i++) {
+        const currentActivity = data[i]['activityName'];
+        const nextActivity = data[i + 1]['activityName'];
+        if (selectedActivity && currentActivity !== selectedActivity) {
+          continue; 
+        }
+        if (!probabilities[currentActivity]) {
+          probabilities[currentActivity] = {};
+        }
+        if (!probabilities[currentActivity][nextActivity]) {
+          probabilities[currentActivity][nextActivity] = 1;
+        } else {
+          probabilities[currentActivity][nextActivity]++;
+        }
+      }
+      for (const activity in probabilities) {
+        const totalOccurrences = Object.values(probabilities[activity]).reduce((a, b) => a + b);
+        for (const nextActivity in probabilities[activity]) {
+          probabilities[activity][nextActivity] /= totalOccurrences;
+        }
+      }
+      return probabilities;
+    }
+
+    function displayProbabilities(selectedActivity, data) {
+      var comingActivities = []
+      var comingProbabilities = []
+      const probabilities = calculateProbabilities(selectedActivity, data);
+      if (!selectedActivity) {
+        console.log('Please select an activity.');
+        return;
+      }
+      for (const nextActivity in probabilities[selectedActivity]) {
+        comingActivities.push(nextActivity)
+        comingProbabilities.push(parseFloat(probabilities[selectedActivity][nextActivity].toFixed(2)))
+        console.log(`- ${nextActivity}: ${probabilities[selectedActivity][nextActivity].toFixed(2)}`);
+      }
+      comingProbabilities = comingProbabilities.reverse()
+      comingActivities = comingActivities.reverse();
+      setFutureActivitiess(comingActivities)
+      setFutureActivitiesProbabilities(comingProbabilities)
+    }
+
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <div style={{display: 'flex', flexDirection: 'row' }}>
       <div >
         <SideBar />
       </div>
@@ -107,20 +161,27 @@ function AdminDashboard() {
           <Grid item xs={12} md={4}>
             <CardComponent cardItem={cardItems[4]} />
           </Grid>
-
-          <Grid item xs={12} md={6} >
-            < LineColumnAreaChart />
-
-          </Grid>
-          <Grid item xs={12} md={6}>
-            {activityNames.length > 0 && activityFrequency.length > 0 ? (
-              <BarGraph activityNames={activityNames} activityFrequency={activityFrequency} />
+          <Grid item xs={12} md={6}  >
+            {futureActivities.length > 0 && futureActivitiesProbabilities.length > 0 ? (
+              <div >
+                <ChartGraph futureActivities={futureActivities} futureActivitiesProbabilities={futureActivitiesProbabilities} />
+              </div>
             ) : (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh' }} >
+              <div style={{ backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh' }} >
                 <div ><Loading /></div>
               </div>
             )}
-
+          </Grid>
+          <Grid item xs={12} md={6}>
+            {activityNames.length > 0 && activityFrequency.length > 0 ? (
+              <div   >
+                <BarGraph activityNames={activityNames} activityFrequency={activityFrequency} />
+              </div>
+            ) : (
+              <div style={{ backgroundColor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh' }} >
+                <div ><Loading /></div>
+              </div>
+            )}
           </Grid>
         </Grid>
       </div>

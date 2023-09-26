@@ -93,5 +93,4 @@ function BarGraph({ activityNames, activityFrequency }) {
 
 const domContainer = document.querySelector('#root');
 ReactDOM.render(<BarGraph />, domContainer);
-
 export default BarGraph;
