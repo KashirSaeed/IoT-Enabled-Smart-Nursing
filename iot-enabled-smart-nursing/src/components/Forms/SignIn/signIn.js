@@ -6,6 +6,8 @@ import CustomTextField from "../../CustomTextField/CustomTextField";
 import CustomButton from "../../CustomButton/CustomButton";
 import Grid from '@mui/material/Grid';
 import readingData from '../../../services/signInService';
+import postingData from '../../../services/signUpService';
+import GoogleAuthentication from "../../../services/googleAuthenticationService";
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
 import { AppBar } from "@mui/material";
@@ -53,8 +55,10 @@ const SignIn = ({LoadRoutes}) => {
     async function handleCallbackResponse(response) {
         console.log("Encoded JWT ID token:  " + response.credential);
         var userObject = jwt_decode(response.credential);
-        console.log(userObject.name);
+        console.log("userObject.name");
+        // alert(userObject.name);
 
+        const myUsername = userObject.name;
         const myEmail = userObject.email;
         const myPassword = "no password required";
         const isAuthenticatedByGoogle = true;
@@ -62,13 +66,28 @@ const SignIn = ({LoadRoutes}) => {
         const data =      {
             "email": myEmail,
             "password": myPassword,
-            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
+            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle,
+            "username": myUsername
 
+        }
+
+        const signUpData = {
+            "username": myUsername,
+            "email": myEmail,
+            "password": myPassword,
+            "Fname":"temp",
+            "Lname":"temp",
+            "usertype": "1" ,
+            "contact":null,
+            "Gender_id":null,
+            "ProfilePicture":null,
+            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
         }
 
         // -----calling readingData function from sign in service------
         // await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
-        await readingData(data)
+
+        GoogleAuthentication(signUpData,data,LoadRoutes)
 
         // ---------navigating to usertype component------
         // navigate('/signin')

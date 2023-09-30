@@ -5,17 +5,18 @@ import CustomTextField from "../../CustomTextField/CustomTextField";
 import CustomButton from "../../CustomButton/CustomButton";
 import Grid from '@mui/material/Grid';
 import postingData from '../../../services/signUpService';
+import readingData from '../../../services/signInService';
+import GoogleAuthentication from "../../../services/googleAuthenticationService";
 import jwt_decode from 'jwt-decode';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate,useParams } from "react-router-dom";
 import { AppBar } from "@mui/material";
 import validateAccess from "../../../services/validateAccess";
 
-const SignUp = () => {
+const SignUp = ({LoadRoutes}) => {
 
-    const {plan_type}=useParams()
-    const navigate = useNavigate();
-
+    const {plan_type}=useParams()    
+    const navigate = useNavigate();  
     // -----useState hook for username, password and email---------
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -59,6 +60,7 @@ const SignUp = () => {
 
         console.log("Encoded JWT ID token:  " + response.credential);
         var userObject = jwt_decode(response.credential);
+        console.log("userObject.name");
         console.log(userObject.name);
 
         const myUsername = userObject.name;
@@ -81,8 +83,15 @@ const SignUp = () => {
             "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
         }
 
+        const loginData = {
+            "username": myUsername,
+            "email": myEmail,
+            "password": myPassword,
+            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
+        }
 
-        await postingData(data)
+        GoogleAuthentication(data,loginData,LoadRoutes)
+        
         // ---------navigating to usertype component------
         // navigate('/signin')
         // window.location.reload();

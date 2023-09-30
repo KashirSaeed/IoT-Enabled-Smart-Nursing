@@ -3,12 +3,6 @@ import './App.css';
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
-
-
-
-
-
-
 import MyAppbar from './components/appbar/appbar';
 import routeConfig from './routes'
 
@@ -43,6 +37,9 @@ const App = () => {
           {filteredRoutes.map((route) => {
 
             if (route.path == "/signin") {
+              return <Route path={route.path} element={<route.component LoadRoutes={LoadRoutes} />} />
+            }
+            if (route.path == "/signup/:plan_type") {
               return <Route path={route.path} element={<route.component LoadRoutes={LoadRoutes} />} />
             }
             else {
