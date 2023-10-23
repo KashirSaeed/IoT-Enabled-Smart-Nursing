@@ -1,7 +1,9 @@
 
 import axios from 'axios';
+import validateAccess from './validateAccess';
 const activityData = async () => {
     console.log("kashir.....")
+    const token = validateAccess()
     try {
         const response = await axios.get('http://127.0.0.1:8000/activities/');
         if (response.status === 200) {

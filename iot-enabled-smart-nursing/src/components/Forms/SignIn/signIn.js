@@ -12,9 +12,9 @@ import { AppBar } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import { bool } from "prop-types";
 
-const SignIn = ({LoadRoutes}) => {
+const SignIn = ({ LoadRoutes }) => {
     const navigate = useNavigate();
-    var login=true
+    var login = true
     // ---------useState for email and password-------
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -30,20 +30,20 @@ const SignIn = ({LoadRoutes}) => {
         const data = {
             "email": myEmail,
             "password": myPassword,
-            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
+            "IsAuthenticatedByGoogle": isAuthenticatedByGoogle
         }
         // -----calling readingData function from sign in service------
         // var login = await readingData(myEmail, myPassword, isAuthenticatedByGoogle)
         login = await readingData(data)
         // alert(await readingData(data))
         // window.location.reload();
-        if (login){
+        if (login) {
             setEmail("");
             setPassword("");
             LoadRoutes("admin")
             navigate('/dashboard')
         }
-        else{
+        else {
             alert("Invalid Credentials")
         }
 
@@ -59,10 +59,10 @@ const SignIn = ({LoadRoutes}) => {
         const myPassword = "no password required";
         const isAuthenticatedByGoogle = true;
 
-        const data =      {
+        const data = {
             "email": myEmail,
             "password": myPassword,
-            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
+            "IsAuthenticatedByGoogle": isAuthenticatedByGoogle
 
         }
 
@@ -93,70 +93,70 @@ const SignIn = ({LoadRoutes}) => {
     useEffect(() => {
         initializeGoogleSignIn();
     }, []);
-    const handlelandNav = () =>{
+    const handlelandNav = () => {
         navigate('/');
     }
-    const handleSignUpNav = () =>{
+    const handleSignUpNav = () => {
         navigate('/subscriptionplan');
     }
 
     return (
         <React.Fragment>
-        {/* <AppBar>
+            {/* <AppBar>
             <HomeIcon onClick={handlelandNav}/>
         </AppBar> */}
-        
-        <form  className="formProperties" onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-                {/* ---------title-------- */}
-                <Grid xs={12}>
-                    <div>
-                        <MainHeading text="Sign In" />
-                    </div>
-                </Grid>
-                {/* ---------email field-------- */}
-                <Grid xs={12}>
-                    <div className="margibBottom" >
-                        <CustomTextField PlaceHolderText='enter email' FieldLabel="Email" requirement={true} Type={"email"} textFieldWidth="fullWidth" customTextFieldValue={email} setCustomTextFieldValue={setEmail} customTextFieldName="myEmail" />
-                    </div>
-                </Grid>
-                {/* ---------password field-------- */}
-                <Grid xs={12}>
-                    <div className="margibBottom" >
-                        <CustomTextField PlaceHolderText='enter password' FieldLabel="Password" requirement={true} Type={"password"} textFieldWidth="fullWidth" customTextFieldValue={password} setCustomTextFieldValue={setPassword} customTextFieldName="myPassword" />
-                    </div>
-                </Grid>
-                {/* ---------login button-------- */}
-                <Grid xs={12}>
-                    <div className="margibBottom buttonCentering" >
-                        <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" buttonBackgroundColor="#9ACAA1" />
-                    </div>
-                </Grid>
-                {/* -----------Sign up anchatag------------- */}
-                <Grid xs={12}>
-                    <div className="marginBottom buttonCentering" >
-                        <p style={{ margin: "0 10px", fontSize: "10px" }}>Don't have an account? <button style={{ color: 'limegreen', textDecoration: "none", backgroundColor:'transparent' ,border:'none'}} onClick={handleSignUpNav}>Create Account</button></p>
-                    </div>
-                </Grid>
-                {/* ---------horizontal line-------- */}
-                <Grid xs={12} >
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <div style={{ flex: 1, backgroundColor: "gray", height: "3px" }} />
-                        <p style={{ margin: "10px", fontSize: "20px", color:'gray' }}>or</p>
 
-                        <div style={{ flex: 1, backgroundColor: "gray", height: "3px" }} />
-                    </div>
-                </Grid>
+            <form className="formProperties" onSubmit={handleSubmit}>
+                <Grid container spacing={2}>
+                    {/* ---------title-------- */}
+                    <Grid xs={12}>
+                        <div>
+                            <MainHeading text="Sign In" />
+                        </div>
+                    </Grid>
+                    {/* ---------email field-------- */}
+                    <Grid xs={12}>
+                        <div className="marginBottom" >
+                            <CustomTextField PlaceHolderText='enter email' FieldLabel="Email" requirement={true} Type={"email"} textFieldWidth="fullWidth" customTextFieldValue={email} setCustomTextFieldValue={setEmail} customTextFieldName="myEmail" />
+                        </div>
+                    </Grid>
+                    {/* ---------password field-------- */}
+                    <Grid xs={12}>
+                        <div className="marginBottom" >
+                            <CustomTextField PlaceHolderText='enter password' FieldLabel="Password" requirement={true} Type={"password"} textFieldWidth="fullWidth" customTextFieldValue={password} setCustomTextFieldValue={setPassword} customTextFieldName="myPassword" />
+                        </div>
+                    </Grid>
+                    {/* ---------login button-------- */}
+                    <Grid xs={12}>
+                        <div className="marginBottom buttonCentering" >
+                            <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" buttonBackgroundColor="#9ACAA1" />
+                        </div>
+                    </Grid>
+                    {/* -----------Sign up anchatag------------- */}
+                    <Grid xs={12}>
+                        <div className="marginBottom buttonCentering" >
+                            <p style={{ margin: "0 10px", fontSize: "10px" }}>Don't have an account? <button style={{ color: 'limegreen', textDecoration: "none", backgroundColor: 'transparent', border: 'none' }} onClick={handleSignUpNav}>Create Account</button></p>
+                        </div>
+                    </Grid>
+                    {/* ---------horizontal line-------- */}
+                    <Grid xs={12} >
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <div style={{ flex: 1, backgroundColor: "gray", height: "3px" }} />
+                            <p style={{ margin: "10px", fontSize: "20px", color: 'gray' }}>or</p>
 
-                <br />
-                {/* ---------signup button-------- */}
-                <Grid xs={12}>
-                    <div className="App" >
-                        <div id="signInDiv" ></div>
-                    </div>
+                            <div style={{ flex: 1, backgroundColor: "gray", height: "3px" }} />
+                        </div>
+                    </Grid>
+
+                    <br />
+                    {/* ---------signup button-------- */}
+                    <Grid xs={12}>
+                        <div className="App" >
+                            <div id="signInDiv" ></div>
+                        </div>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </form>
+            </form>
         </React.Fragment>
     );
 }

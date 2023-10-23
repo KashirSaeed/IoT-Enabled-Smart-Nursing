@@ -55,7 +55,7 @@ function SideBar() {
             label: "Doctors", icon: <DoctorIcon />,
             items: [
                 { label: "All Doctors", icon: <ViewListIcon /> },
-                { label: "Add Doctor", icon: <AddIcon /> },
+                { label: "Add Doctor", icon: <AddIcon />, link: '/alldcotrs' },
                 { label: "Doctor Profile", icon: <PersonIcon /> },
             ],
         },
@@ -114,13 +114,15 @@ function SideBar() {
     });
 
     return (
-        <div style={{ height: "100%", display: "flex" }}>
+        <div style={{ position: 'sticky', minHeight: "100vh", display: "flex", overflowY: 'visible' }}>
             <Sidebar
+                // width=''
+
                 width="250px"
                 collapsed={isSidebarCollapsed}
                 onMouseEnter={() => setIsSidebarCollapsed(false)}
                 onMouseLeave={() => setIsSidebarCollapsed(true)}
-                style={{backgroundColor:'#00003B'}}
+                style={{ backgroundColor: '#b8c2ca' }}
             >
                 <div className="sidebar-toggle" onClick={toggleSidebar}  ></div>
                 <div className="profile-section"  >
@@ -207,7 +209,7 @@ function SideBar() {
                             }
                             else if (menuItem.label === "Timeline Activities") {
                                 return (
-                                    <Link to="/usertype" key={index} style={{ textDecoration: 'none', color: 'black' }} >
+                                    <Link to="/alldoctors" key={index} style={{ textDecoration: 'none', color: 'black' }} >
                                         <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     </Link>
 
@@ -215,9 +217,9 @@ function SideBar() {
                             }
                             else if (menuItem.label === "Doctors") {
                                 return (
-                                    // <Link to="/usertype" key={index} style={{textDecoration:'none', color:'black'}} >
-                                    <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
-                                    // </Link>
+                                    <Link to="/alldoctors " key={index} style={{ textDecoration: 'none', color: 'black' }} >
+                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    </Link>
 
                                 );
                             }

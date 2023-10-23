@@ -19,7 +19,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { useState, useMemo,useRef } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import BasicSelect from './Select';
 import { TextField } from '@mui/material';
 
@@ -117,7 +117,7 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
-  
+
   const handleFilterClick = () => {
     console.log("handleFilterClick");
   }
@@ -153,12 +153,12 @@ function EnhancedTableToolbar(props) {
           Patient Details
         </Typography>
       )}
-      <TextField id="outlined-basic" label="Search Value" variant="outlined" sx={{paddingRight:'5px'}}
-      value={props.query}
-        onChange={(e)=>props.setQuery(e.target.value)}
-        />
-      <BasicSelect value={props.searchField} setValue={props.setSearchField} menuItems={props.headCells}/>
-      
+      <TextField id="outlined-basic" label="Search Value" variant="outlined" sx={{ paddingRight: '5px' }}
+        value={props.query}
+        onChange={(e) => props.setQuery(e.target.value)}
+      />
+      <BasicSelect value={props.searchField} setValue={props.setSearchField} menuItems={props.headCells} />
+
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
@@ -168,7 +168,7 @@ function EnhancedTableToolbar(props) {
       ) : (
         <Tooltip title="Filter list">
           <IconButton onClick={handleFilterClick}>
-            <FilterListIcon  />
+            <FilterListIcon />
           </IconButton>
         </Tooltip>
       )}
@@ -179,10 +179,10 @@ function EnhancedTableToolbar(props) {
 
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
-  query:PropTypes.string.isRequired,
-  setQuery:PropTypes.func.isRequired,
-  searchField:PropTypes.string,
-  setSearchField:PropTypes.func
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
+  searchField: PropTypes.string,
+  setSearchField: PropTypes.func
 };
 
 export default function EnhancedTable(props) {
@@ -191,11 +191,11 @@ export default function EnhancedTable(props) {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  
-  const [query,setQuery] = useState('');
+
+  const [query, setQuery] = useState('');
   const [searchField, setSearchField] = useState('');
   let temp = useRef([]);
-  
+
 
 
   const handleRequestSort = (event, property) => {
@@ -253,9 +253,9 @@ export default function EnhancedTable(props) {
   const visibleRows = useMemo(
     () => {
       // let temp
-      if(query!=='' && searchField!==""){
+      if (query !== '' && searchField !== "") {
         if (props.objectList) {
-          temp.current.value  = props.objectList.filter(item=> item[searchField].toString().includes(query))
+          temp.current.value = props.objectList.filter(item => item[searchField].toString().includes(query))
           return stableSort(temp.current.value, getComparator(order, orderBy)).slice(
             page * rowsPerPage,
             page * rowsPerPage + rowsPerPage,
@@ -270,96 +270,96 @@ export default function EnhancedTable(props) {
         )
       }
     },
-    [props.objectList, order, orderBy, page, rowsPerPage,query,searchField],
+    [props.objectList, order, orderBy, page, rowsPerPage, query, searchField],
   );
   if (!visibleRows) {
     return <h1>Retreiving...</h1>
   }
   return (
     <React.Fragment>
-      
-    <Box sx={{ width: '100%' }}>
-      
-      <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar headCells={props.headCells} searchField={searchField} setSearchField={setSearchField} query={query} setQuery={setQuery} numSelected={selected.length} />
-        <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-          >
-            <EnhancedTableHead
-              headCells={props.headCells}
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={props.objectList.length}
-            />
-            <TableBody>
-              {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.index);
-                const labelId = `enhanced-table-checkbox-${index}`;
 
-                return (
-                  <TableRow
-                    hover
-                    onClick={(event) => handleClick(event, row.index)}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    key={row.index}
-                    selected={isItemSelected}
-                    sx={{ cursor: 'pointer' }}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={isItemSelected}
-                        inputProps={{
-                          'aria-labelledby': labelId,
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      id={labelId}
-                      scope="row"
+      <Box sx={{ width: '100%' }}>
+
+        <Paper sx={{ width: '100%', mb: 2 }}>
+          <EnhancedTableToolbar headCells={props.headCells} searchField={searchField} setSearchField={setSearchField} query={query} setQuery={setQuery} numSelected={selected.length} />
+          <TableContainer>
+            <Table
+              sx={{ minWidth: 750 }}
+              aria-labelledby="tableTitle"
+            >
+              <EnhancedTableHead
+                headCells={props.headCells}
+                numSelected={selected.length}
+                order={order}
+                orderBy={orderBy}
+                onSelectAllClick={handleSelectAllClick}
+                onRequestSort={handleRequestSort}
+                rowCount={props.objectList.length}
+              />
+              <TableBody>
+                {visibleRows.map((row, index) => {
+                  const isItemSelected = isSelected(row.index);
+                  const labelId = `enhanced-table-checkbox-${index}`;
+
+                  return (
+                    <TableRow
+                      hover
+                      onClick={(event) => handleClick(event, row.index)}
+                      role="checkbox"
+                      aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={row.index}
+                      selected={isItemSelected}
+                      sx={{ cursor: 'pointer' }}
                     >
-                      {row.location}
-                    </TableCell>
-                    <TableCell >{row.bloodpressure}</TableCell>
-                    <TableCell>{row.bpm}</TableCell>
-                    <TableCell >{row.obj}</TableCell>
-                    <TableCell >{row.time}</TableCell>
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          color="primary"
+                          checked={isItemSelected}
+                          inputProps={{
+                            'aria-labelledby': labelId,
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        id={labelId}
+                        scope="row"
+                      >
+                        {row.location}
+                      </TableCell>
+                      <TableCell >{row.bloodpressure}</TableCell>
+                      <TableCell>{row.bpm}</TableCell>
+                      <TableCell >{row.obj}</TableCell>
+                      <TableCell >{row.time}</TableCell>
+                    </TableRow>
+                  );
+                })}
+                {emptyRows > 0 && (
+                  <TableRow
+                  >
+                    <TableCell colSpan={6} />
                   </TableRow>
-                );
-              })}
-              {emptyRows > 0 && (
-                <TableRow
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={temp.current.value.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-    </Box>
-    
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={temp.current.value.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      </Box>
+
     </React.Fragment>
   );
 }
 
-EnhancedTable.propTypes={
-  objectList:PropTypes.array.isRequired
+EnhancedTable.propTypes = {
+  objectList: PropTypes.array.isRequired
 }
