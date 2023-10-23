@@ -99,6 +99,7 @@ export default function SubscriptionPlanPage() {
         </div>   
         <Footer />
     </div>
+
   )
 }
 
