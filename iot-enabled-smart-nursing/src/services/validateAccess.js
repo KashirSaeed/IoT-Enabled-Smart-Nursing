@@ -10,7 +10,6 @@ const validateAccess = async ()=>  {
     const exp_time=new Date(localStorage.getItem("exp_time"))
     const date = new Date()
     const current_time=date
-    
     if(exp_time<current_time){
         const headers = {
             'Authorization': `Bearer ${access_token}` 

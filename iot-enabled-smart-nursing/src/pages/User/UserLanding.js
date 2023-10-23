@@ -8,23 +8,22 @@ import MiniDrawer from "../../components/Drawer/drawer";
 import CustomizedTimeline from "../../components/timeline/timeline";
 import VitalCard from "../../components/VitalCard/VitalCard";
 import { MonitorHeart } from "@mui/icons-material";
-function createData(location, bloodpressure, bpm, obj, time, index) {
+function createData(location, bloodpressure, bpm, time, index) {
     return {
         location,
         bloodpressure,
         bpm,
-        obj,
         time,
         index
     };
 }
-function createActData(activity, startTime, endTime) {
+function createActData(activity, startTime, endTime,location, bloodpressure,bpm) {
     let dateStartTime = new Date(startTime);
     let dateEndTime = new Date(endTime);
     let formattedStartTime = dateStartTime.toLocaleString("en-US", { hour: "numeric", minute: "numeric", second: "numeric", hour12: true });
     let formattedEndTime = dateEndTime.toLocaleString("en-US", { hour: "numeric", minute: "numeric", second: "numeric", hour12: true });
     return {
-        activity, startTime:formattedStartTime, endTime:formattedEndTime
+        activity, startTime:formattedStartTime, endTime:formattedEndTime,location,bloodpressure,bpm
     };
 }
 
@@ -41,18 +40,20 @@ const UserLanding =() =>{
               let tempAct = []
               let index = 0
               let activities = data.slice(-5)
-              data = data.slice(0,-5)
-              data.forEach(element => {
-                temp.push(createData(element['location'], element['Blood pressure'], element['Heart Rate'], element['object name'], element['time'], index))
-                index++
-              });
-              activities.forEach(element=>{
-                tempAct.push(createActData(element['Activity'],element['StartTime'],element['EndTime']))
+              console.log(data)
+            //   data = data.slice(0,-5)
+            //   data.forEach(element => {
+            //     temp.push(createData(element['location'], element['Blood pressure'], element['Heart Rate'], element['time'], index))
+            //     index++
+            //   });
+             
+              data.forEach(element=>{
+                tempAct.push(createActData(element['Activity'],element['StartTime'],element['EndTime'],element['location'], element['Blood pressure'], element['Heart Rate'],))
               })
               setMyList({objectList:temp,activityList:[...tempAct].reverse()})
             })
             .catch(error => console.error(error));
-        }, 10000);
+        }, 20000);
         return () => clearInterval(interval);
     }, [currentUser])
     const [records, setRecords] = useState(10);
@@ -84,16 +85,22 @@ const UserLanding =() =>{
             label: 'Heart rate',
         },
         {
-            id: 'obj',
+            id: 'act',
             numeric: false,
             disablePadding: false,
-            label: 'Objects',
+            label: 'Activity',
         },
         {
-            id: 'time',
+            id: 'STime',
             numeric: false,
             disablePadding: false,
-            label: 'Time',
+            label: 'Start Time',
+        },
+        {
+            id: 'ETime',
+            numeric: false,
+            disablePadding: false,
+            label: 'End Time',
         },
     ];
     if (!myList){
@@ -103,7 +110,7 @@ const UserLanding =() =>{
     <div>
         {/* <MiniDrawer/> */}
       {myList ? <React.Fragment>
-            <EnhancedTable headCells={headCells} objectList={myList.objectList} />
+            <EnhancedTable headCells={headCells} objectList={myList.activityList} />
             <Grid container justifyContent={'center'}>
                 <Grid width={'75vw'}>
                     <Graph records={records} recordsHandler={handleRecords} labelsArray={[{ label: 'Blood Pressure', id: 'bloodpressure' }, { label: 'Heart Rate', id: 'bpm' }]} dataPlots={myList.objectList.slice(0, records)} />
@@ -111,8 +118,6 @@ const UserLanding =() =>{
             </Grid>
         </React.Fragment>
             : <Box></Box>}
-        <CustomizedTimeline activityList={myList.activityList}/>
-        <div className='row center-justify padding-tb'><VitalCard Icon={<MonitorHeart />} Heading='Pulse' Value='97' /></div>
     </div>
   )
 }

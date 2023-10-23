@@ -23,7 +23,10 @@ import { useState, useMemo,useRef } from 'react';
 import BasicSelect from './Select';
 import { TextField } from '@mui/material';
 
-
+import Alert from '@mui/material/Alert';
+import Slide from '@mui/material/Slide';
+import CustomButton from '../CustomButton/CustomButton';
+import queryingBard from '../../services/queryBard';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -41,10 +44,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
@@ -116,13 +115,55 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
+  const [records, setValue] = useState('');
+  const [query,setQuery] = useState('');
   const { numSelected } = props;
+  const [showError, setShowError] = useState(false);
   
   const handleFilterClick = () => {
     console.log("handleFilterClick");
   }
+  
+
+  const handleRecordChange = (event) => {
+    
+    const inputValue = event.target.value;
+    setValue(inputValue)
+    if (inputValue > 50 || inputValue<0) {
+      // Display a warning, prevent setting the value, or take other actions
+      // alert('Value should not exceed 50');
+      setShowError(true);
+      setValue(5)
+    } else {
+      // Update the state if the value is within the allowed range
+      setShowError(false);
+    }
+  };
+
+  const handleQueryChange = (event) => {
+    
+    setQuery(event.target.value);
+    
+  };
+
+  const handleQuerySubmission = async (event)=>{
+    const data = {
+      "records":records,
+      "query":query
+    };
+    let response = await queryingBard(data);
+    console.log(response);
+    // console
+  };
 
   return (
+    <React.Fragment>
+    <Slide timeout={1000} direction="down" in={showError} mountOnEnter unmountOnExit>
+        <Alert severity="error" sx={{ marginTop: '8px' }}>
+          Records in range 5-50 allowed only
+        </Alert>
+      </Slide>
+    
     <Toolbar
       sx={{
         pl: { sm: 2 },
@@ -150,14 +191,31 @@ function EnhancedTableToolbar(props) {
           component="div"
           fontWeight={'bold'}
         >
-          Patient Details
+          Patient Vitals
         </Typography>
       )}
       <TextField id="outlined-basic" label="Search Value" variant="outlined" sx={{paddingRight:'5px'}}
       value={props.query}
         onChange={(e)=>props.setQuery(e.target.value)}
         />
-      <BasicSelect value={props.searchField} setValue={props.setSearchField} menuItems={props.headCells}/>
+      <TextField value={records} onChange={handleRecordChange} id="outlined-basic" label="# of Records" variant="outlined" sx={{ paddingRight: '5px' }} type='number' />
+      
+      <TextField
+      value={query}
+      onChange={handleQueryChange}
+      id="outlined-basic"
+      label="Query Bard"
+      variant="outlined"
+      multiline
+      sx={{      // Set the width
+        height: '48px',       // Set the height
+        maxHeight: '48px',    // Set the maximum height
+        overflowY: 'auto',    // Enable vertical scrolling
+        paddingRight: '5px',
+      }}
+    />
+      <CustomButton ButtonText='Analyze' customButtonClickEvent={handleQuerySubmission}/>
+      {/* <BasicSelect value={props.searchField} setValue={props.setSearchField} menuItems={props.headCells}/> */}
       
       {numSelected > 0 ? (
         <Tooltip title="Delete">
@@ -173,6 +231,7 @@ function EnhancedTableToolbar(props) {
         </Tooltip>
       )}
     </Toolbar>
+    </React.Fragment>
   );
 }
 
@@ -252,14 +311,20 @@ export default function EnhancedTable(props) {
 
   const visibleRows = useMemo(
     () => {
-      // let temp
-      if(query!=='' && searchField!==""){
+      if (query !== '') {
         if (props.objectList) {
-          temp.current.value  = props.objectList.filter(item=> item[searchField].toString().includes(query))
+          temp.current.value = props.objectList.filter(item => {
+            // Convert each property value to a string and check if it includes the query
+            return Object.values(item).some(value => {
+              // Check if the value is defined before calling toString()
+              return value !== undefined && value !== null && value.toString().includes(query);
+            });
+          });
+      
           return stableSort(temp.current.value, getComparator(order, orderBy)).slice(
             page * rowsPerPage,
             page * rowsPerPage + rowsPerPage,
-          )
+          );
         }
       }
       else if (props.objectList) {
@@ -274,10 +339,10 @@ export default function EnhancedTable(props) {
   );
   if (!visibleRows) {
     return <h1>Retreiving...</h1>
+
   }
   return (
     <React.Fragment>
-      
     <Box sx={{ width: '100%' }}>
       
       <Paper sx={{ width: '100%', mb: 2 }}>
@@ -330,8 +395,9 @@ export default function EnhancedTable(props) {
                     </TableCell>
                     <TableCell >{row.bloodpressure}</TableCell>
                     <TableCell>{row.bpm}</TableCell>
-                    <TableCell >{row.obj}</TableCell>
-                    <TableCell >{row.time}</TableCell>
+                    <TableCell>{row.activity}</TableCell>
+                    <TableCell >{row.startTime}</TableCell>
+                    <TableCell >{row.endTime}</TableCell>
                   </TableRow>
                 );
               })}

@@ -25,6 +25,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import Avatar from "@mui/material/Avatar";
 import './sideBar.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { DataArray } from "@mui/icons-material";
 
 
 function SubMenu({ label, icon, items }) {
@@ -50,6 +51,7 @@ function SideBar() {
     const menuItems = [
         { label: "Dashboard", icon: <HomeOutlinedIcon />, items: [] },
         { label: "Timeline Activities", icon: <WorkIcon />, items: [] },
+        { label: "Patient Data", icon: <DataArray />, items: [] },
 
         {
             label: "Doctors", icon: <DoctorIcon />,
@@ -208,6 +210,14 @@ function SideBar() {
                             else if (menuItem.label === "Timeline Activities") {
                                 return (
                                     <Link to="/usertype" key={index} style={{ textDecoration: 'none', color: 'black' }} >
+                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
+                                    </Link>
+
+                                );
+                            }
+                            else if (menuItem.label === "Patient Data") {
+                                return (
+                                    <Link to="/UserLanding" key={index} style={{ textDecoration: 'none', color: 'black' }} >
                                         <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     </Link>
 
