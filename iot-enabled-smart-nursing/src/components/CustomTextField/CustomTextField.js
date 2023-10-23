@@ -10,29 +10,32 @@ const CustomTextField = (props) => {
         borderColor: "#9ACAA1",
       },
     }
-  } 
-  return (
-        <TextField 
+  }
+  return (<>
+    <TextField
 
-          name={props.customTextFieldName}
-          type={props.Type}
-          placeholder= {props.PlaceHolderText}
-          required = {props.requirement}
-          id="outlined-required"
-          label={props.FieldLabel}
-          fullWidth = {props.textFieldWidth}
-          sx={style}
-          hidden
-          value={props.customTextFieldValue}
-          onChange={(e)=> props.setCustomTextFieldValue(e.target.value)}
-        />
+      name={props.customTextFieldName}
+      type={props.Type}
+      placeholder={props.PlaceHolderText}
+      required={props.requirement}
+      id="outlined-required"
+      label={props.FieldLabel}
+      fullWidth={props.textFieldWidth}
+      sx={style}
+      // hidden
+      value={props.customTextFieldValue}
+      onChange={(e) => props.setCustomTextFieldValue(e.target.value)}
+    />
+    {/* <TextField id="outlined-basic" label="Email" variant="outlined" color='grey' /> */}
+    {/* <input sx={style}></input> */}
+  </>
   );
 }
 CustomTextField.propTypes = {
   PlaceHolderText: PropTypes.string.isRequired,
   FieldLabel: PropTypes.string.isRequired,
   requirement: PropTypes.bool.isRequired,
-  Type:PropTypes.string.isRequired,
+  Type: PropTypes.string.isRequired,
   textFieldWidth: PropTypes.string,
   customTextFieldValue: PropTypes.string,
   setCustomTextFieldValue: PropTypes.string,
