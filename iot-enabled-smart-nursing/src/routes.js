@@ -7,17 +7,19 @@ import AboutUs from './pages/aboutUsPage/aboutUs';
 import SubscriptionPlanPage from './pages/subscriptionPlanPage/subscriptionPlanPage';
 import Usertype from './components/Forms/Usertype/usertype';
 import AdminDashboard from './pages/Admin/Dashboard/dashBoard';
-
-const routeConfig=[
-    {path:"/signin",component:SignIn,role:"general"},
-    {path:"/signup/:plan_type",component:SignUp,role:"general"},
-    {path:"/usertype",component:Usertype,role:"general"},
-    {path:"/userLanding",component:UserLanding,role:"general"},
-    {path:"/",component:LandingPage,role:"general"},
-    {path:"/subscriptionplan",component:SubscriptionPlanPage,role:"general"},
-    {path:"/aboutUs",component:AboutUs,role:"general"},
-    {path:"/contactUs",component:ContactUs,role:"Admin"},
-    {path:"/dashboard",component:AdminDashboard,role:"general"}
+import AdminDoctors from './pages/Admin/Doctors_Admin/doctors_view'
+const routeConfig = [
+    { path: "/signin", component: SignIn, role: "general" },
+    { path: "/signup/:plan_type", component: SignUp, role: "general" },
+    { path: "/usertype", component: Usertype, role: "general" },
+    { path: "/userLanding", component: UserLanding, role: "general" },
+    { path: "/", component: LandingPage, role: "general" },
+    { path: "/subscriptionplan", component: SubscriptionPlanPage, role: "general" },
+    { path: "/aboutUs", component: AboutUs, role: "general" },
+    { path: "/contactUs", component: ContactUs, role: "Admin" },
+    { path: "/dashboard", component: AdminDashboard, role: "general" },
+    // { path: "/dashboard", component: AdminDoctors, role: "general" },
+    { path: "/alldoctors", component: AdminDoctors, role: "general" }
 
 ];
 

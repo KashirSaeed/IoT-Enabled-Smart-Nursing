@@ -103,7 +103,7 @@ const MiniDrawer = (props) => {
     setOpen(false);
   };
 
-  const handleLogout = () =>{
+  const handleLogout = () => {
     let ls = localStorageInstance
     ls.removeCredentials()
     navigate('/')
@@ -112,7 +112,7 @@ const MiniDrawer = (props) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar sx={{backgroundColor:"#F5F5F5", color:"black"}} position="fixed" open={open}>
+      <AppBar sx={{ backgroundColor: "#F5F5F5", color: "black" }} position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -154,7 +154,7 @@ const MiniDrawer = (props) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts','All mail', 'Trash', 'Spam',].map((text, index) => (
+          {['Inbox', 'Starred', 'Send email', 'Drafts', 'All mail', 'Trash', 'Spam',].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
@@ -196,7 +196,7 @@ const MiniDrawer = (props) => {
                     justifyContent: 'center',
                   }}
                 >
-                  <Logout/> 
+                  <Logout />
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -205,9 +205,9 @@ const MiniDrawer = (props) => {
         </List>
       </Drawer>
 
-    
+
     </Box>
-    
+
   );
 }
 export default MiniDrawer;
