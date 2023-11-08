@@ -39,20 +39,20 @@ export const Row = styled.div`
 `;
 
 export const FooterLink = styled.a`
-  color: #fff;
+  color: 'text.primary';
   margin-bottom: 20px;
   font-size: 18px;
   text-decoration: none;
 
   &:hover {
-    color: green;
+    color: 'text.disabled';
     transition: 200ms ease-in;
   }
 `;
 
 export const Heading = styled.p`
   font-size: 24px;
-  color: #fff;
+  color: 'text.primary';
   margin-bottom: 40px;
   font-weight: bold;
 `;

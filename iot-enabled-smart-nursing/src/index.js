@@ -5,16 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ProSidebarProvider } from "react-pro-sidebar";
+import { ThemeProvider } from '@mui/material';
+import { theme } from './theme';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+console.log(theme)
 root.render(
   <React.StrictMode>
-    <ProSidebarProvider>
-    <GoogleOAuthProvider clientId="850685752934-8te6qjj7c70pshhd9kg2pmvg85pmc338.apps.googleusercontent.com">
-      <App />
-    </GoogleOAuthProvider>
-    </ProSidebarProvider>
+    <ThemeProvider theme={theme}>
+      <ProSidebarProvider>
+        <GoogleOAuthProvider clientId="850685752934-8te6qjj7c70pshhd9kg2pmvg85pmc338.apps.googleusercontent.com">
+          <App />
+        </GoogleOAuthProvider>
+      </ProSidebarProvider>
+
+    </ThemeProvider>
   </React.StrictMode>
 
 );

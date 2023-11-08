@@ -1,5 +1,4 @@
-
-.formProperties{
+.formProperties {
     width: 20%;
     margin: auto;
     min-width: 300px;
@@ -7,36 +6,31 @@
     margin-top: 50px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-} 
+}
 
-.margibBottom{
+.margibBottom {
     margin-bottom: 10px;
 }
 
-.buttonCentering{
+.buttonCentering {
     text-align: center;
 
 }
 
-.orLabelProperties{
+.orLabelProperties {
     opacity: 50%;
-    font-size:x-large;
+    font-size: x-large;
 }
 
-#signInDiv{
-  display: inline-block;
-  background-color:white;
-  color: #fff;
-  font-size: 16px;
-  border-radius: 4px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  
-}
+#signInDiv {
+    display: inline-block;
+    background-color: white;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 
-
-.temp{
-    background-color: aqua;
 }

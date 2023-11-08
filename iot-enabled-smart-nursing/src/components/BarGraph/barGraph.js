@@ -25,8 +25,13 @@ function BarGraph({ activityNames, activityFrequency }) {
               },
             }
           },
-          colors: ['#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
-            '#f48024', '#69d2e7'
+          colors: ['rgb(102, 204, 102)',  // Light Green  
+            'rgb(153, 255, 153)',  // Lightest Green  
+            'rgb(128, 128, 128)',  // Medium Grey  
+            'rgb(179, 179, 179)',  // Light Grey  
+            'rgb(76, 153, 76)',   // Dark Green  
+            'rgb(204, 204, 204)',  // Lighter Grey  
+            'rgb(51, 102, 51)'    // Darker Green]
           ],
           dataLabels: {
             enabled: false,
@@ -83,11 +88,11 @@ function BarGraph({ activityNames, activityFrequency }) {
   }, [activityFrequency]);
 
   if (chartData) {
-  return (
-    <div id="chart">
-      <ReactApexChart options={chartData.options} series={chartData.series} type="bar" height={380} />
-    </div>
-  );
+    return (
+      <div id="chart">
+        <ReactApexChart options={chartData.options} series={chartData.series} type="bar" height={380} />
+      </div>
+    );
   }
 }
 

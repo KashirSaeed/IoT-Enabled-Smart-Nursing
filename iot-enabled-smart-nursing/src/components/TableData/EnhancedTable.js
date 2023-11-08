@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -19,7 +19,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { useState, useMemo,useRef } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import BasicSelect from './Select';
 import { TextField } from '@mui/material';
 
@@ -117,7 +117,7 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
-  
+
   const handleFilterClick = () => {
     console.log("handleFilterClick");
   }
@@ -129,7 +129,7 @@ function EnhancedTableToolbar(props) {
         pr: { xs: 1, sm: 1 },
         ...(numSelected > 0 && {
           bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+            alpha(theme.palette.background.default, theme.palette.action.activatedOpacity),
         }),
       }}
     >
@@ -153,12 +153,12 @@ function EnhancedTableToolbar(props) {
           Patient Details
         </Typography>
       )}
-      <TextField id="outlined-basic" label="Search Value" variant="outlined" sx={{paddingRight:'5px'}}
-      value={props.query}
-        onChange={(e)=>props.setQuery(e.target.value)}
-        />
-      <BasicSelect value={props.searchField} setValue={props.setSearchField} menuItems={props.headCells}/>
-      
+      <TextField id="outlined-basic" label="Search Value" variant="outlined" sx={{ paddingRight: '5px' }}
+        value={props.query}
+        onChange={(e) => props.setQuery(e.target.value)}
+      />
+      <BasicSelect value={props.searchField} setValue={props.setSearchField} menuItems={props.headCells} />
+
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
@@ -168,7 +168,7 @@ function EnhancedTableToolbar(props) {
       ) : (
         <Tooltip title="Filter list">
           <IconButton onClick={handleFilterClick}>
-            <FilterListIcon  />
+            <FilterListIcon />
           </IconButton>
         </Tooltip>
       )}
@@ -179,10 +179,10 @@ function EnhancedTableToolbar(props) {
 
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
-  query:PropTypes.string.isRequired,
-  setQuery:PropTypes.func.isRequired,
-  searchField:PropTypes.string,
-  setSearchField:PropTypes.func
+  query: PropTypes.string.isRequired,
+  setQuery: PropTypes.func.isRequired,
+  searchField: PropTypes.string,
+  setSearchField: PropTypes.func
 };
 
 export default function EnhancedTable(props) {
@@ -191,11 +191,11 @@ export default function EnhancedTable(props) {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  
-  const [query,setQuery] = useState('');
+
+  const [query, setQuery] = useState('');
   const [searchField, setSearchField] = useState('');
   let temp = useRef([]);
-  
+
 
 
   const handleRequestSort = (event, property) => {
@@ -253,9 +253,9 @@ export default function EnhancedTable(props) {
   const visibleRows = useMemo(
     () => {
       // let temp
-      if(query!=='' && searchField!==""){
+      if (query !== '' && searchField !== "") {
         if (props.objectList) {
-          temp.current.value  = props.objectList.filter(item=> item[searchField].toString().includes(query))
+          temp.current.value = props.objectList.filter(item => item[searchField].toString().includes(query))
           return stableSort(temp.current.value, getComparator(order, orderBy)).slice(
             page * rowsPerPage,
             page * rowsPerPage + rowsPerPage,
@@ -270,21 +270,20 @@ export default function EnhancedTable(props) {
         )
       }
     },
-    [props.objectList, order, orderBy, page, rowsPerPage,query,searchField],
+    [props.objectList, order, orderBy, page, rowsPerPage, query, searchField],
   );
   if (!visibleRows) {
     return <h1>Retreiving...</h1>
   }
   return (
-    <React.Fragment>
-      
-    <Box sx={{ width: '100%' }}>
-      
-      <Paper sx={{ width: '100%', mb: 2 }}>
+
+    <Box sx={{ width: '100%', backgroundColor: 'red' }}>
+
+      <Paper sx={{ width: '100%', mb: 2, backgroundColor: 'red' }}>
         <EnhancedTableToolbar headCells={props.headCells} searchField={searchField} setSearchField={setSearchField} query={query} setQuery={setQuery} numSelected={selected.length} />
-        <TableContainer>
+        <TableContainer style={{ 'background-color': 'red' }}>
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{ minWidth: 750, backgroundColor: 'red' }}
             aria-labelledby="tableTitle"
           >
             <EnhancedTableHead
@@ -355,11 +354,10 @@ export default function EnhancedTable(props) {
         />
       </Paper>
     </Box>
-    
-    </React.Fragment>
+
   );
 }
 
-EnhancedTable.propTypes={
-  objectList:PropTypes.array.isRequired
+EnhancedTable.propTypes = {
+  objectList: PropTypes.array.isRequired
 }
