@@ -21,7 +21,7 @@ const LandingPage = () => {
 
     return (
         <React.Fragment>
-            {/* <ParticleBg /> */}
+            <ParticleBg />
             <Carousel showStatus={false} showThumbs={false} interval={3000} autoPlay={true} infiniteLoop={true}>
                 <div>
                     <img loading='lazy' style={{ maxHeight: '70vh', objectFit: 'contain' }} src={telemed} alt='image1'></img>
