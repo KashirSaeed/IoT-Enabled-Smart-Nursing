@@ -49,6 +49,7 @@ export function Graph(props) {
     return {
       labels: props.dataPlots.map((element) => {
         dateObj = new Date(element['time']);
+        // console.log(dateObj.toLocaleTimeString());
         return dateObj.toLocaleTimeString();
       }),
       datasets: Mylabels.map((measurement, index) => {
