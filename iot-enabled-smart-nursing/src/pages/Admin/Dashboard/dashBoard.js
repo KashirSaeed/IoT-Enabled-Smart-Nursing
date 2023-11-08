@@ -15,6 +15,7 @@ import SideBar from '../../../components/SideBar/sideBar';
 import Loading from '../../../components/LoadingComponent/loading';
 import activityData from '../../../services/activitiesService';
 import './dashBoard.css';
+import { Typography, useTheme } from '@mui/material';
 
 function AdminDashboard() {
   const [activityNames, setActivityNames] = useState([]);
@@ -22,41 +23,42 @@ function AdminDashboard() {
   const [futureActivities, setFutureActivitiess] = useState([]);
   const [futureActivitiesProbabilities, setFutureActivitiesProbabilities] = useState([]);
 
+  const theme = useTheme()
   const cardItems = [
     {
       name: "Patients",
       quantity: "1500",
       message: "+20% Increased",
-      themeColor: "pink",
-      icon: <PersonIcon fontSize="large" style={{ fontSize: '4rem', color: 'pink' }} />
+      themeColor: theme.palette.success.light,
+      icon: <PersonIcon fontSize="large" style={{ fontSize: '4rem', color: theme.palette.success.light }} />
     },
     {
       name: "Doctors",
       quantity: "532",
       message: "+0.2% Increased",
-      themeColor: "green",
-      icon: <DoctorIcon fontSize="large" style={{ fontSize: '4rem', color: 'green' }} />
+      themeColor: theme.palette.success.light,
+      icon: <DoctorIcon fontSize="large" style={{ fontSize: '4rem', color: theme.palette.success.light }} />
     },
     {
       name: "Nurses",
       quantity: "751",
       message: "+15.2% Increased",
-      themeColor: "orange",
-      icon: <MedicalServicesIcon fontSize="large" style={{ fontSize: '4rem', color: 'orange' }} />
+      themeColor: theme.palette.success.light,
+      icon: <MedicalServicesIcon fontSize="large" style={{ fontSize: '4rem', color: theme.palette.success.light }} />
     },
     {
       name: "Appointments",
       quantity: "67",
       message: "+15.2% Decreased",
-      themeColor: "blue",
-      icon: <AppointmentIcon fontSize="large" style={{ fontSize: '4rem', color: 'blue' }} />
+      themeColor: theme.palette.success.light,
+      icon: <AppointmentIcon fontSize="large" style={{ fontSize: '4rem', color: theme.palette.success.light }} />
     },
     {
       name: "Payments",
       quantity: "46",
       message: "+42.2% Increased",
-      themeColor: "brown",
-      icon: <PaymentIcon fontSize="large" style={{ fontSize: '4rem', color: 'brown' }} />
+      themeColor: theme.palette.success.light,
+      icon: <PaymentIcon fontSize="large" style={{ fontSize: '4rem', color: theme.palette.success.light }} />
     }
   ];
 
@@ -94,7 +96,7 @@ function AdminDashboard() {
         const currentActivity = data[i]['activityName'];
         const nextActivity = data[i + 1]['activityName'];
         if (selectedActivity && currentActivity !== selectedActivity) {
-          continue; 
+          continue;
         }
         if (!probabilities[currentActivity]) {
           probabilities[currentActivity] = {};
@@ -136,15 +138,14 @@ function AdminDashboard() {
   }, []);
 
   return (
-    <div style={{display: 'flex', flexDirection: 'row' }}>
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
       <div >
         <SideBar />
       </div>
       <div style={{ margin: "10px", flex: 1 }}>
         <Grid container spacing={2} justifyContent="space-between">
           <Grid item xs={12}  >
-
-            <p style={{ margin: '5px' }} > <strong>Dashboard</strong> <br /> Welcome to Iot Enabled Smart Nursing</p>
+            <Typography variant="h5" color='text.primary'> <strong>Dashboard</strong> <br /> Welcome to Iot Enabled Smart Nursing</Typography>
           </Grid>
           <Grid item xs={12} md={6} >
             <CardComponent cardItem={cardItems[0]} />

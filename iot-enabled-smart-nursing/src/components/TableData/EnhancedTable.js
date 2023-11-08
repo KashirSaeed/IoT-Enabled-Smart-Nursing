@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -129,7 +129,7 @@ function EnhancedTableToolbar(props) {
         pr: { xs: 1, sm: 1 },
         ...(numSelected > 0 && {
           bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+            alpha(theme.palette.background.default, theme.palette.action.activatedOpacity),
         }),
       }}
     >
@@ -276,87 +276,85 @@ export default function EnhancedTable(props) {
     return <h1>Retreiving...</h1>
   }
   return (
-    <React.Fragment>
 
-      <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', backgroundColor: 'red' }}>
 
-        <Paper sx={{ width: '100%', mb: 2 }}>
-          <EnhancedTableToolbar headCells={props.headCells} searchField={searchField} setSearchField={setSearchField} query={query} setQuery={setQuery} numSelected={selected.length} />
-          <TableContainer>
-            <Table
-              sx={{ minWidth: 750 }}
-              aria-labelledby="tableTitle"
-            >
-              <EnhancedTableHead
-                headCells={props.headCells}
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={props.objectList.length}
-              />
-              <TableBody>
-                {visibleRows.map((row, index) => {
-                  const isItemSelected = isSelected(row.index);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+      <Paper sx={{ width: '100%', mb: 2, backgroundColor: 'red' }}>
+        <EnhancedTableToolbar headCells={props.headCells} searchField={searchField} setSearchField={setSearchField} query={query} setQuery={setQuery} numSelected={selected.length} />
+        <TableContainer style={{ 'background-color': 'red' }}>
+          <Table
+            sx={{ minWidth: 750, backgroundColor: 'red' }}
+            aria-labelledby="tableTitle"
+          >
+            <EnhancedTableHead
+              headCells={props.headCells}
+              numSelected={selected.length}
+              order={order}
+              orderBy={orderBy}
+              onSelectAllClick={handleSelectAllClick}
+              onRequestSort={handleRequestSort}
+              rowCount={props.objectList.length}
+            />
+            <TableBody>
+              {visibleRows.map((row, index) => {
+                const isItemSelected = isSelected(row.index);
+                const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.index)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.index}
-                      selected={isItemSelected}
-                      sx={{ cursor: 'pointer' }}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                      >
-                        {row.location}
-                      </TableCell>
-                      <TableCell >{row.bloodpressure}</TableCell>
-                      <TableCell>{row.bpm}</TableCell>
-                      <TableCell >{row.obj}</TableCell>
-                      <TableCell >{row.time}</TableCell>
-                    </TableRow>
-                  );
-                })}
-                {emptyRows > 0 && (
+                return (
                   <TableRow
+                    hover
+                    onClick={(event) => handleClick(event, row.index)}
+                    role="checkbox"
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={row.index}
+                    selected={isItemSelected}
+                    sx={{ cursor: 'pointer' }}
                   >
-                    <TableCell colSpan={6} />
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        color="primary"
+                        checked={isItemSelected}
+                        inputProps={{
+                          'aria-labelledby': labelId,
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell
+                      component="th"
+                      id={labelId}
+                      scope="row"
+                    >
+                      {row.location}
+                    </TableCell>
+                    <TableCell >{row.bloodpressure}</TableCell>
+                    <TableCell>{row.bpm}</TableCell>
+                    <TableCell >{row.obj}</TableCell>
+                    <TableCell >{row.time}</TableCell>
                   </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={temp.current.value.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Paper>
-      </Box>
+                );
+              })}
+              {emptyRows > 0 && (
+                <TableRow
+                >
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={temp.current.value.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </Box>
 
-    </React.Fragment>
   );
 }
 

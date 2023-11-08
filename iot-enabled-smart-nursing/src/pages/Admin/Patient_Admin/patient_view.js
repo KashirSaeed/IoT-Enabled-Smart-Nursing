@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 function createData(id, fullname, contact, domain, experience) {
   return { id, fullname, contact, domain, experience, profileBtn: <Button onClick={() => alert("Showing Profile " + id)}>Profile</Button> };
 }
-export default function AdminDoctors() {
+export default function AdminPatient() {
   const navigate = useNavigate()
 
   async function getDoctorsFromDB() {
@@ -31,6 +31,13 @@ export default function AdminDoctors() {
         var doctors = []
         if (doctorsData.doctors.length > 0) {
           doctorsData.doctors.forEach(doctor => {
+            // console.log(doctor.id)
+            // console.log(doctor.UserId)
+            // console.log(doctor.UserId.Fname)
+            // console.log(doctor.UserId.Lname)
+            // console.log(doctor.UserId.contact)
+            // console.log(doctor.domain)
+            // console.log(doctor.experience)
             let newDoctor = createData(doctor.id, doctor.UserId.Fname + " " + doctor.UserId.Lname, doctor.UserId.contact ?? "--", doctor.Domain ?? "--", doctor.Experience ?? "--")
             doctors.push(newDoctor)
           })

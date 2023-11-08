@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 import readingData from '../../../services/signInService';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
-import { AppBar } from "@mui/material";
+import { AppBar, useTheme } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
 import { bool } from "prop-types";
 
@@ -99,7 +99,7 @@ const SignIn = ({ LoadRoutes }) => {
     const handleSignUpNav = () => {
         navigate('/subscriptionplan');
     }
-
+    const theme = useTheme()
     return (
         <React.Fragment>
             {/* <AppBar>
@@ -129,13 +129,13 @@ const SignIn = ({ LoadRoutes }) => {
                     {/* ---------login button-------- */}
                     <Grid xs={12}>
                         <div className="marginBottom buttonCentering" >
-                            <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" buttonBackgroundColor="#9ACAA1" />
+                            <CustomButton ButtonText='Login' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" buttonBackgroundColor={theme.palette.success.main} />
                         </div>
                     </Grid>
                     {/* -----------Sign up anchatag------------- */}
                     <Grid xs={12}>
                         <div className="marginBottom buttonCentering" >
-                            <p style={{ margin: "0 10px", fontSize: "10px" }}>Don't have an account? <button style={{ color: 'limegreen', textDecoration: "none", backgroundColor: 'transparent', border: 'none' }} onClick={handleSignUpNav}>Create Account</button></p>
+                            <p style={{ margin: "0 10px", fontSize: "10px" }}>Don't have an account? <button style={{ color: theme.palette.success.light, textDecoration: "none", backgroundColor: 'transparent', border: 'none' }} onClick={handleSignUpNav}>Create Account</button></p>
                         </div>
                     </Grid>
                     {/* ---------horizontal line-------- */}

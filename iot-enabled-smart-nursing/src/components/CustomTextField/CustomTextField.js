@@ -9,6 +9,9 @@ const CustomTextField = (props) => {
       "&.Mui-focused fieldset": {
         borderColor: "#9ACAA1",
       },
+    },
+    "& .MuiFormLabel-colorPrimary": {
+      color: "text.disabled"
     }
   }
   return (<>
@@ -22,12 +25,11 @@ const CustomTextField = (props) => {
       label={props.FieldLabel}
       fullWidth={props.textFieldWidth}
       sx={style}
+      // color='text.disabled'
       // hidden
       value={props.customTextFieldValue}
       onChange={(e) => props.setCustomTextFieldValue(e.target.value)}
     />
-    {/* <TextField id="outlined-basic" label="Email" variant="outlined" color='grey' /> */}
-    {/* <input sx={style}></input> */}
   </>
   );
 }

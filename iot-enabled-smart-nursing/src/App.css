@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,7 +22,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 .App-link {
   color: #61dafb;
@@ -32,18 +32,21 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-.center-justify{
+
+.center-justify {
   justify-content: center;
 }
-.row{
+
+.row {
   display: flex;
 }
-.padding-tb{
+
+.padding-tb {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-

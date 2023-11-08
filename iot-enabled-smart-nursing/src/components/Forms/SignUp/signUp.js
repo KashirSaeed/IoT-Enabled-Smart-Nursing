@@ -7,13 +7,13 @@ import Grid from '@mui/material/Grid';
 import postingData from '../../../services/signUpService';
 import jwt_decode from 'jwt-decode';
 import HomeIcon from '@mui/icons-material/Home';
-import { useNavigate,useParams } from "react-router-dom";
-import { AppBar } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { AppBar, useTheme } from "@mui/material";
 import validateAccess from "../../../services/validateAccess";
 
 const SignUp = () => {
 
-    const {plan_type}=useParams()
+    const { plan_type } = useParams()
     const navigate = useNavigate();
 
     // -----useState hook for username, password and email---------
@@ -31,18 +31,18 @@ const SignUp = () => {
         const isAuthenticatedByGoogle = false;
         // ---------making object----------
         // const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
-        const data =      {
+        const data = {
             "username": myUsername,
             "email": myEmail,
             "password": myPassword,
-            "Fname":"temp",
-            "Lname":"temp",
+            "Fname": "temp",
+            "Lname": "temp",
             // "usertype": plan_type ,
             "usertype": "1",
-            "contact":null,
-            "Gender_id":null,
-            "ProfilePicture":null,
-            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
+            "contact": null,
+            "Gender_id": null,
+            "ProfilePicture": null,
+            "IsAuthenticatedByGoogle": isAuthenticatedByGoogle
             // "ProfilePicture":null
         }
         // --------calling function from signup service---------
@@ -54,6 +54,7 @@ const SignUp = () => {
         setPassword("");
         setUsername("");
     };
+    const theme = useTheme()
     // ----------------google authentication-----------------
     async function handleCallbackResponse(response) {
 
@@ -67,18 +68,18 @@ const SignUp = () => {
         const isAuthenticatedByGoogle = true;
 
         // const data = { myUsername, myEmail, myPassword, isAuthenticatedByGoogle }
-        const data =      {
+        const data = {
             "username": myUsername,
             "email": myEmail,
             "password": myPassword,
-            "Fname":"temp",
-            "Lname":"temp",
+            "Fname": "temp",
+            "Lname": "temp",
             // "usertype": plan_type ,
-            "usertype": "1" ,
-            "contact":null,
-            "Gender_id":null,
-            "ProfilePicture":null,
-            "IsAuthenticatedByGoogle":isAuthenticatedByGoogle
+            "usertype": "1",
+            "contact": null,
+            "Gender_id": null,
+            "ProfilePicture": null,
+            "IsAuthenticatedByGoogle": isAuthenticatedByGoogle
         }
 
 
@@ -120,65 +121,65 @@ const SignUp = () => {
                 <HomeIcon onClick={handlelandNav}/>
             </AppBar> */}
 
-        <form className="formProperties" onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-                {/* -----------title------------- */}
-                <Grid xs={12}>
-                    <div>
-                        <MainHeading text="Create Account" />
-                    </div>
-                </Grid>
-                {/* -----------username ------------- */}
-                <Grid xs={12}>
-                    <div className="marginBottom" >
-                        <CustomTextField PlaceHolderText='enter username' FieldLabel="Username" requirement={true} Type={"text"} textFieldWidth="fullWidth" customTextFieldValue={username} setCustomTextFieldValue={setUsername} customTextFieldName="myUsername" />
-                    </div>
-                </Grid>
-                {/* -----------email------------- */}
-                <Grid xs={12}>
-                    <div className="marginBottom" >
-                        <CustomTextField PlaceHolderText='enter email' FieldLabel="Email" requirement={true} Type={"email"} textFieldWidth="fullWidth" customTextFieldValue={email} setCustomTextFieldValue={setEmail} customTextFieldName="myEmail" />
-                    </div>
-                </Grid>
-                {/* -----------password------------- */}
-                <Grid xs={12}>
-                    <div className="marginBottom" >
-                        <CustomTextField PlaceHolderText='enter password' FieldLabel="Password" requirement={true} Type={"password"} textFieldWidth="fullWidth" customTextFieldValue={password} setCustomTextFieldValue={setPassword} customTextFieldName="myPassword" />
-                    </div>
-                </Grid>
-                {/* -----------signup up button------------- */}
-                <Grid xs={12}>
-                    <div className="marginBottom buttonCentering" >
-                        <CustomButton ButtonText='Sign Up' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" buttonBackgroundColor="#9ACAA1" />
-                    </div>
-                </Grid>
-                {/* -----------Login anchatag------------- */}
-                <Grid xs={12}>
-                    <div className="marginBottom buttonCentering" >
-                        <span style={{ margin: "0 10px", fontSize: "10px" }}>Already have an account?</span>
-                        <button style={{ color: "green", textDecoration: "none", margin:0, backgroundColor:'transparent', border:'none', }} onClick={handleSignUpNav}>Login</button>
-                    </div>
-                </Grid>
-                {/* -----------Continue label------------- */}
-                <Grid xs={12} >
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <div style={{ flex: 1, backgroundColor: "black", height: "3px" }} />
+            <form className="formProperties" onSubmit={handleSubmit}>
+                <Grid container spacing={2}>
+                    {/* -----------title------------- */}
+                    <Grid xs={12}>
+                        <div>
+                            <MainHeading text="Create Account" />
+                        </div>
+                    </Grid>
+                    {/* -----------username ------------- */}
+                    <Grid xs={12}>
+                        <div className="marginBottom" >
+                            <CustomTextField PlaceHolderText='enter username' FieldLabel="Username" requirement={true} Type={"text"} textFieldWidth="fullWidth" customTextFieldValue={username} setCustomTextFieldValue={setUsername} customTextFieldName="myUsername" />
+                        </div>
+                    </Grid>
+                    {/* -----------email------------- */}
+                    <Grid xs={12}>
+                        <div className="marginBottom" >
+                            <CustomTextField PlaceHolderText='enter email' FieldLabel="Email" requirement={true} Type={"email"} textFieldWidth="fullWidth" customTextFieldValue={email} setCustomTextFieldValue={setEmail} customTextFieldName="myEmail" />
+                        </div>
+                    </Grid>
+                    {/* -----------password------------- */}
+                    <Grid xs={12}>
+                        <div className="marginBottom" >
+                            <CustomTextField PlaceHolderText='enter password' FieldLabel="Password" requirement={true} Type={"password"} textFieldWidth="fullWidth" customTextFieldValue={password} setCustomTextFieldValue={setPassword} customTextFieldName="myPassword" />
+                        </div>
+                    </Grid>
+                    {/* -----------signup up button------------- */}
+                    <Grid xs={12}>
+                        <div className="marginBottom buttonCentering" >
+                            <CustomButton ButtonText='Sign Up' buttonWidth="150px" buttonHeight="50px" customButtonType="submit" buttonBackgroundColor={theme.palette.success.main} />
+                        </div>
+                    </Grid>
+                    {/* -----------Login anchatag------------- */}
+                    <Grid xs={12}>
+                        <div className="marginBottom buttonCentering" >
+                            <span style={{ margin: "0 10px", fontSize: "10px" }}>Already have an account?</span>
+                            <button style={{ color: theme.palette.success.main, textDecoration: "none", margin: 0, backgroundColor: 'transparent', border: 'none', }} onClick={handleSignUpNav}>Login</button>
+                        </div>
+                    </Grid>
+                    {/* -----------Continue label------------- */}
+                    <Grid xs={12} >
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <div style={{ flex: 1, backgroundColor: "black", height: "3px" }} />
 
-                         <p style={{ margin: "10px", fontSize: "20px", color:'gray' }}>or</p>
+                            <p style={{ margin: "10px", fontSize: "20px", color: theme.palette.text.disabled }}>or</p>
 
-                        <div style={{ flex: 1, backgroundColor: "black", height: "3px" }} />
-                    </div>
-                </Grid>
-                <br />
-                {/* -----------Google button------------- */}
-                <Grid xs={12}>
+                            <div style={{ flex: 1, backgroundColor: "black", height: "3px" }} />
+                        </div>
+                    </Grid>
+                    <br />
+                    {/* -----------Google button------------- */}
+                    <Grid xs={12}>
 
-                    <div className="App"  >
-                        <div id="signInDiv" ></div>
-                    </div>
+                        <div className="App"  >
+                            <div id="signInDiv" ></div>
+                        </div>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </form>
+            </form>
 
         </React.Fragment>
     );

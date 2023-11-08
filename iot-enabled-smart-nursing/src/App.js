@@ -3,15 +3,11 @@ import './App.css';
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
-
-
-
-
-
-
 import MyAppbar from './components/appbar/appbar';
 import routeConfig from './routes'
 import SideBar from './components/SideBar/sideBar';
+import { ThemeProvider, Typography, useTheme } from '@mui/material';
+import validateAccess from './services/validateAccess';
 
 
 const App = () => {
@@ -33,13 +29,22 @@ const App = () => {
   const segments = currentPath.split('/');
   const endpoint = segments[segments.length - 1];
   const currentUserType = localStorage.getItem('user_type')
-
+  // const [token ,setToken] = React.useState("unauthorized")
+  console.log(endpoint)
+  var token;
+  React.useEffect(() => {
+    async function getToken() {
+      token = await validateAccess()
+    }
+    getToken();
+  }, [])
   return (
     <div>
 
+
       <BrowserRouter>
-        {endpoint === 'dashboard' ? null : <MyAppbar pages={pages} />}
-        {currentUserType === 'Admin' ? null : <SideBar />}
+        {token === 'unauthorized_user' || endpoint == "" ? <MyAppbar pages={pages} /> : null}
+        {/* {currentUserType === 'Admin' ? null : <SideBar />} */}
         <Routes>
           {filteredRoutes.map((route) => {
             if (route.path === "/signin") {
