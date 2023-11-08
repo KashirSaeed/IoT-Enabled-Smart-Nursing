@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -122,9 +122,6 @@ function EnhancedTableToolbar(props) {
   const handleFilterClick = () => {
     console.log("handleFilterClick");
   }
-
-
-  
 
   const handleQueryChange = (event) => {
 
@@ -297,30 +294,29 @@ export default function EnhancedTable(props) {
 
   }
   return (
-    <React.Fragment>
 
-      <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', backgroundColor: 'red' }}>
 
-        <Paper sx={{ width: '100%', mb: 2 }}>
-          <EnhancedTableToolbar headCells={props.headCells} searchField={searchField} setSearchField={setSearchField} query={query} setQuery={setQuery} numSelected={selected.length} />
-          <TableContainer>
-            <Table
-              sx={{ minWidth: 750 }}
-              aria-labelledby="tableTitle"
-            >
-              <EnhancedTableHead
-                headCells={props.headCells}
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={props.objectList.length}
-              />
-              <TableBody>
-                {visibleRows.map((row, index) => {
-                  const isItemSelected = isSelected(row.index);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+      <Paper sx={{ width: '100%', mb: 2, backgroundColor: 'red' }}>
+        <EnhancedTableToolbar headCells={props.headCells} searchField={searchField} setSearchField={setSearchField} query={query} setQuery={setQuery} numSelected={selected.length} />
+        <TableContainer style={{ 'background-color': 'red' }}>
+          <Table
+            sx={{ minWidth: 750, backgroundColor: 'red' }}
+            aria-labelledby="tableTitle"
+          >
+            <EnhancedTableHead
+              headCells={props.headCells}
+              numSelected={selected.length}
+              order={order}
+              orderBy={orderBy}
+              onSelectAllClick={handleSelectAllClick}
+              onRequestSort={handleRequestSort}
+              rowCount={props.objectList.length}
+            />
+            <TableBody>
+              {visibleRows.map((row, index) => {
+                const isItemSelected = isSelected(row.index);
+                const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
@@ -357,28 +353,27 @@ export default function EnhancedTable(props) {
                     </TableRow>
                   );
                 })}
-                {emptyRows > 0 && (
-                  <TableRow
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={temp.current.value.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Paper>
-      </Box>
+              {emptyRows > 0 && (
+                <TableRow
+                >
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={temp.current.value.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </Box>
 
-    </React.Fragment>
   );
 }
 

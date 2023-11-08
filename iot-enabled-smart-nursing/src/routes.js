@@ -8,6 +8,7 @@ import SubscriptionPlanPage from './pages/subscriptionPlanPage/subscriptionPlanP
 import Usertype from './components/Forms/Usertype/usertype';
 import AdminDashboard from './pages/Admin/Dashboard/dashBoard';
 import AdminDoctors from './pages/Admin/Doctors_Admin/doctors_view'
+import TestingTheme from './components/TestingTheme/testingTheme';
 const routeConfig = [
     { path: "/signin", component: SignIn, role: "general" },
     { path: "/signup/:plan_type", component: SignUp, role: "general" },
@@ -19,7 +20,8 @@ const routeConfig = [
     { path: "/contactUs", component: ContactUs, role: "Admin" },
     { path: "/dashboard", component: AdminDashboard, role: "general" },
     // { path: "/dashboard", component: AdminDoctors, role: "general" },
-    { path: "/alldoctors", component: AdminDoctors, role: "general" }
+    { path: "/all-doctors", component: AdminDoctors, role: "general" },
+    { path: "/theme", component: TestingTheme, role: "general" }
 
 ];
 

@@ -13,15 +13,15 @@ import CustomButton from '../CustomButton/CustomButton';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link
+import { useTheme } from '@mui/material';
 // import { useMediaQuery } from '@mui/material';
 // const pages = ['Product Overview','Payment Plans', 'About Us', 'Contact Us'];
 
+const MyAppbar = ({ pages }) => {
 
-const MyAppbar = ({pages}) => {
-  
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+  const theme = useTheme()
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -55,22 +55,19 @@ const MyAppbar = ({pages}) => {
   }, []);
   // const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('md'));
   return (
-    <AppBar elevation={24} position="static" sx={{ backgroundColor: "#F5F5F5", color: "black", boxShadow: 24 }}>
+    <AppBar elevation={10} position="static" sx={{ backgroundColor: 'background.paper', color: "text.primary", boxShadow: 0 }}>
       <Container maxWidth="xl" >
-
         <Toolbar>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="a"
             href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              // fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
@@ -129,7 +126,7 @@ const MyAppbar = ({pages}) => {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              // fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'black',
@@ -151,13 +148,14 @@ const MyAppbar = ({pages}) => {
 
 
 
-              {pages.map((page) => (
+            {pages.map((page) => (
               <Button
                 key={page.key}
                 onClick={() => {
                   navigate(page.value)
                 }}
-                sx={{ my: 2, color: 'black', display: 'block', textTransform: 'capitalize' }}
+                sx={{ my: 2, color: 'text.primary', display: 'block', textTransform: 'capitalize' }}
+                variant='text'
               >
                 {page.key.toLowerCase()}
               </Button>
@@ -167,8 +165,8 @@ const MyAppbar = ({pages}) => {
           {windowSize.width > 900 ?
             (
               <div>
-                <CustomButton className='margin_LR_5' ButtonText='Get Started' customButtonClickEvent={handlesignUpNav} buttonBackgroundColor="#9ACAA1" />
-                <CustomButton className='margin_LR_5' ButtonText='Login' customButtonClickEvent={handleloginNav} buttonBackgroundColor="#9ACAA1" />
+                <CustomButton className='margin_LR_5' ButtonText='Get Started' customButtonClickEvent={handlesignUpNav} buttonBackgroundColor={theme.palette.success.main} />
+                <CustomButton className='margin_LR_5' ButtonText='Login' customButtonClickEvent={handleloginNav} buttonBackgroundColor={theme.palette.success.main} />
               </div>
             ) : <Box />
           }

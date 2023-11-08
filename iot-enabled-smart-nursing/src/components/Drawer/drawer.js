@@ -112,7 +112,7 @@ const MiniDrawer = (props) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar sx={{ backgroundColor: "#F5F5F5", color: "black" }} position="fixed" open={open}>
+      <AppBar sx={{ backgroundColor: "background.default", color: "black" }} position="fixed" open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -135,7 +135,6 @@ const MiniDrawer = (props) => {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',

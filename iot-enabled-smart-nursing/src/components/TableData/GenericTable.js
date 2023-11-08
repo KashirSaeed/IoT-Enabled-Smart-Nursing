@@ -34,6 +34,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { TextField } from '@material-ui/core';
+import Loading from '../LoadingComponent/loading';
+import { Container, Grid } from '@mui/material';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -139,8 +141,7 @@ function EnhancedTableToolbar(props) {
                 pl: { sm: 2 },
                 pr: { xs: 1, sm: 1 },
                 ...(numSelected > 0 && {
-                    bgcolor: (theme) =>
-                        alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+                    bgcolor: theme.palette.background.default
                 }),
             }}
         >
@@ -311,11 +312,11 @@ export default function GenericTable({ rows, columns, tableTitle }) {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
+            <Paper sx={{ width: '100%', mb: 2, backgroundColor: 'background.default' }}>
                 <EnhancedTableToolbar columns={columns} selectedRows={selected} numSelected={selected.length} titleLabel={tableTitle} searchField={searchField} setSearchField={setSearchField} query={query} setQuery={setQuery} />
                 <TableContainer>
                     <Table
-                        sx={{ minWidth: 750 }}
+                        sx={{ minWidth: 750, backgroundColor: 'background.default' }}
                         aria-labelledby="tableTitle"
                         size={dense ? 'small' : 'medium'}
                     >
@@ -328,42 +329,45 @@ export default function GenericTable({ rows, columns, tableTitle }) {
                             rowCount={rows.length}
                             columns={columns}
                         />
-                        <TableBody>
-                            {visibleRows.map((row, index) => {
-                                const isItemSelected = isSelected(row.id);
-                                const labelId = `enhanced-table-checkbox-${index}`;
-                                let rowData = Object.keys(row);
-                                console.log(rowData)
-                                return (
-                                    <TableRow
-                                        hover
-                                        role="checkbox"
-                                        aria-checked={isItemSelected}
-                                        tabIndex={-1}
-                                        key={row.id}
-                                        selected={isItemSelected}
-                                        sx={{ cursor: 'pointer' }}
+                        <TableBody style={{ width: "100%" }}>
+                            {
+                                visibleRows.length > 0 ?
+                                    visibleRows.map((row, index) => {
+                                        const isItemSelected = isSelected(row.id);
+                                        const labelId = `enhanced-table-checkbox-${index}`;
+                                        let rowData = Object.keys(row);
+                                        // console.log(rowData)
+                                        return (
+                                            <TableRow
+                                                hover
+                                                role="checkbox"
+                                                aria-checked={isItemSelected}
+                                                tabIndex={-1}
+                                                key={row.id}
+                                                selected={isItemSelected}
+                                                sx={{ cursor: 'pointer', width: '100%' }}
 
-                                    >
-                                        <TableCell padding="checkbox">
-                                            <Checkbox
-                                                color="primary"
-                                                checked={isItemSelected}
-                                                inputProps={{
-                                                    'aria-labelledby': labelId,
-                                                }}
-                                                onClick={(event) => handleClick(event, row.id)}
-                                            />
-                                        </TableCell>
-                                        {
-                                            rowData.map((item) => {
-                                                return <TableCell align="left">{row[item]}</TableCell>;
-                                            })
-                                        }
+                                            >
+                                                <TableCell padding="checkbox">
+                                                    <Checkbox
+                                                        color="primary"
+                                                        checked={isItemSelected}
+                                                        inputProps={{
+                                                            'aria-labelledby': labelId,
+                                                        }}
+                                                        onClick={(event) => handleClick(event, row.id)}
+                                                    />
+                                                </TableCell>
+                                                {
+                                                    // console.log("Grid", rowData),
+                                                    rowData.map((item) => {
+                                                        return <TableCell align="left">{row[item]}</TableCell>;
+                                                    })
+                                                }
 
-                                    </TableRow>
-                                );
-                            })}
+                                            </TableRow>
+                                        );
+                                    }) : <Loading></Loading>}
                             {emptyRows > 0 && (
                                 <TableRow
                                     style={{

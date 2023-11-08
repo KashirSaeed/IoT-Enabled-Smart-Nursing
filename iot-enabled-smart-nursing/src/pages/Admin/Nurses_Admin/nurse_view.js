@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Box, Container, Grid, Paper, Button, Typography, TextField, Fab, Alert, Slide, IconButton } from '@mui/material';
+import { Box, Container, Grid, Button, Typography, TextField, Fab, Alert, Slide, IconButton } from '@mui/material';
 import SideBar from '../../../components/SideBar/sideBar';
 import Modal from '@mui/material/Modal';
-import { Add, AddCircle, AddIcCall, Height, Input } from '@mui/icons-material';
+import { Add, } from '@mui/icons-material';
 import MenuItem from '@mui/material/MenuItem';
 import GenericTable from '../../../components/TableData/GenericTable';
 import { useState } from 'react';
@@ -17,28 +17,35 @@ import { useNavigate } from 'react-router-dom';
 function createData(id, fullname, contact, domain, experience) {
   return { id, fullname, contact, domain, experience, profileBtn: <Button onClick={() => alert("Showing Profile " + id)}>Profile</Button> };
 }
-export default function AdminDoctors() {
+export default function AdminNurse() {
   const navigate = useNavigate()
 
-  async function getDoctorsFromDB() {
-    return await getDoctor()
+  async function getNurseFromDB() {
+    return await getNurse()
   }
-  const [doctor, setDoctors] = React.useState([]);
+  const [nurse, setNurse] = React.useState([]);
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const doctorsData = await getDoctorsFromDB();
-        var doctors = []
-        if (doctorsData.doctors.length > 0) {
-          doctorsData.doctors.forEach(doctor => {
-            let newDoctor = createData(doctor.id, doctor.UserId.Fname + " " + doctor.UserId.Lname, doctor.UserId.contact ?? "--", doctor.Domain ?? "--", doctor.Experience ?? "--")
-            doctors.push(newDoctor)
+        const nursesData = await getNurseFromDB();
+        var nurses = []
+        if (nursesData.nurses.length > 0) {
+          nursesData.nurses.forEach(nurse => {
+            // console.log(nurse.id)
+            // console.log(nurse.UserId)
+            // console.log(nurse.UserId.Fname)
+            // console.log(nurse.UserId.Lname)
+            // console.log(nurse.UserId.contact)
+            // console.log(nurse.domain)
+            // console.log(nurse.experience)
+            let newNurse = createData(nurse.id, nurse.UserId.Fname + " " + nurse.UserId.Lname, nurse.UserId.contact ?? "--", nurse.Domain ?? "--", nurse.Experience ?? "--")
+            nurses.push(newNurse)
           })
-          setDoctors(doctors)
+          setDoctors(nurses)
         }
-        console.log(doctorsData.doctors); // Now you can access the data here
+        console.log(nursesData.nurses); // Now you can access the data here
       } catch (error) {
-        console.error('Error fetching doctors:', error);
+        console.error('Error fetching nurses:', error);
       }
     }
     fetchData()
@@ -281,7 +288,7 @@ export default function AdminDoctors() {
             </Grid>
             <Grid item xs={12} mt={2}>
               {/* Table to display all Doctors */}
-              <GenericTable rows={doctor} columns={columns} tableTitle={"Doctors"}></GenericTable>
+              <GenericTable rows={nurse} columns={columns} tableTitle={"Doctors"}></GenericTable>
             </Grid>
           </Grid>
         </Container>
