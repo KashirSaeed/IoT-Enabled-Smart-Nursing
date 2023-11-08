@@ -23,8 +23,8 @@ import { useState, useMemo, useRef } from 'react';
 import BasicSelect from './Select';
 import { TextField } from '@mui/material';
 
-import Alert from '@mui/material/Alert';
-import Slide from '@mui/material/Slide';
+
+
 import CustomButton from '../CustomButton/CustomButton';
 import queryingBard from '../../services/queryBard';
 
@@ -115,30 +115,16 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
-  const [records, setValue] = useState('');
+  
   const [query, setQuery] = useState('');
   const { numSelected } = props;
-  const [showError, setShowError] = useState(false);
 
   const handleFilterClick = () => {
     console.log("handleFilterClick");
   }
 
 
-  const handleRecordChange = (event) => {
-
-    const inputValue = event.target.value;
-    setValue(inputValue)
-    if (inputValue > 50 || inputValue < 0) {
-      // Display a warning, prevent setting the value, or take other actions
-      // alert('Value should not exceed 50');
-      setShowError(true);
-      setValue(5)
-    } else {
-      // Update the state if the value is within the allowed range
-      setShowError(false);
-    }
-  };
+  
 
   const handleQueryChange = (event) => {
 
@@ -146,24 +132,10 @@ function EnhancedTableToolbar(props) {
 
   };
 
-  const handleQuerySubmission = async (event) => {
-    const data = {
-      "records": records,
-      "query": query
-    };
-    let response = await queryingBard(data);
-    console.log(response);
-    // console
-  };
 
   return (
     <React.Fragment>
-      <Slide timeout={1000} direction="down" in={showError} mountOnEnter unmountOnExit>
-        <Alert severity="error" sx={{ marginTop: '8px' }}>
-          Records in range 5-50 allowed only
-        </Alert>
-      </Slide>
-
+      
       <Toolbar
         sx={{
           pl: { sm: 2 },
@@ -198,24 +170,7 @@ function EnhancedTableToolbar(props) {
           value={props.query}
           onChange={(e) => props.setQuery(e.target.value)}
         />
-        <TextField value={records} onChange={handleRecordChange} id="outlined-basic" label="# of Records" variant="outlined" sx={{ paddingRight: '5px' }} type='number' />
-
-        <TextField
-          value={query}
-          onChange={handleQueryChange}
-          id="outlined-basic"
-          label="Query Bard"
-          variant="outlined"
-          multiline
-          sx={{      // Set the width
-            height: '48px',       // Set the height
-            maxHeight: '48px',    // Set the maximum height
-            overflowY: 'auto',    // Enable vertical scrolling
-            paddingRight: '5px',
-          }}
-        />
-        <CustomButton ButtonText='Analyze' customButtonClickEvent={handleQuerySubmission} />
-        {/* <BasicSelect value={props.searchField} setValue={props.setSearchField} menuItems={props.headCells}/> */}
+        
 
         {numSelected > 0 ? (
           <Tooltip title="Delete">
