@@ -3,12 +3,6 @@ import './App.css';
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
-
-
-
-
-
-
 import MyAppbar from './components/appbar/appbar';
 import routeConfig from './routes'
 import SideBar from './components/SideBar/sideBar';
@@ -39,7 +33,6 @@ const App = () => {
 
       <BrowserRouter>
         {endpoint === 'dashboard' ? null : <MyAppbar pages={pages} />}
-        {currentUserType === 'Admin' ? null : <SideBar />}
         <Routes>
           {filteredRoutes.map((route) => {
             if (route.path === "/signin") {
