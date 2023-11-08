@@ -1,18 +1,5 @@
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import DoctorIcon from "@mui/icons-material/LocalHospital";
-import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
-import PatientIcon from "@mui/icons-material/Person";
-import AppointmentIcon from "@mui/icons-material/EventNote";
-import PaymentIcon from "@mui/icons-material/Payment";
-import AddIcon from "@mui/icons-material/Add";
-import ViewListIcon from "@mui/icons-material/ViewList";
-import PersonIcon from "@mui/icons-material/Person";
-import WorkIcon from "@mui/icons-material/Work";
 import profile from '../../assets/profile.jpeg';
 import React, { useState } from "react";
 import {
@@ -25,7 +12,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import Avatar from "@mui/material/Avatar";
 import './sideBar.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import { DataArray } from "@mui/icons-material";
+
 
 
 function SubMenu({ label, icon, items }) {
@@ -42,62 +29,13 @@ function SubMenu({ label, icon, items }) {
     );
 }
 
-function SideBar() {
+function SideBar(props) {
     const user = {
         name: "Alastair Cook",
         profilePic: profile,
         hospitalName: "Smart Nursing (SNP)",
     };
-    const menuItems = [
-        { label: "Dashboard", icon: <HomeOutlinedIcon />, items: [] },
-        { label: "Timeline Activities", icon: <WorkIcon />, items: [] },
-        { label: "Patient Data", icon: <DataArray />, items: [] },
 
-        {
-            label: "Doctors", icon: <DoctorIcon />,
-            items: [
-                { label: "All Doctors", icon: <ViewListIcon /> },
-                { label: "Add Doctor", icon: <AddIcon />, link: '/alldcotrs' },
-                { label: "Doctor Profile", icon: <PersonIcon /> },
-            ],
-        },
-
-        {
-            label: "Patients", icon: <PatientIcon />,
-            items: [
-                { label: "All Patients", icon: <ViewListIcon /> },
-                { label: "Add Patient", icon: <AddIcon /> },
-                { label: "Patient Profile", icon: <PersonIcon /> },
-            ],
-        },
-        {
-            label: "Nurses", icon: <MedicalServicesIcon />,
-            items: [
-                { label: "All Nurses", icon: <ViewListIcon /> },
-                { label: "Add Nurse", icon: <AddIcon /> },
-                { label: "Nurse Profile", icon: <PersonIcon /> },
-            ],
-        },
-        {
-            label: "Payments", icon: <PaymentIcon />,
-            items: [
-                { label: "Payments", icon: <PeopleOutlinedIcon /> },
-                { label: "Add Payment", icon: <PeopleOutlinedIcon /> },
-                { label: "Payment Invoice", icon: <PeopleOutlinedIcon /> },
-            ],
-        },
-        {
-            label: "Appointments", icon: <AppointmentIcon />,
-            items: [
-                { label: "Book Schedule", icon: <PeopleOutlinedIcon /> },
-                { label: "Doctor Appointment", icon: <PeopleOutlinedIcon /> },
-            ],
-        },
-        { label: "Profile", icon: <ReceiptOutlinedIcon />, items: [] },
-        { label: "FAQ", icon: <HelpOutlineOutlinedIcon />, items: [] },
-        { label: "Calendar", icon: <CalendarTodayOutlinedIcon />, items: [] },
-
-    ];
 
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
         window.innerWidth <= 768
@@ -199,7 +137,7 @@ function SideBar() {
                         </MenuItem>
                     )}
 
-                    {menuItems.map((menuItem, index) => {
+                    {props.menuItems.map((menuItem, index) => {
                         if (menuItem.items.length === 0) {
                             if (menuItem.label === "Dashboard") {
                                 return (
