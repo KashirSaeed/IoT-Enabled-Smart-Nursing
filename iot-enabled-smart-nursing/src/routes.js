@@ -7,6 +7,7 @@ import AboutUs from './pages/aboutUsPage/aboutUs';
 import SubscriptionPlanPage from './pages/subscriptionPlanPage/subscriptionPlanPage';
 import Usertype from './components/Forms/Usertype/usertype';
 import AdminDashboard from './pages/Admin/Dashboard/dashBoard';
+import RegisterPatient from './pages/PatientEntryForm/PatientEntry';
 
 const routeConfig=[
     {path:"/signin",component:SignIn,role:"general"},
@@ -17,7 +18,9 @@ const routeConfig=[
     {path:"/subscriptionplan",component:SubscriptionPlanPage,role:"general"},
     {path:"/aboutUs",component:AboutUs,role:"general"},
     {path:"/contactUs",component:ContactUs,role:"Admin"},
-    {path:"/dashboard",component:AdminDashboard,role:"general"}
+    {path:"/dashboard",component:AdminDashboard,role:"general"},
+    {path:"/patient-entry",component:RegisterPatient,role:"general"}
+
 
 ];
 
