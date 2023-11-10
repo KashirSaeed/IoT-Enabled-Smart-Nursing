@@ -1,6 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
-import StatsCard from "../statsCard/StatsCard";
+import StatsCard from "../Statscard/StatsCard";
 import './StatsSection.css'
 
 const StatsSection = () => {

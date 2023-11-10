@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 const postingData = async (data)=>  {
-    await axios.post('http://127.0.0.1:8000/signup/', data)
+    await axios.post('http://127.0.0.1:8000/sign-up/', data)
         .then((response) => {
             if(response.status === 201){
                 alert("User Registered Successfully")
