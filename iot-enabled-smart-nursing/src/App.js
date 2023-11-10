@@ -3,7 +3,7 @@ import './App.css';
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
-import MyAppbar from './Components/Appbar/AppBar';
+import MyAppbar from './Components/Appbar/Appbar';
 import routeConfig from './routes'
 import SideBar from './Components/Sidebar/SideBar';
 import { ThemeProvider, Typography, useTheme } from '@mui/material';

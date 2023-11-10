@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import { Grid } from '@mui/material';
 import EnhancedTable from '../../Components/Tables/EnhancedTable';
 import SideBar from "../../Components/Sidebar/SideBar";
-import Chatbox from "../../Components/Chatbox/ChatBox";
+import Chatbox from "../../Components/Chatbox/Chatbox";
 import fetchPatientActs from "../../Services/FetchPatientActitivities";
 import Loading from "../../Components/Loading/Loading";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
