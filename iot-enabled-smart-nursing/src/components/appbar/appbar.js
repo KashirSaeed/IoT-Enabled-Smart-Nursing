@@ -6,10 +6,9 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import SwipeableTemporaryDrawer from '../swipeableDrawer/SwipeableTemporaryDrawer';
-import CustomButton from '../CustomButton/CustomButton';
+import SwipeableTemporaryDrawer from '../Swipeable/SwipeableTemporaryDrawer';
+import CustomButton from '../Button/CustomButton';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link
@@ -26,10 +25,10 @@ const MyAppbar = ({ pages }) => {
     setAnchorElNav(null);
   };
   const handlesignUpNav = () => {
-    navigate('/subscriptionplan')
+    navigate('/subscription-plan')
   }
   const handleloginNav = () => {
-    navigate('/signin')
+    navigate('/sign-in')
   }
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,

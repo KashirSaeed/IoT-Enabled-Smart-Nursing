@@ -1,19 +1,6 @@
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import DoctorIcon from "@mui/icons-material/LocalHospital";
-import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
-import PatientIcon from "@mui/icons-material/Person";
-import AppointmentIcon from "@mui/icons-material/EventNote";
-import PaymentIcon from "@mui/icons-material/Payment";
-import AddIcon from "@mui/icons-material/Add";
-import ViewListIcon from "@mui/icons-material/ViewList";
-import PersonIcon from "@mui/icons-material/Person";
-import WorkIcon from "@mui/icons-material/Work";
-import profile from '../../assets/profile.jpeg';
+import profile from '../../Assets/Profile.jpeg';
 import React, { useState } from "react";
 import {
     Sidebar,
@@ -23,9 +10,23 @@ import {
 } from "react-pro-sidebar";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import Avatar from "@mui/material/Avatar";
-import './sideBar.css';
+import './SideBar.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { Typography, useTheme } from "@mui/material";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import DoctorIcon from "@mui/icons-material/LocalHospital";
+import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+import PatientIcon from "@mui/icons-material/Person";
+import AppointmentIcon from "@mui/icons-material/EventNote";
+import PaymentIcon from "@mui/icons-material/Payment";
+import AddIcon from "@mui/icons-material/Add";
+import ViewListIcon from "@mui/icons-material/ViewList";
+import PersonIcon from "@mui/icons-material/Person";
+import WorkIcon from "@mui/icons-material/Work";
 
 
 function SubMenu({ label, icon, items, link }) {
@@ -49,7 +50,7 @@ function SubMenu({ label, icon, items, link }) {
     );
 }
 
-function SideBar() {
+function SideBar(props) {
     const user = {
         name: "Alastair Cook",
         profilePic: profile,
@@ -209,7 +210,7 @@ function SideBar() {
                         </MenuItem>
                     )}
 
-                    {menuItems.map((menuItem, index) => {
+                    {props.menuItems.map((menuItem, index) => {
                         if (menuItem.items.length === 0) {
                             if (menuItem.label === "Dashboard") {
                                 return (
@@ -222,8 +223,16 @@ function SideBar() {
                             }
                             else if (menuItem.label === "Timeline Activities") {
                                 return (
-                                    <Link to="#" key={index} style={{ textDecoration: 'none', color: theme.palette.text.primary }} >
+                                    <Link to="/user-type" key={index} style={{ textDecoration: 'none', color: theme.palette.text.primary }} >
                                         <MenuItem icon={menuItem.icon} style={{ color: theme.palette.text.primary }}><Typography variant='body1'>{menuItem.label} </Typography></MenuItem>
+                                    </Link>
+
+                                );
+                            }
+                            else if (menuItem.label === "Patient Data") {
+                                return (
+                                    <Link to="/user-landing" key={index} style={{ textDecoration: 'none', color: 'black' }} >
+                                        <MenuItem icon={menuItem.icon}>{menuItem.label}</MenuItem>
                                     </Link>
 
                                 );
