@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import './signUp.css';
-import MainHeading from '../../MainHeading/mainHaeding';
-import CustomTextField from "../../CustomTextField/CustomTextField";
-import CustomButton from "../../CustomButton/CustomButton";
+import './SignUp.css';
+import MainHeading from '../../Heading/MainHeading';
+import CustomTextField from "../../Textfield/CustomTextField";
+import CustomButton from "../../Button/CustomButton";
 import Grid from '@mui/material/Grid';
-import postingData from '../../../services/signUpService';
+import postingData from '../../../Services/SignUpService';
 import jwt_decode from 'jwt-decode';
-import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate, useParams } from "react-router-dom";
 import { AppBar, useTheme } from "@mui/material";
-import validateAccess from "../../../services/validateAccess";
 
 const SignUp = () => {
 
@@ -48,7 +46,7 @@ const SignUp = () => {
         // --------calling function from signup service---------
         await postingData(data)
         // ---------navigating to usertype component------
-        // navigate('/signin')
+        // navigate('/sign-in')
         // window.location.reload();
         setEmail("");
         setPassword("");
@@ -85,7 +83,7 @@ const SignUp = () => {
 
         await postingData(data)
         // ---------navigating to usertype component------
-        // navigate('/signin')
+        // navigate('/sign-in')
         // window.location.reload();
     }
 
@@ -112,7 +110,7 @@ const SignUp = () => {
         navigate('/');
     }
     const handleSignUpNav = () => {
-        navigate('/signin');
+        navigate('/sign-in');
     }
 
     return (

@@ -1,0 +1,37 @@
+Folders:
+
+-- Use single word names folders
+
+Files and Components: 
+
+-- Use Pascal case
+
+routes:
+
+-- Use lowercase only
+-- Use meaningful names
+-- Use hyphen "-" to separate words
+
+Variables:
+
+-- Use lower case
+-- separate using underscore
+
+State variables:
+
+-- start with is, has or should
+
+Functions:
+
+-- use "handle" as a prefix
+
+CSS classes:
+
+-- lowercase
+-- separate using hyphen
+
+Constants:
+
+-- Upper case
+-- separate using underscore
+

@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Graph } from '../../components/TableData/LineChart';
+import { Graph } from '../../Components/Graph/LineChart';
 import { Box } from '@mui/material';
 import { Grid } from '@mui/material';
-import EnhancedTable from '../../components/TableData/EnhancedTable';
-// import localStorageInstance from "../../services/localStorage";
-// import MiniDrawer from "../../components/Drawer/drawer";
-// import CustomizedTimeline from "../../components/timeline/timeline";
-// import VitalCard from "../../components/VitalCard/VitalCard";
-// import { MonitorHeart } from "@mui/icons-material";
-import SideBar from "../../components/SideBar/sideBar";
-import Chatbox from "../../components/chatbox/Chatbox";
-import fetchPatientActs from "../../services/fetchPatientActitivities";
-import Loading from "../../components/LoadingComponent/loading";
+import EnhancedTable from '../../Components/Tables/EnhancedTable';
+import SideBar from "../../Components/Sidebar/SideBar";
+import Chatbox from "../../Components/Chatbox/ChatBox";
+import fetchPatientActs from "../../Services/FetchPatientActitivities";
+import Loading from "../../Components/Loading/Loading";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
@@ -42,15 +37,15 @@ const UserLanding = () => {
     const [records, setRecords] = useState(10);
     const menuItems = [
         { label: "Dashboard", icon: <HomeOutlinedIcon />, items: [] },
-        { label: "Timeline Activities", icon: <WorkIcon />, items: [] },
-        { label: "Patient Data", icon: <DataArray />, items: [] },
+        { label: "Timeline Activities", icon: <WorkIcon />, items: [], link: '/user-type' },
+        { label: "Patient Data", icon: <DataArray />, items: [] , link: '/user-landing'},
 
         {
             label: "Doctors", icon: <DoctorIcon />,
             items: [
-                { label: "All Doctors", icon: <ViewListIcon /> },
-                { label: "Add Doctor", icon: <AddIcon />, link: '/alldcotrs' },
-                { label: "Doctor Profile", icon: <PersonIcon /> },
+                { label: "All Doctors", icon: <ViewListIcon />, link: '/all-doctors' },
+                { label: "Add Doctor", icon: <AddIcon />, link: '/all-doctors' },
+                { label: "Doctor Profile", icon: <PersonIcon /> , link: '/all-doctors'},
             ],
         },
 

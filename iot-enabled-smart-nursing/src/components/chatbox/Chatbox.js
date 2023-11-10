@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Paper, TextField, Button, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send'; // Import the Send icon
 import { Grid } from '@mui/material';
-import queryingBard from '../../services/queryBard';
+import queryingBard from '../../Services/QueryBard';
 import Slide from '@mui/material/Slide';
 
 import Alert from '@mui/material/Alert';

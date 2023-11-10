@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from 'react';
-// import profile from '../../../assets/profile.jpeg';
-// import DoctorIcon from "@mui/icons-material/LocalHospital";
-// import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
-// import AppointmentIcon from "@mui/icons-material/EventNote";
-// import PaymentIcon from "@mui/icons-material/Payment";
-// import PersonIcon from "@mui/icons-material/Person";
 import Grid from '@mui/material/Grid';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-import CardComponent from '../../../components/Card/card';
-import ChartGraph from '../../../components/ChartGraph/ChartGraph';
-import BarGraph from '../../../components/BarGraph/barGraph';
-import SideBar from '../../../components/SideBar/sideBar';
-import Loading from '../../../components/LoadingComponent/loading';
-import activityData from '../../../services/activitiesService';
-
+import CardComponent from '../../../Components/Card/Dashboard/Card';
+import ChartGraph from '../../../Components/Graph/ChartGraph/ChartGraph';
+import BarGraph from '../../../Components/Graph/BarGraph/BarGraph';
+import SideBar from '../../../Components/Sidebar/SideBar';
+import Loading from '../../../Components/Loading/Loading';
+import activityData from '../../../Services/ActivitiesService';
 import DoctorIcon from "@mui/icons-material/LocalHospital";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import PatientIcon from "@mui/icons-material/Person";
@@ -29,9 +20,8 @@ import AddIcon from "@mui/icons-material/Add";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import PersonIcon from "@mui/icons-material/Person";
 import WorkIcon from "@mui/icons-material/Work";
-import './dashBoard.css';
+import './DashBoard.css';
 import { DataArray } from "@mui/icons-material";
-import UserLanding from '../../User/UserLanding';
 import { Typography, useTheme } from '@mui/material';
 
 function AdminDashboard() {
@@ -41,15 +31,15 @@ function AdminDashboard() {
   const [futureActivitiesProbabilities, setFutureActivitiesProbabilities] = useState([]);
   const menuItems = [
     { label: "Dashboard", icon: <HomeOutlinedIcon />, items: [] },
-    { label: "Timeline Activities", icon: <WorkIcon />, items: [] },
-    { label: "Patient Data", icon: <DataArray />, items: [] },
+    { label: "Timeline Activities", icon: <WorkIcon />, items: [] ,link: '/user-type'},
+    { label: "Patient Data", icon: <DataArray />, items: [],link: '/user-landing' },
 
     {
         label: "Doctors", icon: <DoctorIcon />,
         items: [
-            { label: "All Doctors", icon: <ViewListIcon /> },
-            { label: "Add Doctor", icon: <AddIcon />, link: '/alldcotrs' },
-            { label: "Doctor Profile", icon: <PersonIcon /> },
+            { label: "All Doctors", icon: <ViewListIcon />,link: '/all-doctors' },
+            { label: "Add Doctor", icon: <AddIcon />, link: '/all-doctors' },
+            { label: "Doctor Profile", icon: <PersonIcon /> ,link: '/all-doctors'},
         ],
     },
 

@@ -1,27 +1,27 @@
 import React from "react";
-import LineChartLabeled from "../../components/NurseCharts/LineChartLabeled";
-import DateTimeGraph from "../../components/NurseCharts/DateTimeGraph";
+import LineChartLabeled from "../../Components/Graph/LineChartLabeled";
+import DateTimeGraph from "../../Components/Graph/DateTimeGraph";
 import { Grid } from "@mui/material";
-import DynamicLineChart from "../../components/NurseCharts/dynamicLineChart";
-import SideBar from "../../components/SideBar/sideBar";
+import DynamicLineChart from "../../Components/Graph/DynamicLineChart";
+import SideBar from "../../Components/Sidebar/SideBar";
 ////////////////////////////////////////////////////////////////////////
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+// import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import DoctorIcon from "@mui/icons-material/LocalHospital";
-import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
+// import DoctorIcon from "@mui/icons-material/LocalHospital";
+// import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import PatientIcon from "@mui/icons-material/Person";
-import AppointmentIcon from "@mui/icons-material/EventNote";
-import PaymentIcon from "@mui/icons-material/Payment";
-import AddIcon from "@mui/icons-material/Add";
+// import AppointmentIcon from "@mui/icons-material/EventNote";
+// import PaymentIcon from "@mui/icons-material/Payment";
+// import AddIcon from "@mui/icons-material/Add";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import PersonIcon from "@mui/icons-material/Person";
 import WorkIcon from "@mui/icons-material/Work";
 import { DataArray } from "@mui/icons-material";
-import AppWidgetSummary from "../../components/Card/SummaryCard";
+import AppWidgetSummary from "../../Components/Card/SummaryCard";
 const NurseDashboard=()=>{
     const menuItems = [
         { label: "Dashboard", icon: <HomeOutlinedIcon />, items: [] },
@@ -29,43 +29,10 @@ const NurseDashboard=()=>{
         { label: "Patient Data", icon: <DataArray />, items: [] },
     
         {
-            label: "Doctors", icon: <DoctorIcon />,
-            items: [
-                { label: "All Doctors", icon: <ViewListIcon /> },
-                { label: "Add Doctor", icon: <AddIcon />, link: '/alldcotrs' },
-                { label: "Doctor Profile", icon: <PersonIcon /> },
-            ],
-        },
-    
-        {
             label: "Patients", icon: <PatientIcon />,
             items: [
                 { label: "All Patients", icon: <ViewListIcon /> },
-                { label: "Add Patient", icon: <AddIcon /> },
                 { label: "Patient Profile", icon: <PersonIcon /> },
-            ],
-        },
-        {
-            label: "Nurses", icon: <MedicalServicesIcon />,
-            items: [
-                { label: "All Nurses", icon: <ViewListIcon /> },
-                { label: "Add Nurse", icon: <AddIcon /> },
-                { label: "Nurse Profile", icon: <PersonIcon /> },
-            ],
-        },
-        {
-            label: "Payments", icon: <PaymentIcon />,
-            items: [
-                { label: "Payments", icon: <PeopleOutlinedIcon /> },
-                { label: "Add Payment", icon: <PeopleOutlinedIcon /> },
-                { label: "Payment Invoice", icon: <PeopleOutlinedIcon /> },
-            ],
-        },
-        {
-            label: "Appointments", icon: <AppointmentIcon />,
-            items: [
-                { label: "Book Schedule", icon: <PeopleOutlinedIcon /> },
-                { label: "Doctor Appointment", icon: <PeopleOutlinedIcon /> },
             ],
         },
         { label: "Profile", icon: <ReceiptOutlinedIcon />, items: [] },
@@ -83,34 +50,34 @@ const NurseDashboard=()=>{
             <Grid container columnSpacing={{ xs: 2, sm: 4, md: 6 }} padding={2}>
                 <Grid item >
                     <AppWidgetSummary
-                        title="Weekly Sales"
-                        total={714000}
+                        title="Patients in Ward 1"
+                        total={120}
                         color="success"
-                        icon={<img alt="icon" src="../../assets/ic_glass_bag.png" />}
+                        icon={<img alt="icon" src="../../Assets/ic_glass_bag.png" />}
                     />
                 </Grid>
                 <Grid item >
                     <AppWidgetSummary
-                        title="Weekly Sales"
-                        total={714000}
+                        title="Total Patients"
+                        total={714}
                         color="success"
-                        icon={<img alt="icon" src="../../assets/ic_glass_buy.png" />}
+                        icon={<img alt="icon" src="../../Assets/ic_glass_buy.png" />}
                     />
                 </Grid>
                 <Grid item>
                     <AppWidgetSummary
-                        title="Weekly Sales"
-                        total={714000}
-                        color="success"
-                        icon={<img alt="icon" src="../../assets/ic_glass_message.png" />}
+                        title="Critical Patients"
+                        total={6}
+                        color="danger"
+                        icon={<img alt="icon" src="../../Assets/ic_glass_message.png" />}
                     />
                 </Grid>
                 <Grid item >
                     <AppWidgetSummary
-                        title="Weekly Sales"
-                        total={714000}
-                        color="success"
-                        icon={<img alt="icon" src="../../assets/ic_glass_users.png" />}
+                        title="Medications Pending"
+                        total={5}
+                        color="warning"
+                        icon={<img alt="icon" src="../../Assets/ic_glass_users.png" />}
                     />
                 </Grid>
             </Grid>

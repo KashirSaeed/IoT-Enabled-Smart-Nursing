@@ -1,4 +1,4 @@
-import validateAccess from './validateAccess';
+import validateAccess from './ValidateAccess';
 import axios from "axios";
 
 const fetchPatientActs=async()=>{
@@ -7,7 +7,7 @@ const fetchPatientActs=async()=>{
     let res;
     console.log(val)
     if (val == "unauthorized_user"){
-        window.location('/signin');
+        window.location('/sign-in');
     }
     else{
         
