@@ -1,15 +1,16 @@
 
 import React, { useState, useEffect } from "react";
-import './SignIn.css';
-import MainHeading from '../../Heading/MainHeading';
-// import CustomTextField from "../../TextField/CustomTextField";
-import CustomTextField from "../../Textfield/CustomTextField";
-import CustomButton from "../../Button/CustomButton";
+import './signIn.css';
+import MainHeading from '../../MainHeading/mainHaeding';
+import CustomTextField from "../../CustomTextField/CustomTextField";
+import CustomButton from "../../CustomButton/CustomButton";
 import Grid from '@mui/material/Grid';
-import readingData from '../../../Services/SignInService';
+import readingData from '../../../services/signInService';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
 import { AppBar, useTheme } from "@mui/material";
+import HomeIcon from '@mui/icons-material/Home';
+import { bool } from "prop-types";
 
 const SignIn = ({ LoadRoutes }) => {
     const navigate = useNavigate();
@@ -70,7 +71,7 @@ const SignIn = ({ LoadRoutes }) => {
         await readingData(data)
 
         // ---------navigating to usertype component------
-        // navigate('/sign-in')
+        // navigate('/signin')
         // window.location.reload();
     }
 
@@ -96,7 +97,7 @@ const SignIn = ({ LoadRoutes }) => {
         navigate('/');
     }
     const handleSignUpNav = () => {
-        navigate('/subscription-plan');
+        navigate('/subscriptionplan');
     }
     const theme = useTheme()
     return (

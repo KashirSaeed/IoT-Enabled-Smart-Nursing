@@ -20,7 +20,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Logout } from '@mui/icons-material';
-import localStorageInstance from '../../Services/LocalStorage';
+import localStorageInstance from '../../services/localStorage';
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;

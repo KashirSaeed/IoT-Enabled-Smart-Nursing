@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 const readingData = async (data)=>  {
     const axio_instance=axios.create({withCredentials:true});
     var login=false
-    await axio_instance.post('http://127.0.0.1:8000/sign-in/', data).then((response) => {
+    await axio_instance.post('http://127.0.0.1:8000/signin/', data).then((response) => {
 
         if(response.status === 200){
             Cookies.set('refresh_token', response.data["refresh_token"]);

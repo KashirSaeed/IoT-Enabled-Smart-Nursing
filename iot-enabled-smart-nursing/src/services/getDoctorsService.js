@@ -1,10 +1,10 @@
 import axios from 'axios';
-import validateAccess from './ValidateAccess';
+import validateAccess from './validateAccess';
 
 
 
 const getDoctor = async () => {
-    var axio_instance = axios.create({ withCredentials: true });
+    const axio_instance = axios.create({ withCredentials: true });
     var token = await validateAccess()
     if (token != 'unauthorized_user') {
         const headers = {

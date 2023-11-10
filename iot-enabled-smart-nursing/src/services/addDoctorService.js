@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import validateAccess from './ValidateAccess';
+import validateAccess from './validateAccess';
 
 
 
 const addDoctor = async (data) => {
-    let axio_instance = axios.create({ withCredentials: true });
+    const axio_instance = axios.create({ withCredentials: true });
     var token = await validateAccess()
     if (token != 'unauthorized_user') {
         const headers = {

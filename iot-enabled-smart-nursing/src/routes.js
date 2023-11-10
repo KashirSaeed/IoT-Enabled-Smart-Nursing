@@ -10,8 +10,6 @@ import AdminDashboard from './pages/Admin/Dashboard/dashBoard';
 import RegisterPatient from './pages/PatientEntryForm/PatientEntry';
 import AdminDoctors from './pages/Admin/Doctors_Admin/doctors_view'
 import TestingTheme from './components/TestingTheme/testingTheme';
-import NurseDashboard from "./Pages/Nurse/NurseDashboard"
-
 
 const routeConfig=[
     {path:"/signin",component:SignIn,role:"general"},
@@ -25,15 +23,8 @@ const routeConfig=[
     {path:"/dashboard",component:AdminDashboard,role:"general"},
     {path:"/patient-entry",component:RegisterPatient,role:"general"},
     { path: "/all-doctors", component: AdminDoctors, role: "general" },
-    { path: "/theme", component: TestingTheme, role: "general" },
-    { path: "/nursing",component:NurseDashboard,role:"general"},]
+    { path: "/theme", component: TestingTheme, role: "general" }
 
-/*
-Naming convention for routes:
-1) Use lowercase only
-2) Use meaningful names
-3) Use hyphen (-) to separate words
-*/
-
+];
 
 export default routeConfig

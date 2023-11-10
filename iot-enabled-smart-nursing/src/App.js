@@ -3,19 +3,19 @@ import './App.css';
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
-import MyAppbar from './Components/Appbar/AppBar';
+import MyAppbar from './components/appbar/appbar';
 import routeConfig from './routes'
-import SideBar from './Components/Sidebar/SideBar';
+import SideBar from './components/SideBar/sideBar';
 import { ThemeProvider, Typography, useTheme } from '@mui/material';
-import validateAccess from './Services/ValidateAccess';
+import validateAccess from './services/validateAccess';
 
 
 const App = () => {
   const pages = [
     { "key": "Product Overview", "value": "/" },
-    { "key": "Payment Plans", "value": "/subscription-plan" },
-    { "key": "About Us", "value": "/about-us" },
-    { "key": "Contact Us", "value": "/contact-us" },
+    { "key": "Payment Plans", "value": "/subscriptionplan" },
+    { "key": "About Us", "value": "/aboutUs" },
+    { "key": "Contact Us", "value": "/contactUs" },
   ];
 
   const [filteredRoutes, setFilteredRoutes] = useState(routeConfig.filter((route) => route.role === "general"));
@@ -44,9 +44,10 @@ const App = () => {
 
       <BrowserRouter>
         {token === 'unauthorized_user' || endpoint == "" ? <MyAppbar pages={pages} /> : null}
+        {/* {currentUserType === 'Admin' ? null : <SideBar />} */}
         <Routes>
           {filteredRoutes.map((route) => {
-            if (route.path === "/sign-in") {
+            if (route.path === "/signin") {
               return <Route path={route.path} element={<route.component LoadRoutes={LoadRoutes} />} />
             }
             else {
