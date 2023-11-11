@@ -11,15 +11,12 @@ const GoogleAuthentication =  (signUpData, signInData, LoadRoutes) => {
             login = await readingData(signInData)
             if (login) {
                 LoadRoutes("admin");
-                window.location.href = "http://localhost:3000/dashboard"
-                alert("IF");
+                window.location.href = "http://localhost:3000/dashboard"   
             }
             else {
-                alert("Invalid Credentials")
                 await postingData(signUpData);
                 login = await readingData(signInData)
                 if (login) {
-                    alert("again entered")
                     LoadRoutes("admin");
                     window.location.href = "http://localhost:3000/dashboard"
                 }
